@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Tags extends Model
+class Tag extends Model
 {
   public $timestamps = false;
 
