@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::get('/', function () {
-    return redirect('/books');
+    return view('welcome');
 });
-
-Auth::routes();
-
-Route::get('books', 'BooksController@index')->name('books.index');
-Route::get('search', 'SearchesController@index')->name('search.index');
-
-#####ユーザー
-Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
-
