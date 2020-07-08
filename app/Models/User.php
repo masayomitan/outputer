@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Favorite;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,40 +45,40 @@ class User extends Authenticatable
 //     ];
 // }
 
-    public function followers()
-    {
-        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
-    }
+public function followers()
+{
+  return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
+}
 
-    public function follows()
-    {
-        return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
-    }
+public function follows()
+{
+  return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
+}
 
-    public function getAllUsers($user_id)
-    {
-        return $this->Where('id', '<>', $user_id)->paginate(6);
-    }
+public function getAllUsers($user_id)
+{
+  return $this->Where('id', '<>', $user_id)->paginate(6);
+}
 
-    public function follow(Int $user_id)
-    {
-        return $this->follows()->attach($user_id);
-    }
+public function follow(Int $user_id)
+{
+  return $this->follows()->attach($user_id);
+}
 
-    public function unfollow(Int $user_id)
-    {
-        return $this->follows()->detach($user_id)
-    }
+public function unfollow(Int $user_id)
+{
+  return $this->follows()->detach($user_id);
+}
 
-    public function isFollowing(Int $user_id)
-    {
-      return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
-    }
+public function isFollowing(Int $user_id)
+{
+  return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
+}
 
-    public function isFollowed(Int $user_id)
-    {
-      return (boolean) $this->followers()->where('following_id',$user_id)->first(['id']);
-    }
+public function isFollowed(Int $user_id)
+{
+  return (boolean) $this->followers()->where('following_id',$user_id)->first(['id']);
+}
 
     public function updateProfile(Array $params){
         if(isset($params['binary_image'])){
@@ -149,7 +150,7 @@ class User extends Authenticatable
     public function getTabInfoList(){
         //現状newしまくり、、Laravelでドメイン駆動設計(DDD)を実践し、
         //Eloquent Model依存の設計から脱却したい。
-        $article = new Article();
+        $book = new Book();
         $follower = new Follower();
         $favorite = new Favorite();
 
@@ -191,7 +192,7 @@ class User extends Authenticatable
 
 
     public function getUserInfoList(){
-      $favorite = new Favorite;
+      $favorite = new Favorite();
 
       $login_user = auth()->user();
       $follow_statuses = $this->getFollowStatuses($login_user);
@@ -225,22 +226,5 @@ class User extends Authenticatable
 
       return true;
     }
-
-}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

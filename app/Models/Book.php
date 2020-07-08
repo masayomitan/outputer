@@ -2,10 +2,14 @@
 
 namespace App;
 
+use App\Models\Favorite;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Book extends Model
 {
+    use Authenticatable;
    //指定したカラムに対してのみ、 create()やupdate() 、fill()が可能
    protected $fillable = [
     'title',
@@ -68,7 +72,7 @@ class Book extends Model
       $this->body = $data['body'];
       $this->status = $data['article_status_id'];
       $this->save();
-      return
+      return;
     }
 
     public function getEditBook(Int $user_id, Int $book_id){
@@ -123,20 +127,41 @@ class Book extends Model
       return $param;
     }
 
-    public function getPopularBooks(){
-        $tab_info_list = [
-            'タイムライン' => [
-                'param' => '',
-                'icon_class' => 'fas fa-stream'
-            ],
-            '人気' => [
-                'param' => '?mode=popular',
-                'icon_class' => 'fas fa-fire'
-            ],
-          ];
-
-          return $tab_info_list;
+    public function getPopularArticles() {
+        $favorite_list = Favorite::all();
+        foreach($favorite_list as $favorite_item) {
+          $article_id_list[] = $favorite_item->article()->value('id');
         }
+
+        if(empty($article_id_list)) {
+          $popular_articles = [];
+        } else {
+          $rank_list = array_count_values($article_id_list);
+          arsort($rank_list);
+          $rank_keys = array_keys($rank_list);
+          $ids_order = implode(',', $rank_keys);
+
+          $popular_articles = $this->whereIn('id',$rank_keys)->orderByRaw(DB::raw("FIELD(id, $ids_order)"));
+        }
+
+        return $popular_articles;
+      }
+
+
+      public function getTabInfoList(){
+        $tab_info_list = [
+          'タイムライン' => [
+              'param' => '',
+              'icon_class' => 'fas fa-stream'
+          ],
+          '人気' => [
+              'param' => '?mode=popular',
+              'icon_class' => 'fas fa-fire'
+          ],
+        ];
+        return $tab_info_list;
+      }
+      
 
     public function getFavoriteBooks(Int $user_id){
       $favorite_books = $this->whereHas('favorites', function($query) use ($user_id) {

@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use App\Output;
 use App\User;
+use App\Tag;
 use Dotenv\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\DocBlock\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
 
     public function fetch(Request $request, Book $book){
-        $statusid = 0;
+
+        $status_id = 0;
 
         switch($request["mode"]){
             case "tag";
@@ -26,7 +30,7 @@ class BooksController extends Controller
 
         case "popular":
             $books = $book->getPopularBooks();
-            $books = $books->with(['tags', 'user', 'favorites'])->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
+            $books = $book->with(['tags','user','favorites'])->where('status',$status_id)->paginate(6);
         break;
 
         default:
@@ -72,8 +76,57 @@ class BooksController extends Controller
         $user = auth()->user();
         return view('books.create',[
             'user' => $user,
-            'article_status_texts' => $book_status_texts,
+            'book_status_texts' => $book_status_texts,
         ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Book $book, Tag $tag)
+    {
+        $user = auth()->user();
+        $data = $request->all();
+        $validator = Validator::make($data,[
+            'title' => ['string', 'max:30'],
+            'body' => ['string', 'max:20480'],
+            'image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
+        ]);
+
+        $validator->validate();
+        // 画像のみの投稿の処理
+        if(isset($data["image"]))
+        {
+            $image = Storage::disk('s3')->putFile('/article_images', $data["image"], 'public');
+            $image_path = Storage::disk('s3')->url($image);
+            return $image_path;
+        }
+        // 記事を投稿する際の処理
+        elseif(isset($data["title"]) && isset($data["body"]))
+        {
+            // dump($data);
+            if(!isset($data["binary_image"])){
+                $data["binary_image"] = "/images/etc/default-header-image.png";
+            } else {
+                $img = $data["binary_image"];
+                $fileData = base64_decode($img);
+                $fileName = '/tmp/header_image.png';
+                file_put_contents($fileName, $fileData);
+
+                $image = Storage::disk('s3')->putFile('/header_images', $fileName, 'public');
+                $data["binary_image"] = Storage::disk('s3')->url($image);
+            }
+            $book->bookStore($user->id, $data);
+            if(isset($data["tags"])) {
+                $tag->tagStore($data["tags"]);
+                $tag_ids = $tag->getTagIds($data["tags"]);
+                $book->bookTagSync($tag_ids);
+            }
+            return redirect('articles');
+        }
     }
 
     /**

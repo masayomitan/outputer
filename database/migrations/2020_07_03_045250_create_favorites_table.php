@@ -13,7 +13,7 @@ class CreateFavoritesTable extends Migration
      */
     public function up()
     {
-        schema::create('good', function (Blueprint $table) {
+        schema::create('favorites', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
             $table->unsignedInteger('book_id')->comment('記事ID');
@@ -41,6 +41,6 @@ class CreateFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('good');
+        Schema::dropIfExists('favorites');
     }
 }

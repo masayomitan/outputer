@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -57,45 +58,29 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
+
+        #base64でエンコードされた画像データを画像ファイルとして保存する
+        $img = $data["binary_image"];
+        if(!isset($img)) {
+            $image_path = "/images/profile_image/etc.png";
+        } else {
+            $fileData = base64_decode($img);
+            $fileName = '/tmp/profile_image.png';
+            file_put_contents($fileName, $fileData);
+
+            $image = Storage::disk('s3')->putFile('/profile_images', $fileName, 'public');
+            $image_path = Storage::disk('s3')->url($image);
+        }
+
+
         return User::create([
             'account_name' => $data['account_name'],
             'name' => "",
             'email' => $data['email'],
+            'profile_image' => $image_path,
             'password' => Hash::make($data['password']),
         ]);
     }
 }
-
-// protected function create(array $data)
-// {
-
-//     #base64でエンコードされた画像データを画像ファイルとして保存する
-//     $img = $data["binary_image"];
-//     if(!isset($img)) {
-//         $image_path = "/images/profile_image/etc.png";
-//     } else {
-//         $fileData = base64_decode($img);
-//         $fileName = '/tmp/profile_image.png';
-//         file_put_contents($fileName, $fileData);
-
-//         $image = Storage::disk('s3')->putFile('/profile_images', $fileName, 'public');
-//         $image_path = Storage::disk('s3')->url($image);
-//     }
-
-
-//     return User::create([
-//         'account_name' => $data['account_name'],
-//         'name' => "",
-//         'email' => $data['email'],
-//         'profile_image' => $image_path,
-//         'password' => Hash::make($data['password']),
-//     ]);
-// }
