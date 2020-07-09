@@ -16,7 +16,7 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザーID');
-            $table->string('header_image')->comment('ヘッダー画像');
+            $table->string('book_image')->comment('画像');
             $table->string('title');
             $table->text('over_view')->comment('概要');
             $table->unsignedSmallInteger('status')->default(0)->comment('0:公開,1:非公開');
