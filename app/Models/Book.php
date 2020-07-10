@@ -35,10 +35,15 @@ class Book extends Model
       return;
     }
 
+
+    public function bookDestroy(Int $user_id, Int $book_id)
+    {
+        return $this->where('user_id',$user_id)->where('id',$book_id)->delete();
+    }
+
     public function getPostBookStatusTexts() {
         $book_status_texts = ["kousatuに投稿する","下書きに保存する"];
         $book_status_texts = json_encode($book_status_texts);
-
         return $book_status_texts;
     }
 }
