@@ -41,7 +41,7 @@ class Tag extends Model
 
     public function getPopularTags(){
         //withCountでレコード数をとる
-        //0で公開しているbooksのデータを呼び出し
+        //0で公開しているbooksのデータを呼び出しc
         $popular_tags = $this::withCount([ 'books' => function($query) {
             $query->where('status',0);
         }])
