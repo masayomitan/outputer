@@ -26,8 +26,6 @@ class Book extends Model
     {
       $this->user_id = $user_id;
       $this->book_image = $data['book_image'];
-
-
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
     //   $this->status = $data['book_status_id'];

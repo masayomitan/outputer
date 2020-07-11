@@ -14,23 +14,14 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Book $book)
-{
+    {
 
     $user = auth()->user();
+    $books = Book::all();
 
-        // $book = $book->getBook($book->id);
-        // $favorite_row = $favorite->getFavoriteRow($user->id, $book->id);
-        // $comments = $comment->getComments($book->id);
+        return view('books.index',compact('books'));
 
-        return view('books/index',[
-            'user' => $user,
-            'book' => $book,
-            // 'comments' => $comments,
-            // 'twitter_share_param' => $twitter_share_param,
-            // 'favorite_id' => $favorite_id,
-        ]);
-    return view('books/index');
-}
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -39,11 +30,11 @@ class BooksController extends Controller
      */
     public function create(Book $book)
     {
-        // $book_status_texts = $book->getPostBookStatusTexts();
+        $book_status_texts = $book->getPostBookStatusTexts();
         $user = auth()->user();
         return view('books.create',[
             'user' => $user,
-            // 'book_status_texts' => $book_status_texts,
+            'book_status_texts' => $book_status_texts,
         ]);
     }
 
@@ -55,7 +46,10 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $user = auth()->user();
+        $file_name = $request->file('book_image')->getClientOriginalName();
+        $request->file('book_image')->storeAs('public',$file_name);
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
@@ -64,13 +58,9 @@ class BooksController extends Controller
         ]);
         $validator->validate();
 
-
-
-
+        
         $book = new Book;
         $book->bookStore($user->id, $data);
-        $file_name = $request->file('book_image')->getClientOriginalName();
-        $request->file('book_image')->storeAs('',$file_name);
         $book->save();
         // dd($book);
         return redirect('/books')->with('success', '投稿が完了しました。');
@@ -87,17 +77,12 @@ class BooksController extends Controller
     public function show(Book $book)
     {
         $user = auth()->user();
-
         $book = $book->getBook($book->id);
         // $favorite_row = $favorite->getFavoriteRow($user->id, $book->id);
         // $comments = $comment->getComments($book->id);
 
-        return view('books.show',[
+        return view('books.show', compact('book'),[
             'user' => $user,
-            'book' => $book,
-            // 'comments' => $comments,
-            // 'twitter_share_param' => $twitter_share_param,
-            // 'favorite_id' => $favorite_id,
         ]);
     }
 
@@ -130,8 +115,16 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book, Request $request)
     {
-        //
+        $user = auth()->user();
+        $book->bookDestroy($user->id, $book->id);
+        $redirect = $request->input('redirect');
+        if ($redirect == "on") {
+            return redirect('/');
+          } else {
+            return back();
+        }
     }
+
 }
