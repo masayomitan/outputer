@@ -1,17 +1,38 @@
-header {
+  .main-header{
+
+      display: flex;
+      justify-content: space-between;
+  }
+
+
+  .wrapper{
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 4%;
+  }
+
+
+  .main-nav {
     display: flex;
-    width: 100%;
-    height: 100px;
-    background-color: darkgrey;
-    align-items: center;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-top: 34px;
+    list-style: none;
+
   }
 
-  .title {
-    margin-right: auto;
-  }
-
-  .menu-item {
+  .menu-nav {
+    margin-right: 30px;
     list-style: none;
     display: inline-block;
     padding: 10px;
+  }
+
+  .menu-nav li{
+      margin-left: 36px;
+
+  }
+
+  .menu-nav a:hover{
+    color: #0bd;
   }
