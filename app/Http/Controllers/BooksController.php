@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,8 @@ class BooksController extends Controller
         ]);
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -50,6 +53,7 @@ class BooksController extends Controller
         $user = auth()->user();
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('public',$file_name);
+
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
@@ -58,7 +62,7 @@ class BooksController extends Controller
         ]);
         $validator->validate();
 
-        
+
         $book = new Book;
         $book->bookStore($user->id, $data);
         $book->save();
@@ -86,15 +90,32 @@ class BooksController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+        $book_status_texts = $book->getPostbookStatusTexts();
+        $user = auth()->user();
+        $books = $book->getEditbook($user->id, $book->id);
+
+        // if(!isset($books)) {
+        //     return redirect('books');
+        // }
+        // $tags = [];
+        // foreach($book->tags as $tag){
+        //     $tags[] = $tag;
+        // }
+        return view('books.edit', [
+            'user' => $user,
+            'books' => $books,
+            // 'tags'=>$tags,
+            // 'book_status_texts' => $book_status_texts,
+        ]);
     }
 
     /**
@@ -104,9 +125,22 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book, Tag $tag)
     {
-        //
+
+
+        // $file_name = $request->file('book_image')->getClientOriginalName();
+        // $request->file('book_image')->storeAs('public',$file_name);
+
+        $data = $request->all();
+        $validator = Validator::make($data,[
+            'title' => ['string', 'max:30'],
+            'over_view' => ['string', 'max:20480'],
+            'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
+        ]);
+        $validator->validate();
+        $book->bookUpdate($book->id, $data);
+        return back()->with('success', '編集完了しました');
     }
 
     /**

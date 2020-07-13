@@ -2,9 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-    //
+    public function index()
+    {
+        //
+    }
+
+
+    public function create()
+    {
+        //
+    }
+
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+
+    public function show(Tag $tag, User $user)
+    {
+        // $popular_tags = $tag->getPopularTags();
+        // $popular_users = $user->getPopularUsers();
+        // $api = "/fetch?mode=tag&tag_id={$tag->id}";
+        // return view('tags.show',[
+        //     'tag' => $tag,
+        //     'api' => $api,
+        //     'popular_tags' => $popular_tags,
+        //     'popular_users' => $popular_users,
+        // ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
 }

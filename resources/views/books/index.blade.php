@@ -1,58 +1,31 @@
-@extends('layouts.app')
+<h1>一覧画面</h1>
+<p><a href="{{ route('books.create') }}">新規追加</a></p>
 
-@include('layouts/header')
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+@if ($message = Session::get('success'))
+<p>{{ $message }}</p>
+@endif
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Admin Index</div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
-                    <div class="table-resopnsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>{{__('ID')}}</th>
-                                    <th>{{__('title')}}</th>
-                                    <th>{{__('over_view')}}</th>
-                                    <th>{{__('book_image')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if(isset($books))  // $bookデータ存在チェック
-                                    @foreach ($books as $book)  // テーブル作成
-                                        <tr>
-                                            <td>{{ $book->id }}</td>
-                                            <td>{{ $book->title }}</td>
-                                            <td>{{ $book->over_view }}</td>
-                                            @if($book->book_image == null)
-                                            <img src="/storage/noimage.png">
-                                            @else
-                                            <img src="/storage/{{$book->book_image}}">
-                                            @endif
-                                            <td>{{ $book->book_image }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-primary" onclick="location.href='{{ route('books.create') }}'">
-                            {{ __('追加') }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<table border="1">
+    <tr>
+        <th>title</th>
+        <th>詳細</th>
+        <th>編集</th>
+        <th>削除</th>
+    </tr>
+    @foreach ($books as $book)
+    <tr>
+        <td>{{ $book->title }}</td>
+        <td>{{ $book->book_image }}</td>
+        <img src="{{ asset('storage/' . $book->book_image) }}" alt="イメージ画像" width="500px" class="w-100">
+        <th><a href="{{ route('books.show',$book->id)}}">詳細</a></th>
+        <th><a href="{{ route('books.edit',$book->id)}}">編集</a></th>
+        <th>
+            <form action="{{ route('books.destroy', $book->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" name="" value="削除">
+            </form>
+        </th>
+    </tr>
+    @endforeach
+</table>

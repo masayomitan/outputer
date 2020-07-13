@@ -3,11 +3,23 @@
 
 @section('content')
 
+
+
 <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
 <input type="text" name="title" placeholder="タイトル" class="form-control form-control-lg">
 <textarea  rows="8" cols="40" type="textarea" name="over_view" placeholder="概要" class="form-control form-control-lg"></textarea>
 <input type="file" id="book_image" name="book_image" >
+<div class="form-group">
+    <label for="tags">
+        タグ
+    </label>
+    <input
+        id="tags"
+        name="tags"
+        class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}"
+        value="{{ old('tags') }}"
+        type="text">
 <input type="submit"  value="Submit"></button>
 
 </form>

@@ -1,16 +1,16 @@
+<h1>編集画面</h1>
+{{-- <p><a href="{{ route('book.index')}}">一覧画面</a></p> --}}
 
-@extends('layouts.app')
+@if ($message = Session::get('success'))
+<p>{{ $message }}</p>
+@endif
 
-@section('content')
+<form action="{{ route('books.update',$books->id)}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+    <p>タイトル：<input type="text" name="title" value="{{ $books->title }}"></p>
+    <p>著者：<input type="text" name="over_view" value="{{ $books->over_view }}"></p>
 
-<form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
-@csrf
-<input type="text" name="title" placeholder="タイトル" class="form-control form-control-lg">
-<textarea  rows="8" cols="40" type="textarea" name="over_view" placeholder="概要" class="form-control form-control-lg"></textarea>
-<input type="file" id="input" name="book_image" >
-<input type="submit"  value="Submit"></button>
-
+    <input type="submit" value="編集する">
 </form>
 
-
-@endsection
