@@ -35,7 +35,6 @@ class Book extends Model
 
     public function tags()
     {
-        //https://stackoverrun.com/ja/q/9982396,hasManyとbelongsToManyの違い忘れた時用
         return $this->belongsToMany(Tag::class);
     }
 
@@ -71,7 +70,6 @@ class Book extends Model
 
     public function bookStore(Int $user_id, Array $data)
     {
-      //本登録項目をmodelにまとめcontrollerの記述を少なく
       $this->user_id = $user_id;
       $this->book_image = $data['book_image'];
       $this->title = $data['title'];
@@ -96,13 +94,24 @@ class Book extends Model
       return;
     }
 
-
     public function bookDestroy(Int $user_id, Int $book_id)
     {
         return $this->where('user_id',$user_id)->where('id',$book_id)->delete();
     }
 
 
+    //タグ
+    public function bookTagStore(Array $tag_ids){
+        //attch
+        foreach($tag_ids as $tag_id) {
+          $this->tags()->attach($tag_id);
+        }
+      }
+
+      public function bookTagSync(Array $tag_ids){
+        //syncメソッドは中間テーブルに設置しておくIDの配列を渡します。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
+          $this->tags()->sync($tag_ids);
+      }
 
 
     public function getPostBookStatusTexts() {

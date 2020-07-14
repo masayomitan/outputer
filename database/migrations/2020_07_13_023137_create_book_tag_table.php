@@ -18,6 +18,9 @@ class CreateBookTagTable extends Migration
             $table->unsignedInteger('book_id')->comment('本ID');
             $table->unsignedInteger('tag_id')->comment('カテゴリーID');
 
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+
             $table->unique([
                 'book_id',
                 'tag_id'

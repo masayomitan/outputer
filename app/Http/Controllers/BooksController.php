@@ -17,9 +17,7 @@ class BooksController extends Controller
     public function index(Book $book)
     {
 
-    $user = auth()->user();
-    $books = Book::all();
-
+        $books = Book::all();
         return view('books.index',compact('books'));
 
     }
@@ -29,10 +27,11 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //ok
     public function create(Book $book)
     {
-        $book_status_texts = $book->getPostBookStatusTexts();
         $user = auth()->user();
+        $book_status_texts = $book->getPostBookStatusTexts();
         return view('books.create',[
             'user' => $user,
             'book_status_texts' => $book_status_texts,
@@ -47,9 +46,8 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book, Tag $tag)
     {
-        // dd($request->all());
         $user = auth()->user();
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('public',$file_name);
@@ -65,8 +63,15 @@ class BooksController extends Controller
 
         $book = new Book;
         $book->bookStore($user->id, $data);
+        //タグ挿入
+        $tag->tagStore($data["tags"]);
+        //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
+        $tag_ids = $tag->getTagIds($data["tags"]);
+        //中間テーブルにidを設置
+        $book->bookTagSync($tag_ids);
+
         $book->save();
-        // dd($book);
+
         return redirect('/books')->with('success', '投稿が完了しました。');
 
     }

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Tag extends Model
 {
+    protected $fillable = [
+          'name'
+    ];
     public $timestamps = false;
 
     public function books()
@@ -23,16 +26,16 @@ class Tag extends Model
                 $tag_names[] = ['name' => $tag_name];
             }
             //insertOrIgnoreであれば無視、なければ挿入
-            DB::table('tags')->insertOrIgnore($tag_names);
+            DB::table('tags')
+            ->insertOrIgnore($tag_names);
         }
       }
-
 
     public function getTagIds($tag_names){
     foreach($tag_names as $tag_name){
         //idから名前を1から取り出して$tag_idに代入
         $tag_id = $this::select('id')->where("name",$tag_name)->first();
-        //$tag_ids[]を作成してidを全て代入
+        //配列$tag_ids[]を作成して$tag_idのidを全て代入
         $tag_ids[] = $tag_id->id;
     }
     return $tag_ids;
