@@ -14,7 +14,8 @@
       <div class="card">
         <div class="card-header">プロフィールを編集</div>
         <div class="card-body">
-          <form method="POST" action="{{url('users/' .$user->id) }}" enctype="multipart/form-data">
+
+          <form method="POST" action="{{route('users.update' ,$user->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -28,8 +29,8 @@
                                 <i id="avatar_plus" class="fas fa-plus fa-2x text-secondary position-absolute h-100 w-100 m-0 d-flex align-items-center justify-content-center"></i>
                             </span>
                         </div>
-                        <input type="file" class="sr-only" id="input" name="image" accept="image/*">
-                        <input type="hidden" id="binary_image" name="binary_image" value="">
+                        <input type="file" id="input" name="profile_image" accept="image/*">
+
                     </label>
               </div>
               <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -65,7 +66,7 @@
               <label for="screen_name" class="col-md-4 col-form-label text-md-right">ユーザー名</label>
 
               <div class="col-md-6">
-                <input id="screen_name" type="text" class="form-control @error('screen_name') is-invalid @enderror" name="screen_name" value="{{ $user->screen_name }}" required autocomplete="screen_name" autofocus>
+                <input placeholder="アルファベットで記載してください" id="screen_name" type="text" class="form-control @error('screen_name') is-invalid @enderror" name="screen_name" value="{{ $user->screen_name }}" required autocomplete="screen_name" autofocus>
 
                 @error('screen_name')
                   <span class="invalid-feedback" role="alert">

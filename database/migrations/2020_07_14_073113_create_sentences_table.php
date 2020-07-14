@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBooksTable extends Migration
+class CreateSentencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('sentences', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザーID');
-            $table->string('book_image')->comment('画像');
-            $table->string('title');
-            $table->text('over_view')->comment('概要');
-            $table->unsignedSmallInteger('status')->default(0)->comment('0:公開,1:非公開');
+            $table->unsignedInteger('book_id')->comment('コメントID');
+            $table->text('text')->comment('本文');
             $table->timestamps();
+
+            $table->index('id');
+            $table->index('user_id');
+            $table->index('book_id');
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +36,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('sentences');
     }
 }

@@ -61,7 +61,7 @@ class BooksController extends Controller
         $validator->validate();
 
 
-        $book = new Book;
+
         $book->bookStore($user->id, $data);
         //タグ挿入
         $tag->tagStore($data["tags"]);
