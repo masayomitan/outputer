@@ -97,7 +97,7 @@ class UsersController extends Controller
    */
   public function edit(User $user)
   {
-    // $user = auth()->user();
+    $user = auth()->user();
     return view('users.edit', ['user' => $user]);
   }
 
@@ -105,7 +105,7 @@ class UsersController extends Controller
   public function update(Request $request, User $user)
   {
 
-    // $user = auth()->user();
+    $user = User::find(Auth::user()->id);
     $data = $request->all();
     $validator = Validator::make($data, [
       #0-9,英数字,記号の_のみだけ登録できるよう設定
@@ -114,10 +114,11 @@ class UsersController extends Controller
       'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
       'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
     ]);
-    dd($user);
+
     $validator->validate();
-    $user->userUpdate($user->id, $data);
+    $user->userUpdate($data);
     return redirect('users/' . $user->id);
+
   }
 
   /**

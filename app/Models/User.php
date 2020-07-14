@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        // 'profile_image'
+        'profile_image'
     ];
 
     /**
@@ -43,5 +43,30 @@ class User extends Authenticatable
 
     public function getAllUsers($user_id){
         return $this->where('id', '<>', $user_id)->paginate(6);
+    }
+
+
+    public function userUpdate(Array $params)
+    {
+
+        if(isset($params['profile_image'])){
+        $this::where('id', $this->id)
+          ->update([
+            'screen_name' => $params['screen_name'],
+            'name' => $params['name'],
+            'self_introduction' => $params['self_introduction'],
+            'profile_image' => $params['profile_image'],
+            'email' => $params['email'],
+          ]);
+      } else {
+        $this::where('id', $this->id)
+          ->update([
+            'screen_name' => $params['screen_name'],
+            'name' => $params['name'],
+            'self_introduction' => $params['self_introduction'],
+            'email' => $params['email'],
+          ]);
+      }
+      return;
     }
 }
