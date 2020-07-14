@@ -24,8 +24,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('books', 'booksController@index')->name('books.index');
 
-//投稿記事関連
-Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'show', 'update', 'destroy']]);
 
 #####ユーザー
 Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
+
+
+#ログイン状態
+Route::group(['middleware' => 'auth'], function() {
+    #ユーザ関連
+    Route::resource('users', 'UsersController',['only' => ['edit', 'update']]);
+
+    //投稿記事関連
+    Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+});
+
+Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
+Route::get('/fetch', 'BooksController@fetch')->name('book.fetch');
+Route::get('books/{book}', 'BooksController@show')->name('books.show');
