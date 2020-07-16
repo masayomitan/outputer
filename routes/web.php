@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
     //投稿記事関連
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+
+    Route::resource('sentences', 'sentencesController', ['only' => ['store']]);
+
 });
 
 Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
