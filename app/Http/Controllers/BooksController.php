@@ -39,7 +39,6 @@ class BooksController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -59,8 +58,6 @@ class BooksController extends Controller
             'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
         ]);
         $validator->validate();
-
-
 
         $book->bookStore($user->id, $data);
         //タグ挿入
