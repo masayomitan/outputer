@@ -21,6 +21,7 @@ class Sentence extends Model
         return $this->with('user')->where('book_id', $book_id)->get();
     }
 
+    
     //sentencesのstoreメソッドの作成、引数はidとテキストを配列で
     public function sentenceStore(Int $user_id, Array $data)
     {

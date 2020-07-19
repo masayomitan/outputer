@@ -34,10 +34,19 @@ class SentencesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sentence $Sentence)
+    public function store(Request $request, Sentence $sentence)
     {
         $user = auth()->user();
         $data = $request->all();
+        $validator = Validator::make($data, [
+            'book_id' => ['required', 'integer'],
+            'text' => ['required', 'string', 'max:2000']
+        ]);
+
+        $validator->validate();
+        $sentence->sentencesStore($user->id, $data);
+
+        return back();
 
     }
 
