@@ -12,7 +12,7 @@
         <td>{{ $book->id }}</td>
         <td>{{ $book->title }}</td>
         <td>{{ $book->over_view }}</td>
-        <img src="/storage{{$book->book_image}}">
+        {{-- <img src="/storage{{$book->book_image}}"> --}}
         <img src="{{ URL::to('public/storage') }}/{{ $book->book_image }}" alt="{{ $book->book_image }}" />
     </tr>
 </table>
