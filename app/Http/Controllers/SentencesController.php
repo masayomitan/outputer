@@ -47,7 +47,6 @@ class SentencesController extends Controller
         $sentence->sentencesStore($user->id, $data);
 
         return back();
-
     }
 
     /**
