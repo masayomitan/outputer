@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
     //投稿記事関連
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
-
-    Route::resource('sentences', 'sentencesController', ['only' => ['store']]);
+    //アウトプット
+    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store']]);
 
 });
 
