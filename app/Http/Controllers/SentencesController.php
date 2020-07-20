@@ -27,14 +27,13 @@ class SentencesController extends Controller
     public function create(Sentence $sentence, Book $book)
     {
         $user = auth()->user();
-        $book = $book->getBook($book->id);
+        $sentences = $sentence->getSentences($book->id);
         return view('sentences.create',[
             'user' => $user,
             'book' => $book,
-            'sentence' => $sentence,
+            'sentences' => $sentences,
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,7 +51,6 @@ class SentencesController extends Controller
         ]);
 
         $validator->validate();
-        // $sentence = $sentence->getSentences($book->id);
         $sentence->sentenceStore($user->id, $data);
 
         return redirect()->back();
