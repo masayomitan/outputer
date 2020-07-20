@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Sentence;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -79,15 +80,15 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Book $book, Sentence $sentence)
     {
         $user = auth()->user();
         $book = $book->getBook($book->id);
         // $favorite_row = $favorite->getFavoriteRow($user->id, $book->id);
-        // $comments = $comment->getComments($book->id);
-
+        $sentences = $sentence->getSentences($book->id);
         return view('books.show', compact('book'),[
             'user' => $user,
+            'sentences' => $sentences,
         ]);
     }
 

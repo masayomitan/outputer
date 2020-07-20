@@ -8,7 +8,8 @@ class Sentence extends Model
 {
 
     protected $filable = [
-        'text'
+        'text',
+        'book_id'
     ];
 
     public function user()
@@ -22,6 +23,7 @@ class Sentence extends Model
     }
 
     
+
     //sentencesのstoreメソッドの作成、引数はidとテキストを配列で
     public function sentenceStore(Int $user_id, Array $data)
     {

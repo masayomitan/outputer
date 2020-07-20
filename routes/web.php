@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['store']]);
+    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store']]);
 
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Sentence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -23,9 +24,15 @@ class SentencesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Sentence $sentence, Book $book)
     {
-        //
+        $user = auth()->user();
+        $book = $book->getBook($book->id);
+        return view('sentences.create',[
+            'user' => $user,
+            'book' => $book,
+            'sentence' => $sentence,
+        ]);
     }
 
     /**
@@ -34,19 +41,21 @@ class SentencesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sentence $sentence)
+    public function store(Request $request, Book $book, Sentence $sentence)
     {
         $user = auth()->user();
         $data = $request->all();
+
         $validator = Validator::make($data, [
             'book_id' => ['required', 'integer'],
             'text' => ['required', 'string', 'max:2000']
         ]);
 
         $validator->validate();
-        $sentence->sentencesStore($user->id, $data);
+        // $sentence = $sentence->getSentences($book->id);
+        $sentence->sentenceStore($user->id, $data);
 
-        return back();
+        return redirect()->back();
     }
 
     /**

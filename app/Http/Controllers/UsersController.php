@@ -85,7 +85,8 @@ class UsersController extends Controller
     // $user_info_list["article_status_list"] = ['公開中', '下書き'];
     // $user_info_list["request_status_id"] = $request["status"];
 
-    return view('users.show', $user);
+    return view('users.show',
+           ['user' => $user]);
   }
 
 
