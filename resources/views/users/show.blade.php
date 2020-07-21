@@ -4,12 +4,12 @@
     <table class="table table-striped">
         <thead><tr><th>{{ __('ID') }}</th><th>{{ __('Name') }}</th></tr></thead>
         <tbody>
-            @foreach($users as $user)
+            {{-- @foreach($users as $user) --}}
             <tr>
                 <td>{{ $user->id }}</td>
                 <td><a href="{{ url('users/'.$user->id) }}">{{ $user->name }}</a></td>
             </tr>
-            @endforeach
+            {{-- @endforeach --}}
         </tbody>
     </table>
 </div>
