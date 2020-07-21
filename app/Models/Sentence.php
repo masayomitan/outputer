@@ -9,7 +9,6 @@ class Sentence extends Model
 
     protected $filable = [
         'text',
-        'book_id'
     ];
 
     public function user()
@@ -17,12 +16,12 @@ class Sentence extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getSentences(Int $book_id)
+    public function getSentence(Int $book_id)
     {
         return $this->with('user')->where('book_id', $book_id)->get();
     }
 
-    
+
 
     //sentencesのstoreメソッドの作成、引数はidとテキストを配列で
     public function sentenceStore(Int $user_id, Array $data)

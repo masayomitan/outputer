@@ -79,9 +79,9 @@ class Book extends Model
       return;
     }
 
-    public function getEditBook(Int $user_id, Int $id)
+    public function getEditBook(Int $user_id, Int $book_id)
     {
-      return $this->where('user_id', $user_id)->where('id', $id)->first();
+      return $this->where('user_id', $user_id)->where('id', $book_id)->first();
     }
 
     public function bookUpdate(Int $book_id, Array $data)

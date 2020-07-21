@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     //アウトプット
     Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store']]);
+    Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
 });
 
