@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Sentence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SentencesController extends Controller
@@ -24,16 +25,19 @@ class SentencesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Sentence $sentence, Book $book)
+    public function create(Sentence $sentence, Book $book, Request $request)
     {
         $user = auth()->user();
-        $sentences = $sentence->getSentences($book->id);
+        $data = $request->id;
+        $book->id = $data;
+
+
         return view('sentences.create',[
             'user' => $user,
             'book' => $book,
-            'sentences' => $sentences,
         ]);
     }
+
     /**
      * Store a newly created resource in storage.
      *

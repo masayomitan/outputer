@@ -85,9 +85,10 @@ class BooksController extends Controller
         $user = auth()->user();
         $book = $book->getBook($book->id);
         // $favorite_row = $favorite->getFavoriteRow($user->id, $book->id);
-        $sentences = $sentence->getSentences($book->id);
+        $sentences = $sentence->getSentence($book->id);
         return view('books.show', compact('book'),[
             'user' => $user,
+            'book' => $book,
             'sentences' => $sentences,
         ]);
     }
