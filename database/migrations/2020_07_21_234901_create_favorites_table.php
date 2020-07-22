@@ -16,7 +16,7 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('book_id')->comment('記事ID');
+            $table->unsignedInteger('sentence_id')->comment('記事ID');
 
             $table->foreign('user_id')
               ->references('id')
@@ -24,9 +24,9 @@ class CreateFavoritesTable extends Migration
               ->onDelete('cascade')
               ->onUpdate('cascade');
 
-            $table->foreign('book_id')
+            $table->foreign('sentence_id')
               ->references('id')
-              ->on('books')
+              ->on('sentences')
               ->onDelete('cascade')
               ->onUpdate('cascade');
         });

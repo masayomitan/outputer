@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store']]);
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
+    //いいね関連
+    Route::resource('favorites', 'FavoritesController', ['only' => ['store','destroy']]);
+
 });
 
 Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');

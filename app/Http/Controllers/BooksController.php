@@ -49,8 +49,10 @@ class BooksController extends Controller
     public function store(Request $request, Book $book, Tag $tag)
     {
         $user = auth()->user();
+
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('public',$file_name);
+
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
