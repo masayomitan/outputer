@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Entity\Book;
-use App\Models\Entity\User;
+use App\Models\Book;
+use App\Models\User;
 use App\User as AppUser;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
