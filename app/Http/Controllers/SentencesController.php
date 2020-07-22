@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Entity\Book;
-use App\Models\Entity\Sentence;
+use App\Models\Book;
+use App\Models\Sentence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
