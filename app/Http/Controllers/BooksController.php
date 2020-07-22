@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\Sentence;
-use App\Models\Tag;
+use App\Models\Entity\Book;
+use App\Models\Entity\Sentence;
+use App\Models\Entity\Tag;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
