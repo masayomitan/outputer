@@ -25,7 +25,7 @@ class SentencesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Sentence $sentence, Book $book, Request $request)
+    public function create(Book $book, Request $request)
     {
         $user = auth()->user();
         $data = $request->id;
@@ -44,11 +44,10 @@ class SentencesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Book $book, Sentence $sentence)
+    public function store(Request $request, Sentence $sentence)
     {
         $user = auth()->user();
         $data = $request->all();
-
         $validator = Validator::make($data, [
             'book_id' => ['required', 'integer'],
             'text' => ['required', 'string', 'max:2000']
