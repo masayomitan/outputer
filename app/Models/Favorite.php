@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favorites extends Model
+class Favorite extends Model
 {
-    public function book()
+    public function sentence()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(sentence::class);
     }
+    
 
      //いいねしてるかの判定処理
      public function isFavorite(Int $user_id, Int $sentence_id)
