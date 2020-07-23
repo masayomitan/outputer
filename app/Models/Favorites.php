@@ -31,4 +31,31 @@ class Favorites extends Model
     }
 
 
+
+    public function getFavoritedCount(Int $sentence_id) {
+        //一個取得
+        $favorited_count = count($this->where('sentence_id', $sentence_id)->get());
+        return $favorited_count;
+    }
+
+    public function getFavoriteRow(Int $user_id, Int $sentence_id) {
+        //行取得
+        $favorite_row = $this->where([
+            ['sentence_id', $sentence_id],
+            ["user_id", $user_id],
+        ])->first();
+
+        return $favorite_row;
+    }
+
+    public function getTotalFavoritedCount(Int $user_id)
+    {
+        $sentence = new Sentence;
+        //all()で全ての値を取得後、->pluckでidだけ選択
+        $sentence_ids = $sentence::all()->where('user_id', $user_id)->pluck('id');
+        //whereInでuser_idが入っているsentence_idを取得しcountする。
+        $total_favorited_count = count($this->whereIn('sentence_id',$sentence_ids)->get());
+        return $total_favorited_count;
+    }
+
 }
