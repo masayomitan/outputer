@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
+    public $timestamps = false;
+
     public function sentence()
     {
         return $this->belongsTo(sentence::class);
     }
-    
+
 
      //いいねしてるかの判定処理
      public function isFavorite(Int $user_id, Int $sentence_id)

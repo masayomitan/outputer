@@ -16,7 +16,7 @@ class FavoritesController extends Controller
 
     public function create()
     {
-        //
+
     }
 
    public function store(Request $request, Favorite $favorite)
@@ -40,7 +40,8 @@ class FavoritesController extends Controller
             "favorite_id" => $favorite_row->id,
         ];
 
-        return $favorite_list;
+        // return $favorite_list;
+        return redirect()->back();
     }
 
     public function show($id)
@@ -76,7 +77,7 @@ class FavoritesController extends Controller
         if($is_favorite) {
             $favorite->FavoriteDestroy($favorite_id);
         }
-        
+
         $favorited_count = $favorite->getFavoritedCount($sentence_id);
         $favorite_row = $favorite->getFavoriteRow($user_id, $sentence_id);
 
