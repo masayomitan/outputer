@@ -134,9 +134,6 @@ class BooksController extends Controller
     {
 
 
-        // $file_name = $request->file('book_image')->getClientOriginalName();
-        // $request->file('book_image')->storeAs('public',$file_name);
-
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
