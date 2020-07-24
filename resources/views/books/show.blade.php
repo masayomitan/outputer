@@ -25,3 +25,10 @@
         <td>{{ $sentence->text }}</td>
     </tr>
     @endforeach
+
+    <form method="POST" action="{{ route('favorites.store') }}">
+        @csrf
+
+        <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+        <button>
+    </form>
