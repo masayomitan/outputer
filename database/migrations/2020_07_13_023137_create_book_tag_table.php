@@ -27,6 +27,14 @@ class CreateBookTagTable extends Migration
             ]);
         });
     }
+    
+    //Laravel7は外部キーを指定する場合下記のような記述もできるっぽい
+    // Schema::table('book_tag', function (Blueprint $table) {
+    //     $table->bigIncrements('id');
+    //     $table->unsignedBigInteger('book_id');
+    //     $table->foreign('book_id')->references('id')->on('books');
+    // });
+
 
     /**
      * Reverse the migrations.

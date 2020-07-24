@@ -28,6 +28,11 @@ Route::get('books', 'booksController@index')->name('books.index');
 #####ユーザー
 Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
 
+// フォロー/フォロワー
+Route::get('users/{user}/following', 'UsersController@following')->name('users.following');
+Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
+Route::get('users/{user}/favorite', 'UsersController@favorite')->name('users.favorite');
+
 
 #ログイン状態
 Route::group(['middleware' => 'auth'], function() {
@@ -43,6 +48,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     //いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store','destroy']]);
+
+    // フォロー/フォロー解除を追加
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('users.follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('users.unfollow');
 
 });
 

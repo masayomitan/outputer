@@ -18,6 +18,8 @@ class CreateFavoritesTable extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザID');
             $table->unsignedInteger('sentence_id')->comment('記事ID');
 
+            $table->index('id');
+
             $table->foreign('user_id')
               ->references('id')
               ->on('users')
