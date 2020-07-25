@@ -37,7 +37,11 @@ Route::get('users/{user}/favorite', 'UsersController@favorite')->name('users.fav
 #ログイン状態
 Route::group(['middleware' => 'auth'], function() {
     #ユーザ関連
-    Route::resource('users', 'UsersController',['only' => ['edit', 'update']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+
+    // フォロー/フォロー解除を追加
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('users.follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('users.unfollow');
 
     //投稿記事関連
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
@@ -49,9 +53,7 @@ Route::group(['middleware' => 'auth'], function() {
     //いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store','destroy']]);
 
-    // フォロー/フォロー解除を追加
-    Route::post('users/{user}/follow', 'UsersController@follow')->name('users.follow');
-    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('users.unfollow');
+
 
 });
 
