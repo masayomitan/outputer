@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Sentence;
 use App\Models\User;
+
 
 
 use App\User as AppUser;
@@ -67,28 +69,27 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show(User $user, Book $book, Request $request)
+  public function show(User $user, Sentence $sentence, Request $request)
   {
-    // if (!isset($request["status"])) {
-    //   $request["status"] = 0;
-    // }
+    if (!isset($request["status"])) {
+      $request["status"] = 0;
+    }
 
-    // #ログインユーザーじゃないユーザーが下書きページに遷移した際、リダイレクトして閲覧を防ぐ
-    // if ($request["status"] == 1) {
-    //   $is_self_article = $user->isSelfArticle($request, $user);
-    //   if (!$is_self_article) {
-    //     return redirect($request->path());
-    //   }
-    // }
+    #ログインユーザーじゃないユーザーが下書きページに遷移した際、リダイレクトして閲覧を防ぐ
+    if ($request["status"] == 1) {
+      $is_self_article = $user->isSelfArticle($request, $user);
+      if (!$is_self_article) {
+        return redirect($request->path());
+      }
+    }
 
-    // $timelines = $article->getUserTimeLine($user->id, $request["status"]);
-    // $user_info_list = $user->getUserInfoList();
-    // $user_info_list["timelines"] = $timelines;
-    // $user_info_list["article_status_list"] = ['公開中', '下書き'];
-    // $user_info_list["request_status_id"] = $request["status"];
+    $timelines = $sentence->getUserTimeLine($user->id, $request["status"]);
+    $user_info_list = $user->getUserInfoList();
+    $user_info_list["timelines"] = $timelines;
+    $user_info_list["sentence_status_list"] = ['公開中', '下書き'];
+    $user_info_list["request_status_id"] = $request["status"];
 
-    return view('users.show',
-           ['user' => $user]);
+    return view('users.show', $user_info_list);
   }
 
 
@@ -161,4 +162,29 @@ class UsersController extends Controller
        }
    }
 
-}
+   public function following(User $user)
+   {
+     $following_users = $user->getFollowingUsers($user->id);
+     $user_info_list = $user->getUserInfoList();
+     $user_info_list["all_users"] = $following_users;
+     //view先で条件分岐
+     return view('users.follow', $user_info_list);
+   }
+
+   public function followers(User $user)
+   {
+     $followers = $user->getFollowers($user->id);
+     $user_info_list = $user->getUserInfoList();
+     $user_info_list["all_users"] = $followers;
+     //view先で条件分岐
+     return view('users.follow', $user_info_list);
+   }
+
+   public function favorite(User $user, Sentence $sentence)
+   {
+     $timelines = $sentence->getFavoriteArticles($user->id);
+     $user_info_list = $user->getUserInfoList();
+     $user_info_list["timelines"] = $timelines;
+     return view('users.favorite', $user_info_list);
+   }
+ }

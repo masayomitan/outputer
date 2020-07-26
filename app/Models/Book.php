@@ -40,18 +40,6 @@ class Book extends Model
 
 
 
-    public function getUserTimeLine(Int $user_id, $status_id)
-    {
-        //ユーザーを取得する
-      return $this->where('user_id', $user_id)->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
-    }
-
-    public function getTimeLines(Int $status_id)
-    {
-      //全ての記事を取得する
-      return $this->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
-    }
-
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
     {
       //自身とフォローしているユーザーを結合する
@@ -114,10 +102,5 @@ class Book extends Model
       }
 
 
-    public function getPostBookStatusTexts() {
-        //投稿時の最後のチェック
-        $book_status_texts = ["kousatuに投稿する","下書きに保存する"];
-        $book_status_texts = json_encode($book_status_texts);
-        return $book_status_texts;
-    }
+
 }

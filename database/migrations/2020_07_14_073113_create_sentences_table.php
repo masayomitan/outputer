@@ -18,6 +18,7 @@ class CreateSentencesTable extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザーID');
             $table->unsignedInteger('book_id')->comment('コメントID');
             $table->text('text')->comment('本文');
+            $table->unsignedSmallInteger('status')->default(0)->comment('0:公開,1:非公開');
             $table->timestamps();
 
             $table->index('id');

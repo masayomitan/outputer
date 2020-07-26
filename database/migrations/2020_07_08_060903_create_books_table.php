@@ -19,7 +19,6 @@ class CreateBooksTable extends Migration
             $table->string('book_image')->comment('画像');
             $table->string('title');
             $table->text('over_view')->comment('概要');
-            $table->unsignedSmallInteger('status')->default(0)->comment('0:公開,1:非公開');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
