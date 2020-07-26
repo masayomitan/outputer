@@ -111,8 +111,7 @@ class User extends Authenticatable
     {
       return $this->follows()->where('following_id', $user_id)->paginate(6);
     }
-
-    public function getFollowers($user_id)
+    public function getFollowerUsers($user_id)
     {
       return $this->followers()->where('followed_id', $user_id)->paginate(6);
     }
@@ -152,7 +151,7 @@ class User extends Authenticatable
 
       $user_id = $this->id;
       $sentence_count = $sentence->getSentenceCount($user_id);
-    //   $favorite_count = $sentence->getFavoriteSentences($user_id)->total();
+      $favorite_count = $sentence->getFavoriteSentences($user_id)->total();
       $follow_count = $follower->getFollowCount($user_id);
       $follower_count = $follower->getFollowerCount($user_id);
 
@@ -160,9 +159,9 @@ class User extends Authenticatable
         "投稿 ".$sentence_count => [
             "link" => "/users/{$user_id}",
         ],
-        // "いいねした記事 ".$favorite_count => [
-        //     "link" => "/users/{$user_id}/favorite",
-        // ],
+        "いいねした記事 ".$favorite_count => [
+            "link" => "/users/{$user_id}/favorite",
+        ],
         "フォロー ".$follow_count => [
             "link" => "/users/{$user_id}/following",
         ],

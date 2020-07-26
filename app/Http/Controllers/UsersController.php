@@ -77,8 +77,8 @@ class UsersController extends Controller
 
     #ログインユーザーじゃないユーザーが下書きページに遷移した際、リダイレクトして閲覧を防ぐ
     if ($request["status"] == 1) {
-      $is_self_article = $user->isSelfArticle($request, $user);
-      if (!$is_self_article) {
+      $is_self_sentence = $user->isSelfSentence($request, $user);
+      if (!$is_self_sentence) {
         return redirect($request->path());
       }
     }
@@ -148,7 +148,6 @@ class UsersController extends Controller
            return back();
        }
    }
-
    // フォロー解除
    public function unfollow(User $user)
    {
@@ -162,6 +161,7 @@ class UsersController extends Controller
        }
    }
 
+
    public function following(User $user)
    {
      $following_users = $user->getFollowingUsers($user->id);
@@ -173,7 +173,7 @@ class UsersController extends Controller
 
    public function followers(User $user)
    {
-     $followers = $user->getFollowers($user->id);
+     $followers = $user->getFollowerUsers($user->id);
      $user_info_list = $user->getUserInfoList();
      $user_info_list["all_users"] = $followers;
      //view先で条件分岐
@@ -182,9 +182,10 @@ class UsersController extends Controller
 
    public function favorite(User $user, Sentence $sentence)
    {
-     $timelines = $sentence->getFavoriteArticles($user->id);
+     $timelines = $sentence->getFavoriteSentences($user->id);
      $user_info_list = $user->getUserInfoList();
      $user_info_list["timelines"] = $timelines;
      return view('users.favorite', $user_info_list);
    }
+
  }

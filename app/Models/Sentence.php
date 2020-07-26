@@ -16,6 +16,11 @@ class Sentence extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function favorites()
+    {
+      return $this->hasMany(Favorite::class);
+    }
+
     public function getSentence(Int $book_id)
     {
         return $this->with('user')->where('book_id', $book_id)->get();
@@ -69,7 +74,6 @@ class Sentence extends Model
         $favorite_sentences = $this->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
             })->where('status', 0)->paginate(6);
-
         return $favorite_sentences;
       }
 
