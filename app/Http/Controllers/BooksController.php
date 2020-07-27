@@ -32,10 +32,10 @@ class BooksController extends Controller
     public function create(Book $book)
     {
         $user = auth()->user();
-        $book_status_texts = $book->getPostBookStatusTexts();
+
         return view('books.create',[
             'user' => $user,
-            'book_status_texts' => $book_status_texts,
+
         ]);
     }
 
@@ -51,7 +51,7 @@ class BooksController extends Controller
         $user = auth()->user();
 
         $file_name = $request->file('book_image')->getClientOriginalName();
-        $request->file('book_image')->storeAs('public',$file_name);
+        $request->file('book_image')->storeAs('public/book_image',$file_name);
 
         $data = $request->all();
         $validator = Validator::make($data,[
@@ -86,7 +86,7 @@ class BooksController extends Controller
     {
         $user = auth()->user();
         $book = $book->getBook($book->id);
-        // $favorite_row = $favorite->getFavoriteRow($user->id, $book->id);
+        // $favorite_row = $favorite->getFavoriteRow($user->id, $sentence->id);
         $sentences = $sentence->getSentence($book->id);
         return view('books.show', compact('book'),[
             'user' => $user,

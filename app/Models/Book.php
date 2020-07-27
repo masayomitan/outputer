@@ -23,11 +23,6 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function favorites()
-    {
-      return $this->hasMany(Favorite::class);
-    }
-
     public function sentences()
     {
       return $this->hasMany(Sentence::class);
@@ -39,18 +34,6 @@ class Book extends Model
     }
 
 
-
-    public function getUserTimeLine(Int $user_id, $status_id)
-    {
-        //ユーザーを取得する
-      return $this->where('user_id', $user_id)->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
-    }
-
-    public function getTimeLines(Int $status_id)
-    {
-      //全ての記事を取得する
-      return $this->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
-    }
 
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
     {
@@ -74,7 +57,6 @@ class Book extends Model
       $this->book_image = $data['book_image'];
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
-    //   $this->status = $data['book_status_id'];
       $this->save();
       return;
     }
@@ -89,7 +71,6 @@ class Book extends Model
       $this->id = $book_id;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
-    //   $this->status = $data['book_status_id'];
       $this->update();
       return;
     }
@@ -109,15 +90,10 @@ class Book extends Model
       }
 
       public function bookTagSync(Array $tag_ids){
-        //syncメソッドは中間テーブルに設置しておくIDの配列を渡します。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
+        //syncメソッドは中間テーブルに設置しておくIDの配列を渡す。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
           $this->tags()->sync($tag_ids);
       }
 
 
-    public function getPostBookStatusTexts() {
-        //投稿時の最後のチェック
-        $book_status_texts = ["kousatuに投稿する","下書きに保存する"];
-        $book_status_texts = json_encode($book_status_texts);
-        return $book_status_texts;
-    }
+
 }

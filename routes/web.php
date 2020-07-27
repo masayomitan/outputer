@@ -31,7 +31,7 @@ Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
 // フォロー/フォロワー
 Route::get('users/{user}/following', 'UsersController@following')->name('users.following');
 Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
-Route::get('users/{user}/favorite', 'UsersController@favorite')->name('users.favorite');
+Route::get('users/{user}/favorites', 'UsersController@favorites')->name('users.favorites');
 
 
 #ログイン状態
@@ -60,3 +60,4 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
 Route::get('/fetch', 'BooksController@fetch')->name('book.fetch');
 Route::get('books/{book}', 'BooksController@show')->name('books.show');
+Route::get('sentences/{sentence}', 'sentencesController@show')->name('sentences.show');

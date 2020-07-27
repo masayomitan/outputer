@@ -25,14 +25,17 @@ class SentencesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Book $book, Request $request)
+    public function create(Book $book, Request $request, Sentence $sentence)
     {
         $user = auth()->user();
-        $data = $request->id;
-        $book->id = $data;
+        $book_id = $request->id;
+        $book->id = $book_id;
+        $book = $book->getBook($book_id);
 
 
+        $sentence_status_texts = $sentence->getPostSentenceStatusTexts();
         return view('sentences.create',[
+            'sentence_status_texts' => $sentence_status_texts,
             'user' => $user,
             'book' => $book,
         ]);
