@@ -147,7 +147,6 @@ class User extends Authenticatable
 
       $sentence = new Sentence();
       $follower = new Follower();
-      $favorite = new Favorite();
 
       $user_id = $this->id;
       $sentence_count = $sentence->getSentenceCount($user_id);

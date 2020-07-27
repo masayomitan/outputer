@@ -58,9 +58,8 @@ class SentencesController extends Controller
 
         $validator->validate();
         $sentence->sentenceStore($user->id, $data);
-        $book_id = $sentence['book_id'];
 
-        return redirect()->route('books.show', $book_id);
+        return redirect()->route('books.show', $sentence['book_id']);
     }
 
     /**
