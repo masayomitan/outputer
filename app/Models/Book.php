@@ -66,9 +66,10 @@ class Book extends Model
       return $this->where('user_id', $user_id)->where('id', $book_id)->first();
     }
 
-    public function bookUpdate(Int $book_id, Array $data)
+    public function bookUpdate(Int $book_id, Array $data, $file_name)
     {
       $this->id = $book_id;
+      $this->book_image =  $file_name;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
       $this->update();

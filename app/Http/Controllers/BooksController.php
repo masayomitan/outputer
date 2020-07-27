@@ -78,6 +78,7 @@ class BooksController extends Controller
         $validator->validate();
 
         $book->bookStore($user->id, $data, $file_name);
+
         //タグ挿入
         $tag->tagStore($data["tags"]);
         //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
@@ -120,22 +121,21 @@ class BooksController extends Controller
      */
     public function edit(Book $book)
     {
-        $book_status_texts = $book->getPostbookStatusTexts();
+
         $user = auth()->user();
         $books = $book->getEditbook($user->id, $book->id);
 
-        // if(!isset($books)) {
-        //     return redirect('books');
-        // }
-        // $tags = [];
-        // foreach($book->tags as $tag){
-        //     $tags[] = $tag;
-        // }
+        if(!isset($books)) {
+            return redirect('books');
+        }
+        $tags = [];
+        foreach($book->tags as $tag){
+            $tags[] = $tag;
+        }
         return view('books.edit', [
             'user' => $user,
             'books' => $books,
-            // 'tags'=>$tags,
-            // 'book_status_texts' => $book_status_texts,
+            'tags'=>$tags,
         ]);
     }
 
@@ -150,6 +150,8 @@ class BooksController extends Controller
     public function update(Request $request, Book $book, Tag $tag)
     {
 
+        $file_name = $request->file('book_image')->getClientOriginalName();
+        $request->file('book_image')->storeAs('public/book_image',$file_name);
 
         $data = $request->all();
         $validator = Validator::make($data,[
@@ -158,8 +160,9 @@ class BooksController extends Controller
             'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
         ]);
         $validator->validate();
-        $book->bookUpdate($book->id, $data);
-        return back()->with('success', '編集完了しました');
+        $book->bookUpdate($book->id, $data, $file_name);
+
+        return redirect()->route('books.show', $book['id'])->with('success', '編集完了しました');
     }
 
     /**
