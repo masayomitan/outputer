@@ -161,7 +161,7 @@ class UsersController extends Controller
        }
    }
 
-
+   //フォローリスト表示 :example(users/{id}/following)
    public function following(User $user)
    {
      $following_users = $user->getFollowingUsers($user->id);
@@ -171,6 +171,7 @@ class UsersController extends Controller
      return view('users.follow', $user_info_list);
    }
 
+   //フォロワーリスト表示 :example(users/{id}/followers)
    public function followers(User $user)
    {
      $followers = $user->getFollowerUsers($user->id);
@@ -180,12 +181,13 @@ class UsersController extends Controller
      return view('users.follow', $user_info_list);
    }
 
-   public function favorite(User $user, Sentence $sentence)
+   //いいねした記事リスト表示 :example(users/{id}/favorites)
+   public function favorites(User $user, Sentence $sentence)
    {
      $timelines = $sentence->getFavoriteSentences($user->id);
      $user_info_list = $user->getUserInfoList();
      $user_info_list["timelines"] = $timelines;
-     return view('users.favorite', $user_info_list);
+     return view('users.favorites', $user_info_list);
    }
 
  }

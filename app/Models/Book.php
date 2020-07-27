@@ -57,7 +57,6 @@ class Book extends Model
       $this->book_image = $data['book_image'];
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
-    //   $this->status = $data['book_status_id'];
       $this->save();
       return;
     }
@@ -72,7 +71,6 @@ class Book extends Model
       $this->id = $book_id;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
-    //   $this->status = $data['book_status_id'];
       $this->update();
       return;
     }
@@ -92,7 +90,7 @@ class Book extends Model
       }
 
       public function bookTagSync(Array $tag_ids){
-        //syncメソッドは中間テーブルに設置しておくIDの配列を渡します。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
+        //syncメソッドは中間テーブルに設置しておくIDの配列を渡す。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
           $this->tags()->sync($tag_ids);
       }
 

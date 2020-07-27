@@ -34,6 +34,7 @@ class Sentence extends Model
       $this->user_id = $user_id;
       $this->book_id = $data['book_id'];
       $this->text = $data['text'];
+      $this->status = $data['status'];
       $this->save();
       return;
     }
@@ -65,16 +66,18 @@ class Sentence extends Model
 
     public function getPostSentenceStatusTexts() {
         //投稿時の最後のチェック
-        $book_status_texts = ["kousatuに投稿する","下書きに保存する"];
-        $book_status_texts = json_encode($book_status_texts);
-        return $book_status_texts;
+        $sentence_status_texts = ["投稿する" => 0,"下書きに保存する" => 1];
+        // $sentence_status_texts = json_encode($sentence_status_texts, JSON_UNESCAPED_UNICODE);
+        return $sentence_status_texts;
     }
 
     public function getFavoriteSentences(Int $user_id){
+        //いいねした記事取得、
         $favorite_sentences = $this->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
             })->where('status', 0)->paginate(6);
         return $favorite_sentences;
       }
+
 
 }

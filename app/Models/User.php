@@ -160,7 +160,7 @@ class User extends Authenticatable
             "link" => "/users/{$user_id}",
         ],
         "いいねした記事 ".$favorite_count => [
-            "link" => "/users/{$user_id}/favorite",
+            "link" => "/users/{$user_id}/favorites",
         ],
         "フォロー ".$follow_count => [
             "link" => "/users/{$user_id}/following",
