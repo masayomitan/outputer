@@ -46,7 +46,7 @@ class Tag extends Model
         //withCountでレコード数をとる
         //0で公開しているbooksのデータを呼び出し
         $popular_tags = $this::withCount([ 'books' => function($query) {
-            $query->where('status',0);
+            $query;
         }])
         ->orderBy('books_count', 'desc')
         ->take(5)

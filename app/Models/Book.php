@@ -51,10 +51,10 @@ class Book extends Model
         return $this->with('user')->where('id', $book_id)->first();
     }
 
-    public function bookStore(Int $user_id, Array $data)
+    public function bookStore(Int $user_id, Array $data, $file_name)
     {
       $this->user_id = $user_id;
-      $this->book_image = $data['book_image'];
+      $this->book_image =  $file_name;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
       $this->save();
@@ -94,6 +94,20 @@ class Book extends Model
           $this->tags()->sync($tag_ids);
       }
 
+      public function getTabInfoList(){
+        $tab_info_list = [
+          'タイムライン' => [
+              'param' => '',
+              'icon_class' => 'fas fa-stream'
+          ],
+          '人気' => [
+              'param' => '?mode=popular',
+              'icon_class' => 'fas fa-fire'
+          ],
+        ];
+
+        return $tab_info_list;
+      }
 
 
 }

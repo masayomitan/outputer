@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Sentence;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
@@ -15,11 +17,23 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Book $book)
+    public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
         $books = Book::all();
-        return view('books.index',compact('books'));
+        $contents = Storage::get('public/book_image');
+        var_dump($contents);
+
+        $popular_tags = $tags->getPopularTags();
+        $popular_users = $user->getPopularUsers();
+        $tab_info_list = $book->getTabInfoList();
+
+        return view('books.index',compact('books'), [
+            'popular_tags' => $popular_tags,
+            'popular_users' => $popular_users,
+            // 'api' => $api,
+            'tab_info_list' => $tab_info_list,
+        ]);
 
     }
 
@@ -29,7 +43,7 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     //ok
-    public function create(Book $book)
+    public function create()
     {
         $user = auth()->user();
 
@@ -49,9 +63,11 @@ class BooksController extends Controller
     public function store(Request $request, Book $book, Tag $tag)
     {
         $user = auth()->user();
+        $url = Storage::url('book_image');
 
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('public/book_image',$file_name);
+
 
         $data = $request->all();
         $validator = Validator::make($data,[
@@ -61,7 +77,7 @@ class BooksController extends Controller
         ]);
         $validator->validate();
 
-        $book->bookStore($user->id, $data);
+        $book->bookStore($user->id, $data, $file_name);
         //タグ挿入
         $tag->tagStore($data["tags"]);
         //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
@@ -122,6 +138,7 @@ class BooksController extends Controller
             // 'book_status_texts' => $book_status_texts,
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
