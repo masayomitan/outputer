@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
@@ -132,10 +133,12 @@ class BooksController extends Controller
         foreach($book->tags as $tag){
             $tags[] = $tag;
         }
+        // $tags =DB::table('tags')->get();
+
         return view('books.edit', [
             'user' => $user,
             'books' => $books,
-            'tags'=>$tags,
+            'tags' => $tags,
         ]);
     }
 
@@ -161,6 +164,18 @@ class BooksController extends Controller
         ]);
         $validator->validate();
         $book->bookUpdate($book->id, $data, $file_name);
+
+        #カテゴリ名の重複登録を防ぐ
+        $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
+        $newTagNames = array_diff($data["tags"],$storedTagNames->all());
+
+
+        //タグ挿入
+        $tag->tagStore($newTagNames);
+        //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
+        $tag_ids = $tag->getTagIds($data["tags"]);
+        //中間テーブルにidを設置
+        $book->bookTagSync($tag_ids);
 
         return redirect()->route('books.show', $book['id'])->with('success', '編集完了しました');
     }
