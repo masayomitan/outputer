@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
 
 
-    public function userUpdate(Array $params)
+    public function userUpdate(Array $params, $file_name)
     {
 
         if(isset($params['profile_image'])){
@@ -68,7 +68,7 @@ class User extends Authenticatable
             'screen_name' => $params['screen_name'],
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
-            'profile_image' => $params['profile_image'],
+            'profile_image' => $file_name,
             'email' => $params['email'],
           ]);
       } else {
