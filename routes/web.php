@@ -37,7 +37,7 @@ Route::get('users/{user}/favorites', 'UsersController@favorites')->name('users.f
 #ログイン状態
 Route::group(['middleware' => 'auth'], function() {
     #ユーザ関連
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update', 'destroy']]);
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'UsersController@follow')->name('users.follow');
