@@ -51,9 +51,9 @@ class Book extends Model
         return $this->with('user')->where('id', $book_id)->first();
     }
 
-    public function bookStore(Int $user_id, Array $data, $file_name)
+    public function bookStore(Array $data, $file_name)
     {
-      $this->user_id = $user_id;
+
       $this->book_image =  $file_name;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];
@@ -68,7 +68,7 @@ class Book extends Model
 
     public function bookUpdate(Int $book_id, Array $data, $file_name)
     {
-      $this->id = $book_id;
+
       $this->book_image =  $file_name;
       $this->title = $data['title'];
       $this->over_view = $data['over_view'];

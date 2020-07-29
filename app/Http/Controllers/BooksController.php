@@ -23,7 +23,6 @@ class BooksController extends Controller
 
         $books = Book::all();
         $contents = Storage::get('public/book_image');
-        var_dump($contents);
 
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
@@ -78,7 +77,7 @@ class BooksController extends Controller
         ]);
         $validator->validate();
 
-        $book->bookStore($user->id, $data, $file_name);
+        $book->bookStore($data, $file_name);
 
         //タグ挿入
         $tag->tagStore($data["tags"]);
@@ -165,10 +164,10 @@ class BooksController extends Controller
         $validator->validate();
         $book->bookUpdate($book->id, $data, $file_name);
 
+
         #カテゴリ名の重複登録を防ぐ
         $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
         $newTagNames = array_diff($data["tags"],$storedTagNames->all());
-
 
         //タグ挿入
         $tag->tagStore($newTagNames);

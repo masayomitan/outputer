@@ -110,6 +110,10 @@ class UsersController extends Controller
   {
 
     $user = User::find(Auth::user()->id);
+
+    $file_name = $request->file('profile_image')->getClientOriginalName();
+    $request->file('profile_image')->storeAs('public/profile_image',$file_name);
+
     $data = $request->all();
     $validator = Validator::make($data, [
       #0-9,英数字,記号の_のみだけ登録できるよう設定
@@ -119,8 +123,9 @@ class UsersController extends Controller
       'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
     ]);
 
+
     $validator->validate();
-    $user->userUpdate($data);
+    $user->userUpdate($data, $file_name);
     return redirect('users/' . $user->id);
 
   }

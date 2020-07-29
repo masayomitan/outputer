@@ -1,4 +1,4 @@
-/* @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
@@ -36,7 +36,7 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-} */
+}
 
 *,
 *::before,
@@ -170,7 +170,7 @@ sup {
 }
 
 a {
-  color:
+  color: #3490dc;
   text-decoration: none;
   background-color: transparent;
 }
