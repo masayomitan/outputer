@@ -15,7 +15,7 @@ class CreateSentencesTable extends Migration
     {
         Schema::create('sentences', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->comment('ユーザーID');
+            $table->unsignedInteger('user_id')->unsigned()->nullable()->comment('ユーザーID');
             $table->unsignedInteger('book_id')->comment('コメントID');
             $table->text('text')->comment('本文');
             $table->unsignedSmallInteger('status')->default(0)->comment('0:公開,1:非公開');
@@ -25,7 +25,7 @@ class CreateSentencesTable extends Migration
             $table->index('user_id');
             $table->index('book_id');
 
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('book_id')->references('id')->on('books');
         });
     }

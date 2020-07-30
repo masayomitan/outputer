@@ -21,11 +21,14 @@ class Follower extends Model
     'followed_id'
     ];
 
+    //to getTabInfoList
     public function getFollowCount($user_id)
     {
       //user_idをfollowing_idでカウント
       return $this->where('following_id', $user_id)->count();
     }
+    
+    //to getTabInfoList
     public function getFollowerCount($user_id)
     {
       //user_idをfollowed_idでカウント

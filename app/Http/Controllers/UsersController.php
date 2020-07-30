@@ -176,6 +176,7 @@ class UsersController extends Controller
      return view('users.follow', $user_info_list);
    }
 
+
    //フォロワーリスト表示 :example(users/{id}/followers)
    public function followers(User $user)
    {
