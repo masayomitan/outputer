@@ -59,10 +59,6 @@ class Sentence extends Model
       return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 
-    public function getSentenceCount(Int $user_id)
-    {
-      return $this->where('user_id', $user_id)->count();
-    }
 
     public function getPostSentenceStatusTexts() {
         //投稿時の最後のチェック
@@ -71,6 +67,14 @@ class Sentence extends Model
         return $sentence_status_texts;
     }
 
+    
+    //to getTabInfoList
+    public function getSentenceCount(Int $user_id)
+    {
+      return $this->where('user_id', $user_id)->count();
+    }
+
+    //to getTabInfoList
     public function getFavoriteSentences(Int $user_id){
         //いいねした記事取得、
         $favorite_sentences = $this->whereHas('favorites', function($query) use ($user_id) {

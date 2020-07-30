@@ -95,6 +95,7 @@ class Book extends Model
           $this->tags()->sync($tag_ids);
       }
 
+
       public function getTabInfoList(){
         $tab_info_list = [
           'タイムライン' => [

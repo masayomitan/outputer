@@ -111,6 +111,7 @@ class User extends Authenticatable
     {
       return $this->follows()->where('following_id', $user_id);
     }
+    
     public function getFollowerUsers($user_id)
     {
       return $this->followers()->where('followed_id', $user_id);
@@ -142,9 +143,8 @@ class User extends Authenticatable
     }
 
 
-    //for getUserInfoList
+    //to getUserInfoList
     public function getTabInfoList(){
-
       $sentence = new Sentence();
       $follower = new Follower();
 
@@ -171,7 +171,7 @@ class User extends Authenticatable
       return $tab_info_list;
     }
 
-    //for getUserInfoList
+    //to getUserInfoList
     public function getFollowStatuses($login_user) {
         if(isset($login_user)) {
           $follow_statuses["is_following"] = $login_user->isFollowing($this->id);
@@ -197,7 +197,6 @@ class User extends Authenticatable
       $user_info_list["is_followed"] = $follow_statuses["is_followed"];
 
       $user_info_list["tab_info_list"] = $this->getTabInfoList();
-
       return $user_info_list;
     }
 
