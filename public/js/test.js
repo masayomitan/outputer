@@ -86,6 +86,20 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./resources/ts/test.js":
+/*!******************************!*\
+  !*** ./resources/ts/test.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+console.log('oooiiii!!!');
+
+/***/ }),
+
 /***/ "./resources/ts/test.ts":
 /*!******************************!*\
   !*** ./resources/ts/test.ts ***!
@@ -97,6 +111,20 @@
 
 console.log('oooiiii!!!');
 
+
+/***/ }),
+
+/***/ "./resources/ts/test2.js":
+/*!*******************************!*\
+  !*** ./resources/ts/test2.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+console.log('oooiiii!!!');
 
 /***/ }),
 
@@ -115,13 +143,15 @@ console.log('oooiiii!!!');
 /***/ }),
 
 /***/ 1:
-/*!************************************************************!*\
-  !*** multi ./resources/ts/test.ts ./resources/ts/test2.ts ***!
-  \************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** multi ./resources/ts/test.js ./resources/ts/test.ts ./resources/ts/test2.js ./resources/ts/test2.ts ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! /Users/kawasakimasato/outputer/resources/ts/test.js */"./resources/ts/test.js");
 __webpack_require__(/*! /Users/kawasakimasato/outputer/resources/ts/test.ts */"./resources/ts/test.ts");
+__webpack_require__(/*! /Users/kawasakimasato/outputer/resources/ts/test2.js */"./resources/ts/test2.js");
 module.exports = __webpack_require__(/*! /Users/kawasakimasato/outputer/resources/ts/test2.ts */"./resources/ts/test2.ts");
 
 

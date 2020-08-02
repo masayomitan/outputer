@@ -41,7 +41,7 @@ class Tag extends Model
     return $tag_ids;
     }
 
-
+    //人気タグ取得
     public function getPopularTags(){
         //withCountでレコード数をとる
         //0で公開しているbooksのデータを呼び出し

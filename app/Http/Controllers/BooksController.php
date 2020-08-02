@@ -6,10 +6,14 @@ use App\Models\Book;
 use App\Models\Sentence;
 use App\Models\Tag;
 use App\Models\User;
+
+
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 
 class BooksController extends Controller
 {
@@ -22,13 +26,17 @@ class BooksController extends Controller
     {
 
         $books = Book::all();
-        $contents = Storage::get('public/book_image');
+        // $contents = Storage::get('public/book_image');
+
+        // $path = storage_path('book_image/');
+        // $img = Image::make($path)->resize(320, 240);
 
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $tab_info_list = $book->getTabInfoList();
 
         return view('books.index',compact('books'), [
+            // 'image' => $img,
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
             // 'api' => $api,
@@ -66,18 +74,20 @@ class BooksController extends Controller
         $url = Storage::url('book_image');
 
         $file_name = $request->file('book_image')->getClientOriginalName();
-        $request->file('book_image')->storeAs('public/book_image',$file_name);
+        $request->file('book_image')->storeAs('/public/book_image',$file_name);
 
-
+        
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
-            'over_view' => ['string', 'max:20480'],
+            'author' => ['string', 'max:30'],
             'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
         ]);
         $validator->validate();
 
         $book->bookStore($data, $file_name);
+
+
 
         //タグ挿入
         $tag->tagStore($data["tags"]);
@@ -158,7 +168,7 @@ class BooksController extends Controller
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
-            'over_view' => ['string', 'max:20480'],
+            'author' => ['string', 'max:30'],
             'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
         ]);
         $validator->validate();

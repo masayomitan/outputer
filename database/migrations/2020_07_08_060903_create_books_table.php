@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('book_image')->comment('画像');
             $table->string('title');
-            $table->text('over_view')->comment('概要');
+            $table->string('author')->comment('著者');
             $table->timestamps();
 
         });

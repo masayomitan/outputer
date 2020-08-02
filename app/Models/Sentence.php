@@ -67,14 +67,14 @@ class Sentence extends Model
         return $sentence_status_texts;
     }
 
-    
-    //to getTabInfoList
+
+    //to  User.php/getTabInfoList
     public function getSentenceCount(Int $user_id)
     {
       return $this->where('user_id', $user_id)->count();
     }
 
-    //to getTabInfoList
+    //to  User.php/getTabInfoList
     public function getFavoriteSentences(Int $user_id){
         //いいねした記事取得、
         $favorite_sentences = $this->whereHas('favorites', function($query) use ($user_id) {

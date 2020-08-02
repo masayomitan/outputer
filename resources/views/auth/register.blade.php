@@ -18,12 +18,12 @@
                     @csrf
 
                     <div class="form-group row">
-                        <label for="screen_name" class="col-md-4 col-form-label text-md-right">ユーザー名</label>
+                        <label for="name" class="col-md-4 col-form-label text-md-right">ユーザー名</label>
 
                         <div class="col-md-6">
-                            <input id="screen_name" placeholder="アルファベットで記載してください" type="text" class="form-control @error('screen_name') is-invalid @enderror" name="screen_name" value="{{ old('screen_name') }}" required autocomplete="screen_name" autofocus>
+                            <input id="name"  type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                            @error('screen_name')
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
