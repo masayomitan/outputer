@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Intervention\Image\Facades\Image;
 
 class Book extends Model
 {
@@ -56,7 +57,7 @@ class Book extends Model
 
       $this->book_image =  $file_name;
       $this->title = $data['title'];
-      $this->over_view = $data['over_view'];
+      $this->author = $data['author'];
       $this->save();
       return;
     }
@@ -71,7 +72,7 @@ class Book extends Model
 
       $this->book_image =  $file_name;
       $this->title = $data['title'];
-      $this->over_view = $data['over_view'];
+      $this->author = $data['author'];
       $this->update();
       return;
     }

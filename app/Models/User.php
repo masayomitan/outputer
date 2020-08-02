@@ -65,7 +65,6 @@ class User extends Authenticatable
         if(isset($params['profile_image'])){
         $this::where('id', $this->id)
           ->update([
-            'screen_name' => $params['screen_name'],
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
             'profile_image' => $file_name,
@@ -74,7 +73,6 @@ class User extends Authenticatable
       } else {
         $this::where('id', $this->id)
           ->update([
-            'screen_name' => $params['screen_name'],
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
             'email' => $params['email'],
@@ -89,7 +87,7 @@ class User extends Authenticatable
         return $this->follows()->attach($user_id);
     }
 
-    // フォロー解除する
+    // フォロー解除
     public function unfollow(Int $user_id)
     {
         return $this->follows()->detach($user_id);
@@ -109,12 +107,13 @@ class User extends Authenticatable
 
     public function getFollowingUsers($user_id)
     {
-      return $this->follows()->where('following_id', $user_id);
+      return $this->follows()->where('following_id', $user_id)->paginate(6);
     }
-    
+
     public function getFollowerUsers($user_id)
     {
-      return $this->followers()->where('followed_id', $user_id);
+      return $this->followers()->where('followed_id', $user_id)->paginate(6);
+
     }
 
 

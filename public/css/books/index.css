@@ -1,0 +1,48 @@
+.big-bg{
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+#menu{
+    background-image: url("../../image/aaa.jpeg");
+    min-height: 100vh;
+}
+
+.menu-content{
+    max-width: 560px;
+    margin-top: 10%;
+}
+
+.menu-content .page-title{
+    text-align: center;
+}
+
+.menu-content p{
+  font-size: 1.125rem;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+/*
+.grid{
+    display: grid;
+    gap: 26px;
+    grid-template-columns: 1fr;
+    margin-top: 6%;
+    margin-bottom: 50px; */
+
+
+.item {
+    display: flex;
+    gap: 26px;
+    grid-template-columns: 1fr;
+    margin-top: 6%;
+    margin-bottom: 50px;
+}
+
+.pic{
+    width: 200px;
+    height: 200px;
+
+}

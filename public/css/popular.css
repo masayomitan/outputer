@@ -1,0 +1,14 @@
+
+
+.card{
+width: 350px;
+margin-left: 100px;
+}
+
+.card-body{
+    margin-bottom: 20px;
+    position: sticky;
+  margin-bottom: 0;
+  top: 10px;
+  z-index: 1;
+}

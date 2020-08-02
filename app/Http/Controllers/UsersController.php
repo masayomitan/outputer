@@ -153,6 +153,7 @@ class UsersController extends Controller
            return back();
        }
    }
+
    // フォロー解除
    public function unfollow(User $user)
    {

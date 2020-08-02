@@ -12,8 +12,8 @@
         <td>{{ $book->id }}</td>
         <td>{{ $book->title }}</td>
         <td>{{ $book->over_view }}</td>
-        {{-- <img src="/storage{{$book->book_image}}"> --}}
-        <img src="{{ URL::to('public/storage') }}/{{ $book->book_image }}" alt="{{ $book->book_image }}" />
+        <img src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}" alt="{{ $book->book_image }}" />
+
 
     </tr>
 </table>
@@ -24,11 +24,12 @@
     <tr>
         <td>{{ $sentence->text }}</td>
     </tr>
-    @endforeach
-
     <form method="POST" action="{{ route('favorites.store') }}">
         @csrf
 
         <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
         <button>
     </form>
+
+    @endforeach
+

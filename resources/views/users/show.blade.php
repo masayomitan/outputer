@@ -1,15 +1,16 @@
+@extends('layouts.app')
 
+@section('content')
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 mb-3">
+      <div class="card">
+        @include('components.users.user_profile')
+        @include('components.users.user_tab_list')
+        @include('components.users.timeline_sentence_list')
+      </div>
+    </div>
+  </div>
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead><tr><th>{{ __('ID') }}</th><th>{{ __('Name') }}</th></tr></thead>
-        <tbody>
-            {{-- @foreach($users as $user) --}}
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td><a href="{{ url('users/'.$user->id) }}">{{ $user->name }}</a></td>
-            </tr>
-            {{-- @endforeach --}}
-        </tbody>
-    </table>
 </div>
+@endsection

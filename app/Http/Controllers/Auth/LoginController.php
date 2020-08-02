@@ -48,7 +48,7 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
      {
-         return redirect(route('home'));
+         return redirect(route('books.index'));
      }
 
   }
