@@ -121,9 +121,10 @@ class User extends Authenticatable
     public function getPopularUsers() {
 
         $favorite_list = Favorite::all();
-        //Favoriteのsentence_idに紐づいたのuser_idを全部取り出し
+        //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
         foreach($favorite_list as $favorite_item) {
             $user_id_list[] = $favorite_item->sentence()->value('user_id');
+
         }
         //空ならそのまま
         if(empty($user_id_list)) {
@@ -136,10 +137,15 @@ class User extends Authenticatable
             //array_sliceで振り分けた番号を取り出し
             $rank_keys = array_slice($rank_keys, 0, 10);
 
-            $popular_users = $this->whereIn('id',$rank_keys)->get();
+            $popular_users = $this->whereIn('id',$rank_keys)
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->get();
+
         }
         return $popular_users;
     }
+
 
 
     //to getUserInfoList

@@ -23,7 +23,7 @@ class Book extends Model
         //userIdに紐づく
         return $this->belongsTo(User::class);
     }
-
+    
     public function sentences()
     {
       return $this->hasMany(Sentence::class);
