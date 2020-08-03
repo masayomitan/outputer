@@ -22,7 +22,7 @@
 
     @foreach($sentences as $sentence)
     <tr>
-        <td>{{ $sentence->text }}</td>
+        <td>{{ $sentence->text_1 }}</td>
     </tr>
     <form method="POST" action="{{ route('favorites.store') }}">
         @csrf

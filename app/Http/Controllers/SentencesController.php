@@ -53,9 +53,10 @@ class SentencesController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, [
             'book_id' => ['required', 'integer'],
-            'text' => ['required', 'string', 'max:2000']
+            'text_1' => ['required', 'string', 'max:2000'],
+            'text_2' => ['required', 'string', 'max:2000'],
+            'text_3' => ['required', 'string', 'max:2000']
         ]);
-
         $validator->validate();
         $sentence->sentenceStore($user->id, $data);
 

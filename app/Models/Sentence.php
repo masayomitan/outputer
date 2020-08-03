@@ -33,7 +33,9 @@ class Sentence extends Model
     {
       $this->user_id = $user_id;
       $this->book_id = $data['book_id'];
-      $this->text = $data['text'];
+      $this->text_1 = $data['text_1'];
+      $this->text_2 = $data['text_2'];
+      $this->text_3 = $data['text_3'];
       $this->status = $data['status'];
       $this->save();
       return;
