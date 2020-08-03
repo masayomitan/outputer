@@ -1,82 +1,53 @@
 
-@extends('layouts.app')
+ <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
 
-@section('content')
-    <div class="container mt-4">
-        <div class="border p-4">
-            <h1 class="h5 mb-4">
-                投稿の新規作成
-            </h1>
+@include('layouts.header')
 
-            <form method="POST" action="{{ route('books.store') }}"  enctype="multipart/form-data">
+
+<div class="book-create">
+    <div class="new"><h1>新しい本を登録</h1></div>
+        <div class="search-box">
+            <div class="search-box-book">
+                <div class="search-exist">STEP1.既に登録されていないか調べる</div>
+                <input placeholder="読み方を検索する" type="text" tabindex="0" class="prompt" autocomplete="off" value="">
+            </div>
+        </div>
+
+        <div class="input-box">
+            <div class="input-box-store"><form method="POST" action="{{ route('books.store') }}"  enctype="multipart/form-data">
                 @csrf
+                <div class="input-book">STEP2.本情報の入力</div>
+                <div class="new-2">名前の打ち間違い等を確認してください。本の投稿後の修正はできません。</div>
 
-                <fieldset class="mb-4">
-                    <div class="form-group">
-                        <label for="title">
-                            タイトル
-                        </label>
-                        <input
-                            id="title"
-                            name="title"
-                            class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
-                            value="{{ old('title') }}"
-                            type="text"
-                        >
-                        @if ($errors->has('title'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('title') }}
-                            </div>
-                        @endif
+                <p><label class="letter" for="title">タイトル名</label></p>
+                <input class="title-input" id="title" name="title" type="text" required autofocus>
+
+                <p><label class="letter" for="author">著者</label></p>
+                <input class="author-input" id="author" name="author" type="text" required autofocus>
+
+                <p><label class="letter" for="tag">タグ</label></p>
+                <input class="tag-input" id="tag" name="tags[]" type="text" required autofocus>
+
+                <label><div class="book_image">画像</div>
+                    <input class="file-input" type="file" id="book_image" name="book_image">
+                </label>
+            </div>
+
+                <div class="register-box-book">
+                    <div class="container-btn">
+                        <div class="push-book">STEP3.間違ってなければボタンを押す</div>
+                        <button type="submit" class="book-btn" >新しく登録する</button>
+                        </form>
                     </div>
-                    <input type="file" id="book_image" name="book_image" >
-
-                    <div class="form-group">
-                        <label for="tags">
-                            タグ
-                        </label>
-                        <input
-                            id="tags"
-                            name="tags[]"
-                            class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}"
-                            value="{{ old('tags') }}"
-                            type="text"
-                        >
-                        @if ($errors->has('tags'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('tags') }}
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <label for="author">
-                            本文
-                        </label>
-
-                        <input
-                            id="author"
-                            name="author"
-                            class="form-control {{ $errors->has('author') ? 'is-invalid' : '' }}"
-                            value="{{ old('author') }}"
-                            type="text"
-                        >
-                        @if ($errors->has('author'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('author') }}
-                            </div>
-                        @endif
-                    </div>
-
-                            キャンセル
-                        </a>
-                        <button type="submit" class="btn btn-primary" >
-                            投稿する
-                        </button>
-                    </div>
-
-                </fieldset>
-            </form>
+                </div>
         </div>
     </div>
-@endsection
+</div>
+
+<script>
+    $(function () {
+      $("#file").change(function () {
+        $(this).closest("form").submit();
+      });
+    });
+    </script>
