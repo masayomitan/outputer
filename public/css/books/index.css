@@ -1,3 +1,9 @@
+
+.body-content{
+    display: flex;
+}
+
+
 .big-bg{
     background-size: cover;
     background-position: center top;
@@ -22,27 +28,35 @@
   font-size: 1.125rem;
   margin: 10px 0 0;
   text-align: center;
+
 }
 
-/*
-.grid{
-    display: grid;
-    gap: 26px;
-    grid-template-columns: 1fr;
-    margin-top: 6%;
-    margin-bottom: 50px; */
+
+.wrapper-item{
+    width: 900px;
 
 
-.item {
+}
+
+.wrapper-item-box {
     display: flex;
-    gap: 26px;
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
     margin-top: 6%;
     margin-bottom: 50px;
 }
 
-.pic{
+.book_box{
+    margin: 10px;
+}
+
+.book_image{
     width: 200px;
-    height: 200px;
+    height: 250px;
 
 }
+
+.book-names{
+
+}
+
+

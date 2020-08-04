@@ -71,12 +71,12 @@ class BooksController extends Controller
     public function store(Request $request, Book $book, Tag $tag)
     {
         $user = auth()->user();
-        $url = Storage::url('book_image');
+
 
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('/public/book_image',$file_name);
 
-        
+
         $data = $request->all();
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
@@ -88,17 +88,14 @@ class BooksController extends Controller
         $book->bookStore($data, $file_name);
 
 
-
-        //タグ挿入
-        $tag->tagStore($data["tags"]);
-        //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
-        $tag_ids = $tag->getTagIds($data["tags"]);
-        //中間テーブルにidを設置
-        $book->bookTagSync($tag_ids);
-
-        $book->save();
-
-        return redirect('/books')->with('success', '投稿が完了しました。');
+            //タグ挿入
+            $tag->tagStore($data["tags"]);
+            //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
+            $tag_ids = $tag->getTagIds($data["tags"]);
+            //中間テーブルにidを設置
+            $book->bookTagSync($tag_ids);
+          
+          return redirect('/books')->with('success', '投稿が完了しました。');
 
     }
 
