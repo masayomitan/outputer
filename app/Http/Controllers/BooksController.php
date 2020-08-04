@@ -87,14 +87,19 @@ class BooksController extends Controller
 
         $book->bookStore($data, $file_name);
 
+        //array_filterで連想配列の空チェック
+        $tag_name = array_filter($data["tags"]);
 
+        if(empty($tag_name)) {
+            return redirect('/books')->with('success', '投稿が完了しました。');
+        } else{
             //タグ挿入
             $tag->tagStore($data["tags"]);
             //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $tag_ids = $tag->getTagIds($data["tags"]);
             //中間テーブルにidを設置
             $book->bookTagSync($tag_ids);
-          
+          }
           return redirect('/books')->with('success', '投稿が完了しました。');
 
     }
