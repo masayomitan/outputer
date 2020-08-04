@@ -1,23 +1,51 @@
-<h1>詳細画面</h1>
-<p><a href="{{ route('books.index')}}">一覧画面</a></p>
 
-<table border="1">
-    <tr>
-        <th>id</th>
-        <th>title</th>
-        <th>over_view</th>
-        <th>画像</th>
-    </tr>
-    <tr>
-        <td>{{ $book->id }}</td>
-        <td>{{ $book->title }}</td>
-        <td>{{ $book->over_view }}</td>
-        <img src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}" alt="{{ $book->book_image }}" />
+ <link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
+
+ @include('layouts.header')
 
 
-    </tr>
-</table>
-<th><a href="{{ route('sentences.create', ['id' => $book->id]) }}">コメント</a></th>
+<div class="book-show">
+
+    <div class="book-show-header">
+        <div class="book-title-show">{{$book->title }}</div>
+    </div>
+
+        <div class="book-show-above">
+            <div class="book-image-show">
+                <img class="book-image-show-box" src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}">
+            </div>
+
+                <div class="book-info">
+
+                    <div class="book-author-box">
+                        <a class="book-author-show"> {{ $book->author }} </a>
+                    </div>
+
+                    <div class="bouder-line"></div>
+
+                    <div class="book-tags">
+                        <div class="book-tags-box">
+                            @foreach($book->tags as $tag)
+                                <div class="book-tag-show"> #{{ $tag->name }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <th><a href="{{ route('books.show',$book->id)}}">タグ追加</a></th>
+
+                    <div class="book-share"></div>
+                    <div class="twitter-image"><div>
+                <div>
+        </div>
+
+        <div class="book-show-below">
+            <div class="">
+<a href="{{ route('sentences.create', ['id' => $book->id]) }}">3行でまとめる！</a>
+</div>
+
+
+
+
 <div class="col-xs-8 col-xs-offset-2">
 
     @foreach($sentences as $sentence)

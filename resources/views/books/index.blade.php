@@ -36,7 +36,7 @@
                     <a href="{{ route('books.show',$book->id)}}">詳細</a>
                 <div class="most-favorite"></div>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
 
