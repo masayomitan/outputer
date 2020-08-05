@@ -36,9 +36,8 @@ class Tag extends Model
     foreach($tag_names as $tag_name){
         //idから名前を1から取り出して$tag_idに代入
         $tag_id = $this::select('id')->where("name",$tag_name)->first();
-        //配列$tag_ids[]を作成して$tag_idのidを全て代入
-
-        $tag_ids[] = optional($tag_id)->id;
+        //$tag_idのidを配列$tag_ids[]に全て代入
+        $tag_ids[] = $tag_id->id;
     }
     return $tag_ids;
     }
