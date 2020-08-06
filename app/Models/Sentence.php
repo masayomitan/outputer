@@ -64,7 +64,7 @@ class Sentence extends Model
 
     public function getPostSentenceStatusTexts() {
         //投稿時の最後のチェック
-        $sentence_status_texts = ["投稿する" => 0,"下書きに保存する" => 1];
+        $sentence_status_texts = ["投稿準備完了" => 0, "一旦下書きに" => 1];
         // $sentence_status_texts = json_encode($sentence_status_texts, JSON_UNESCAPED_UNICODE);
         return $sentence_status_texts;
     }
