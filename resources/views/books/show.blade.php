@@ -1,7 +1,8 @@
 
- <link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
 
- @include('layouts.header')
+@include('layouts.header')
+
+<link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
 
 <body>
     <div class="book-show">
@@ -43,10 +44,11 @@
 
             <div class="book-show-below">
                 <div class="sentence-box">
-                        <a  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</a>
+                        <div  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</div>
 
                     @foreach($sentences as $sentence)
                         <div class="sentence-box-each">
+                            <a href="{{ route('users.show',$sentence->user->id)}}"></a>
                             <div class="sentence-box-name">
                                 <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
                                     <div class="line"></div>
@@ -65,30 +67,3 @@
                 </div>
             </div>
 </body>
-
-
-
-
-
-{{--
-<div class="col-xs-8 col-xs-offset-2">
-
-    @foreach($sentences as $sentence)
-    @php var_dump($sentence(["id"] => [2]));
-
-     @endphp --}}
-
-
-    {{-- <tr> --}}
-        {{-- <td>{{ $sentence->id["2"]->text_1 }}</td>
-        {{-- <td>{{ $sentence->id["2"]->text_2 }}</td> --}}
-        {{-- <td>{{ $sentence["id"]->text_3 }}</td> --}}
-    {{-- </tr> --}}
-    {{-- <form method="POST" action="{{ route('favorites.store') }}">
-        @csrf
-
-        <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-        <button>
-    </form> --}}
-
-

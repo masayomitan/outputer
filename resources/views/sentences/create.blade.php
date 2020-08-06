@@ -38,35 +38,18 @@
                 <input class="sentence-create-box-text" type="text" name="text_3" required>
         </div>
 
-        <div class="sentence-btn">
-                <p><select class="status" name="status" type="select">
-                        @foreach($sentence_status_texts as $key => $val)
-                            <option value="{{$val}}">{{$key}}</option>
-                        @endforeach
-                    </select></p>
+            <div class="sentence-btn">
+                    <p><select class="status" name="status" type="select">
+                            @foreach($sentence_status_texts as $key => $val)
+                                <option value="{{$val}}">{{$key}}</option>
+                            @endforeach
+                        </select></p>
 
-                <p><button type="submit" class="sentence-btn-comfirm">
-                        投稿する
-                </button></p>
-            </form>
-        </div>
+                    <p><button type="submit" class="sentence-btn-comfirm">
+                            投稿する
+                    </button></p>
+                </form>
+            </div>
+        <button type="button" onclick="history.back()">戻る</button>
     </div>
-
-
 </div>
-
-                    {{-- @if($user) --}}
-                            <div class="form-group row mb-s0">
-                                <div class="col-md-12 p-3 w-100 d-flex">
-                                    {{-- <img class="book-image" src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}">
-                                    <a href="{{ url('books/' .$book->id) }}" class="text-secondary">{{ $book->title }}</a>
-                                    <a href="{{ url('books/' .$book->id) }}" class="text-secondary">{{ $book->author}}</a> --}}
-                                </div>
-                            </div>
-
-                    {{-- @else --}}
-                </div>
-            {{-- @endif --}}
-
-
-

@@ -13,6 +13,7 @@
       <h1 class="main-header-title"><a href="{{ route('books.index') }}" class="title">Outputer</a></h1>
       <nav>
         <ul class="main-nav">
+        <li><a href="{{ route('books.index') }}">本一覧</a></li>
         <li><a href="#">未アウトプット本</a></li>
         <p><a href="{{ route('books.create') }}">新規追加</a></p>
         <li><a href="#">人気</a></li>
@@ -27,7 +28,7 @@
                 <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
             </li>
             @endif
-            @else
+        @else
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -43,7 +43,7 @@
                         <div class="mt-1 d-flex">
                           <div class="mr-auto text-secondary">
                             <span>by &#064;{{$timeline->user->screen_name}}</span>
-                            <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span>
+                            {{-- <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span> --}}
                             {{-- <span><i class="far fa-thumbs-up"></i>{{ count($timeline->favorites) }}</span> --}}
                           </div>
                           @if (isset(auth()->user()->id))
