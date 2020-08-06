@@ -43,27 +43,26 @@
 
 
             <div class="book-show-below">
-                <div class="sentence-box">
-                        <div  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</div>
+                <a  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</a>
+                    <div class="sentence-box">
+                        @foreach($sentences as $sentence)
+                            <div class="sentence-box-each">
+                                <a href="{{ route('users.show',$sentence->user->id)}}"></a>
+                                <div class="sentence-box-name">
+                                    <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
+                                        <div class="line"></div>
+                                    <div class="sentence-box-text-each">
+                                        <p>{{ $sentence->text_1 }}</p>
+                                        <p>{{ $sentence->text_2 }}</p>
+                                        <p>{{ $sentence->text_3 }}</p>
+                                    </div>
+                                </div>
 
-                    @foreach($sentences as $sentence)
-                        <div class="sentence-box-each">
-                            <a href="{{ route('users.show',$sentence->user->id)}}"></a>
-                            <div class="sentence-box-name">
-                                <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
-                                    <div class="line"></div>
-                                <div class="sentence-box-text-each">
-                                    <p>{{ $sentence->text_1 }}</p>
-                                    <p>{{ $sentence->text_2 }}</p>
-                                    <p>{{ $sentence->text_3 }}</p>
+                                <div class="sentence-box-user">
+                                    <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
                                 </div>
                             </div>
-
-                            <div class="sentence-box-user">
-                                <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
             </div>
 </body>

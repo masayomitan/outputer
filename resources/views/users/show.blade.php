@@ -51,7 +51,7 @@
             @endforeach
         </ul>
 
-        @include('components.users.timeline_sentence_list')
+        {{-- @include('components.users.timeline_sentence_list') --}}
       </div>
     </div>
   </div>

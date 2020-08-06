@@ -49,14 +49,14 @@
                           @if (isset(auth()->user()->id))
                             @if (auth()->user()->id == $user->id)
                               <div class="dropdown d-flex align-items-center">
-                                <a href="{{ url('articles/' .$timeline->id. '/edit') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href="{{ url('books/' .$timeline->id. '/edit') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <i class="fas fa-ellipsis-v fa-fw"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <form method="POST" action="{{ url('articles/' .$timeline->id) }}" class="mb-0">
+                                  <form method="POST" book="{{ url('books/' .$timeline->id) }}" class="mb-0">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ url('articles/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
+                                    <a href="{{ url('books/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
                                     <button type="submit" class="dropdown-item del-btn">削除</button>
                                   </form>
                                 </div>
@@ -64,7 +64,7 @@
                             @endif
                           @endif
                           <div class="d-flex align-items-center">
-                            <a href="{{ url('articles/' .$timeline->id) }}#comment"><i class="far fa-comment fa-fw"></i></a>
+                            <a href="{{ url('books/' .$timeline->id) }}#comment"><i class="far fa-comment fa-fw"></i></a>
                             {{-- <p class="mb-0 text-secondary">{{ count($timeline->sentences) }}</p> --}}
                           </div>
                         </div>
