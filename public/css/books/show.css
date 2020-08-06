@@ -109,7 +109,21 @@
     text-shadow: none;
 }
 
-.book-show-below
+.book-show-below{
+    margin: auto;
+    width: 100%; max-width: 1000px;
+}
+
+
+.sentence-favorite{
+    float: right;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #00b5ad;
+    background-image: url("../../image/like.jpeg");
+    box-shadow    : 0 0 3px #000;
+}
 
 .sentence-box{
     margin: auto;
@@ -118,7 +132,7 @@
 
 .sentence-box-each {
     cursor : pointer;
-    width:800px;
+    width: 800px;
     height: 200px;
     margin: 20px 0 20px;
     display: flex;
@@ -160,7 +174,6 @@
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
     margin-left: 30px;
-
 }
 
 .sentence-box-text-each{
@@ -172,7 +185,6 @@
     line-height: 1.8em;
     font-weight: 700;
     letter-spacing: 0.8pt;
-    /* background-color: #ffffff ; */
     color: #4e5665;
 }
 
@@ -183,3 +195,4 @@
     height: 80px;
     background-position: left top;
 }
+
