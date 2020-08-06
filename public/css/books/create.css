@@ -2,7 +2,8 @@
 
 .book-create{
 
-    padding: 0 300px;
+    margin: auto;
+    width: 100%; max-width: 800px;
 }
 .new{
     text-align: center;
@@ -80,6 +81,7 @@
     background: white;
     border-top: solid 5px #00b5ad;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    margin-bottom: 60px;
 }
 
 
@@ -105,12 +107,9 @@
     font-weight: bold;
     padding: 10px 24px;
     border-radius: 4px;
-    border-bottom: 4px solid #d37800;
-  }
+}
 
-  .book-btn:hover {
+.book-btn:hover {
     background-color: #9ec34b;
     color: #FFF;
-    transform: translateY(4px);
-    border-bottom: none;
-  }
+}

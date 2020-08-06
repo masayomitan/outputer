@@ -1,0 +1,130 @@
+
+
+
+.book-sentence-box{
+    margin: auto;
+    width: 100%; max-width: 800px;
+}
+
+
+.book-sentence-new{
+    text-align: center;
+}
+
+.book-info{
+    display: flex;
+}
+
+
+.book-info-image{
+    margin: 20px 0 0 150px;
+    filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
+    width: 130px;
+    height: auto;
+}
+
+
+
+.book-info-others{
+    margin-top: 20px;
+    width: 500px;
+    color: #333333;
+}
+
+.book-info-title{
+    margin: 20px 0 0 80px;
+    font-size: 1.5rem;
+    height: 70px;
+}
+
+.book-info-author{
+    margin: 20px 0 0 90px;
+
+}
+
+
+
+.sentence-create{
+    margin: auto;
+    width: 100%; max-width: 800px;
+}
+
+.sentence-create-box{
+    margin-top: 30px;
+    text-align: center;
+    border-top: solid 5px #00b5ad;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.new{
+
+    text-align: center;
+    margin: 20px 15px 20px 15px;
+    border: 1px solid #ccc; /* 枠線 */
+    background-color: #fffaf3;
+    padding: 1em 1.5em;
+}
+
+.gyo-1{
+    margin-top: 20px;
+    width: 260px;
+}
+
+.gyo{
+    width: 260px;
+}
+.h2{
+    width:100px;
+    padding-left: 300px;
+}
+
+
+.sentence-create-box-text{
+    margin: 1em auto;
+    padding: 0.7em;
+    width: 80%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.sentence-btn{
+    margin-top: 30px;
+    text-align: center;
+    border-top: solid 5px #00b5ad;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    margin-bottom: 60px;
+}
+
+.status{
+    transition: .4s;
+    display: inline-block;
+    max-width: 180px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 26px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor : pointer;
+}
+
+.sentence-btn-comfirm{
+    transition: .3s;
+    max-width: 180px;
+    background-color: #ffa300;
+    font-size: 16px;
+    font-weight: bold;
+    width: 150px;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+
+}
+
+.sentence-btn-comfirm:hover {
+    background-color: #9ec34b;
+    color: #FFF;
+
+}
+

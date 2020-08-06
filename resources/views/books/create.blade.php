@@ -25,7 +25,7 @@
                 <p><label class="letter" for="author">著者</label></p>
                 <input class="author-input" id="author" name="author" type="text" required autofocus>
 
-                <p><label class="letter" for="tag">タグ</label></p>
+                <p><label class="letter" for="tag">タグ （任意・10文字以内）</label></p>
                 <input class="tag-input" id="tag" name="tags[]" type="text"  autofocus>
 
                 <label><div class="book_image">画像</div>

@@ -1,4 +1,8 @@
 
+
+
+
+
 .book-show-above{
     display: flex;
     margin: auto;
@@ -6,13 +10,14 @@
 }
 
 .book-show-header{
-  padding: 20px 0px 0 300px;
-  width: 100%;
-  max-width: 1200px;
+    background-color: #fff;
 }
 
 .book-title-show{
     font-size: 36px;
+    margin: auto;
+    width: 100%; max-width: 800px;
+    border-bottom: 1px solid #ddd;
 }
 
 
@@ -21,7 +26,6 @@
     width: 100%; max-width: 800px;
     text-align: center;
     margin-top: 20px;
-
 }
 
 .book-image-show-box{
@@ -42,13 +46,11 @@
     border-radius: 7px;
     display: inline-block;
     padding: 7px 20px 7px 20px;
-
-
 }
+
 .book-author-show{
     font-size: 25px;
 }
-
 
 .bouder-line{
     padding: 3px;
@@ -60,7 +62,6 @@
     margin-top: 30px;
     flex-wrap: wrap;
     display: flex;
-
 }
 
 .book-tag-show{
@@ -86,24 +87,19 @@
     border-radius: 4px;
     font-size: 1.3rem;
     text-decoration: none;
-}
-
-.sentence-box-create a {
     color: #fff;
     font-weight: 700;
     cursor : pointer;
-    }
-
+}
 
 .sentence-box-create:active{
     transform: translateY(2px);
     border-bottom: none;
 }
 
-
 .sentence-box-create:active{
     top: 4px;
-  text-shadow: none;
+    text-shadow: none;
 }
 
 .book-show-below
@@ -137,12 +133,12 @@
     box-shadow: none;
 }
 
-
 .sentence-box-name-each{
     text-align: center;
     padding-top: 10px;
     font-weight: 700;
     font-size: 20px;
+    margin-left: 80px;
 }
 
 .line{
@@ -151,7 +147,6 @@
     margin-left: 30px;
 
 }
-
 
 .sentence-box-text-each{
 
@@ -165,6 +160,7 @@
     /* background-color: #ffffff ; */
     color: #4e5665;
 }
+
 .profile_image{
     margin-top: 70px;
     border-radius: 50%;

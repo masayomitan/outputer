@@ -49,7 +49,7 @@
                         <div class="sentence-box-each">
                             <div class="sentence-box-name">
                                 <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
-                                 <div class="line"></div>
+                                    <div class="line"></div>
                                 <div class="sentence-box-text-each">
                                     <p>{{ $sentence->text_1 }}</p>
                                     <p>{{ $sentence->text_2 }}</p>
