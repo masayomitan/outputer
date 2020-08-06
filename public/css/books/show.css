@@ -67,11 +67,18 @@
 .book-tag-show{
     cursor : pointer;
     font-size: 15px;
+    border: 1px solid;
     border-radius: 20px;
     padding: 5px 12px 5px 12px;
-    background: #cde4ff;
+    color: rgb(23, 162, 184);
+    border-color: rgb(23, 162, 184);;
+    background-color: #fff;
     margin: 5px;
     text-align: center;
+}
+.book-tag-show:hover {
+    background-color: rgb(23, 162, 184);
+    color: #fff;
 }
 
 .sentence-box-create{
@@ -107,10 +114,9 @@
 .sentence-box{
     margin: auto;
     width: 100%; max-width: 800px;
-
 }
 
-.sentence-box-each{
+.sentence-box-each {
     cursor : pointer;
     width:800px;
     height: 200px;
@@ -122,6 +128,15 @@
     position: relative;
     box-shadow: 2px 2px 0 #00b5ad;
     transition: color .3s, box-shadow .3s, transform 0.3s;
+}
+
+.sentence-box-each a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .sentence-box-each:hover{
