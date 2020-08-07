@@ -14,7 +14,7 @@ class Follower extends Model
     protected $primaryKey = [
         'following_id',
         'followed_id'
-      ];
+    ];
 
     protected $fillable = [
     'following_id',
@@ -22,23 +22,23 @@ class Follower extends Model
     ];
 
     //to getTabInfoList
-    public function getFollowCount($user_id)
+    public function getFollowCount(Int $user_id)
     {
       //user_idをfollowing_idでカウント
-      return $this->where('following_id', $user_id)->count();
+        return $this->where('following_id', $user_id)->count();
     }
 
     // //to getTabInfoList
-    public function getFollowerCount($user_id)
+    public function getFollowerCount(Int $user_id)
     {
       //user_idをfollowed_idでカウント
-      return $this->where('followed_id',$user_id)->count();
+        return $this->where('followed_id', $user_id)->count();
     }
 
     public function followingIds(Int $user_id)
     {
       //user_idをfollowing_idとし、紐づいたfollowed_idを取得
-      return $this->where('following_id', $user_id)->get('followed_id');
+        return $this->where('following_id', $user_id)->get('followed_id');
     }
 
 

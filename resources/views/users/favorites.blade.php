@@ -1,10 +1,6 @@
-@extends('layouts.app')
+@include('layouts.header')
 
-@section('content')
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-12 mb-3">
-      <div class="card">
+
         @include('components.users.user_profile')
         @include('components.users.user_tab_list')
 
@@ -38,7 +34,7 @@
                       <div class="mt-1 d-flex">
                         <div class="mr-auto text-secondary">
                           <span>by &#064;{{$timeline->user->screen_name}}</span>
-                          <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span>
+                          {{-- <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span> --}}
                           <span><i class="far fa-thumbs-up"></i>{{ count($timeline->favorites) }}</span>
                         </div>
                         @if (isset(auth()->user()->id))
@@ -79,4 +75,3 @@
     {{ $timelines->links() }}
   </div>
 </div>
-@endsection
