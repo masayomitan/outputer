@@ -159,21 +159,21 @@ class User extends Authenticatable
       $follow_count = $follower->getFollowCount($user_id);
       $follower_count = $follower->getFollowerCount($user_id);
 
-      $tab_info_list = [
-        "投稿 ".$sentence_count => [
+    $tab_info_list = [
+        $sentence_count." " => [
             "link" => "/users/{$user_id}",
         ],
-        "いいねした記事 ".$favorite_count => [
+        $favorite_count => [
             "link" => "/users/{$user_id}/favorites",
         ],
-        "フォロー ".$follow_count => [
+        $follow_count=> [
             "link" => "/users/{$user_id}/following",
         ],
-        "フォロワー ".$follower_count => [
-          "link" => "/users/{$user_id}/followers",
+        $follower_count."  "=> [
+            "link" => "/users/{$user_id}/followers",
         ],
-      ];
-      return $tab_info_list;
+    ];
+    return $tab_info_list;
     }
 
     //to getUserInfoList

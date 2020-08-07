@@ -1,0 +1,86 @@
+
+.users{
+    margin: auto;
+    margin-top: 20px;
+    width: 100%; max-width: 1150px;
+}
+.users-box{
+    display: flex;
+    border-top: 2px solid #e03997;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    padding-bottom: 10px;
+    /* padding-top: 10px; */
+}
+
+
+.user-icon{
+    margin: 30px 0 0 50px;
+
+}
+
+
+.user-image{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.user-confirm{
+    width: 180px;
+    margin-top: 10px;
+}
+
+.user-confirm-edit-button{
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 20px;
+    background-color:  #007bff;
+    color: white;
+    border-radius: 3px;
+    padding: 8px 8px 8px 8px;
+}
+.user-confirm-edit-button:hover{
+    background-color: #17a2b8;
+}
+
+.follow-delete{
+    margin-left: 5px;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 8px 3px 8px;
+}
+
+.follow-store{
+    margin-left: 5px;
+    font-size: 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 8px 3px 8px;
+}
+
+.user-info{
+    margin-left: 30px;
+
+}
+
+.user-info-name{
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 50px;
+    padding-bottom: 5px;
+    width: 700px;
+}
+
+.user-info-intr{
+    margin-top: 10px;
+}
+
+.user-favorites-count{
+    width: 200px;
+    /* float: right; */
+}

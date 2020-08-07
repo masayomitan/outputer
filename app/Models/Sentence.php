@@ -73,7 +73,7 @@ class Sentence extends Model
     //to  User.php/getTabInfoList
     public function getSentenceCount(Int $user_id)
     {
-      return $this->where('user_id', $user_id)->count();
+        return $this->where('user_id', $user_id)->count();
     }
 
     //to  User.php/getTabInfoList
@@ -83,7 +83,7 @@ class Sentence extends Model
             $query->where('user_id', $user_id);
             })->where('status', 0)->paginate(6);
         return $favorite_sentences;
-      }
+        }
 
 
 }

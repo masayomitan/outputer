@@ -85,6 +85,7 @@ class UsersController extends Controller
 
     $timelines = $sentence->getUserTimeLine($user->id, $request["status"]);
     $user_info_list = $user->getUserInfoList();
+
     $user_info_list["timelines"] = $timelines;
     $user_info_list["sentence_status_list"] = ['公開中', '下書き'];
     $user_info_list["request_status_id"] = $request["status"];
