@@ -1,10 +1,6 @@
-@extends('layouts.app')
+@include('layouts.header')
 
-@section('content')
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-12 mb-3">
-      <div class="card">
+
         @include('components.users.user_profile')
         @include('components.users.user_tab_list')
 
@@ -79,4 +75,3 @@
     {{ $timelines->links() }}
   </div>
 </div>
-@endsection

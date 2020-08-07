@@ -1,13 +1,14 @@
-@extends('layouts.app')
+@include('layouts.header')
+{{-- <img  src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="{{ $book->book_image }}" width="100px" class="w-100"> --}}
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="card">
-          @include('components.users.user_profile')
-          @include('components.users.user_tab_list')
-          <div class="p-3">
+<link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
+
+
+
+
+@include('components.users.user_profile')
+@include('components.users.user_tab_list')
+
             @foreach ($all_users as $user)
 {{-- @php dd($all_users) @endphp --}}
             <div class="card">
@@ -53,4 +54,4 @@
       </div>
     </div>
 </div>
-@endsection
+
