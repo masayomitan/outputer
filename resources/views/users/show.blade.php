@@ -7,7 +7,7 @@
 @include('components.users.user_tab_list')
 
 
-@include('components.users.timeline_sentence_list')
+{{-- @include('components.users.timeline_sentence_list') --}}
 
 
 {{-- <div class="user-favorites-count">

@@ -78,6 +78,7 @@
 
 .user-info-intr{
     margin-top: 10px;
+    padding-right: 10px;
 }
 
 .user-favorites-count{
@@ -87,44 +88,64 @@
 
 
 
-.tab-info-box{
-    padding-bottom: 40px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: inline;
-    margin: 0 auto;
+.tab-wrap{
+    /* display: flex; */
+    margin: auto;
+    width: 100%; max-width: 1000px;
 }
 
-.tab-info-box-num-list{
+
+.tab-content{
     display: flex;
+    margin: auto;
+    width: 100%; max-width: 1000px;
     margin-top: 20px;
-    padding-bottom: 40px;
     background-color: #fff;
-    width: 400px;
-
+    justify-content: space-evenly;
 }
 
-.tab-info-box-num-list-each {
+
+.tab-num{
+    padding-top: 5px;
     width: calc(80%/4);
     height: 50px;
     border-bottom: 3px solid #5ab4bd;
-    line-height: 50px;
     font-size: 16px;
     text-align: center;
-    color: #565656;
-    transition: all 0.2s ease;
-
-}
-.tab-info-box-num-each:hover {
-    opacity: 0.75;
-}
-
-.tab-info-num {
     font-weight: 600;
     font-size: 25px;
-    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-.tab-info-button a{
-    text-decoration: none;
+.tab-num:hover{
+    border: 1px solid grey;
+    border-radius: 3px;
+    cursor : pointer;
 }
+
+.tab-num a {
+    opacity: 0.75;
+    text-decoration: none;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tab-name{
+    display: flex;
+    width: 100%; max-width: 1000px;
+    justify-content: space-evenly;
+}
+
+.tab-code{
+    width: calc(80%/4);
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    transition: all 0.2s ease;
+}
+
