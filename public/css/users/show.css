@@ -81,17 +81,29 @@
     padding-right: 10px;
 }
 
-.user-favorites-count{
-    width: 200px;
-    /* float: right; */
-}
-
-
 
 .tab-wrap{
-    /* display: flex; */
     margin: auto;
     width: 100%; max-width: 1000px;
+}
+
+.favorite{
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100px;
+    border-bottom: 3px solid #5ab4bd;
+}
+
+.iine{
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    width: 130px;
 }
 
 
@@ -110,7 +122,6 @@
     width: calc(80%/4);
     height: 50px;
     border-bottom: 3px solid #5ab4bd;
-    font-size: 16px;
     text-align: center;
     font-weight: 600;
     font-size: 25px;
@@ -142,7 +153,6 @@
 .tab-code{
     width: calc(80%/4);
     height: 50px;
-    font-size: 16px;
     text-align: center;
     font-weight: 600;
     font-size: 25px;
