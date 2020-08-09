@@ -12,6 +12,7 @@ use App\User as AppUser;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
@@ -69,7 +70,7 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show(User $user, Sentence $sentence, Request $request)
+  public function show(User $user, Book $book, Sentence $sentence, Request $request)
   {
     if (!isset($request["status"])) {
       $request["status"] = 0;
@@ -84,8 +85,8 @@ class UsersController extends Controller
     }
 
     $timelines = $sentence->getUserTimeLine($user->id, $request["status"]);
+    dd($timelines);
     $user_info_list = $user->getUserInfoList();
-
     $user_info_list["timelines"] = $timelines;
     $user_info_list["sentence_status_list"] = ['公開中', '下書き'];
     $user_info_list["request_status_id"] = $request["status"];

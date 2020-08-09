@@ -41,7 +41,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function followers()
     {
       return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
@@ -124,7 +123,6 @@ class User extends Authenticatable
         //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
         foreach($favorite_list as $favorite_item) {
             $user_id_list[] = $favorite_item->sentence()->value('user_id');
-
         }
         //空ならそのまま
         if(empty($user_id_list)) {

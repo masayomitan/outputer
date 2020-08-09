@@ -1,6 +1,10 @@
 
 
     <div class="tab-wrap">
+        <div class="favorite">
+        {{ $total_favorited_count }}
+        </div>
+        <div class="iine">いいね獲得数</div>
         <div class="tab-content">
             @foreach($tab_info_list as $tab_text => $tab_info)
             <div class="tab-num">

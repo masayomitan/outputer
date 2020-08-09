@@ -17,7 +17,7 @@ class SentencesController extends Controller
      */
     public function index()
     {
-        //
+        //$status_id = 0;
     }
 
     /**
