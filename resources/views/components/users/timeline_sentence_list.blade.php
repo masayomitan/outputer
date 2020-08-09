@@ -1,78 +1,82 @@
 
-@if (isset(auth()->user()->id))
-@if ((auth()->user()->id) == $user->id)
-  <div class="col-md-4">
-    <select class="form-control" name="select" onChange="location.href=value;">
-      @foreach ($sentence_status_list as $status_id => $status_text)
-        <option @if($request_status_id == $status_id) selected @endif value="{{ url()->current() }}?status={{ $status_id }}">{{ $status_text }}</option>
-      @endforeach
-    </select>
-  </div>
-@endif
-@endif
+<div class="select-box">
+    @if (isset(auth()->user()->id))
+        @if ((auth()->user()->id) == $user->id)
+            <select class="select" name="select" onChange="location.href=value;">
+                @foreach ($sentence_status_list as $status_id => $status_text)
+                    <option @if($request_status_id == $status_id) selected @endif value="{{ url()->current() }}?status={{ $status_id }}">
+                        {{ $status_text }}
+                    </option>
+                @endforeach
+            </select>
+        @endif
+    @endif
+</div>
 
+{{-- <div>
+    @if ($timelines->count())
+    @foreach ($books as $book)
+    @php var_dump($book); @endphp
+            {{-- {{$book["title"]}} --}}
+    {{-- <img src="{{ asset('storage/book_image/' . $book->book_image) }}"> --}}
+    {{-- @endforeach
+    @endif
+</div>  --}}
 
-<div class="p-3">
-          <div class="row">
+<div class="timeline">
+          <div class="">
             @if ($timelines->count())
               @foreach ($timelines as $timeline)
-                <div class="col-sm-6 mb-3">
-                  <div class="card">
-                    <a href="{{ route('sentences.show', ['sentence'=>$timeline->id]) }}">
-                      <div class="header-image-wrapper">
-                        <div class="header-image-content" style="background-image:url('{{$timeline->header_image}}');"></div>
+              {{-- @php var_dump($timelines); @endphp --}}
+                <div class="">
+                  <div class="">
+                    {{-- <a href="{{ route('sentences.show', ['sentence'=>$timeline->id]) }}"> --}}
+                      <div class="">
+                        {{ $timeline->book_id }}
+                        {{-- {{ URL::to('storage/book_image/') }}/{{ $timeline->user->profile_image }} --}}
+                        {{-- <img src="{{ asset('storage/book_image/' . $timeline->book->book_image) }}"> --}}
+                        {{-- <img src="{{ asset('storage/book_image/' . $timeline->book_image) }}"> --}}
+                        {{-- <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image)}}"> --}}
+
                       </div>
                     </a>
-                    <div class="card-haeder w-100 p-3">
-                      <div class="ml-2 d-flex flex-column">
-                        <div class="w-100 d-inline-flex">
-                          <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">
-                            <img src="{{ asset('storage/profile_image/') }}" class="rounded" width="39" height="39">
+                    <div class="">
+                      <div class="">
+                        <div class="">
+                          {{-- <a href="{{ url('users/' .$timeline->user->id) }}" class="">
+                            <img src="{{ asset('storage/profile_image/') }}" class=""> --}}
                           </a>
                           <a href="{{ route('sentences.show', ['sentence'=>$timeline->id]) }}">
-                            <p class="px-1">{{ $timeline->title }}</p>
+                            <p class="">{{ $timeline->title }}</p>
                           </a>
                         </div>
-                        <p class="mb-0">
+                        <p class="">
                           @foreach((array)$timeline->tags as $tag)
-                            <a class="text-secondary" href="/tags/{{ $tag->id }}">
-                              <span class="tag-mark">{{$tag->name}}</span>
+                            <a class="" href="/tags/{{ $tag->id }}">
+                              <span class="">{{$tag->name}}</span>
                             </a>
                           @endforeach
                         </p>
-                        <div class="mt-1 d-flex">
-                          <div class="mr-auto text-secondary">
+                        <div class="">
+                          <div class="">
                             <span>by &#064;{{$timeline->user->screen_name}}</span>
-                            {{-- <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span> --}}
-                            {{-- <span><i class="far fa-thumbs-up"></i>{{ count($timeline->favorites) }}</span> --}}
+                            <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span>
+                            <span><i class=""></i>{{ count($timeline->favorites) }}</span>
                           </div>
                           @if (isset(auth()->user()->id))
                             @if (auth()->user()->id == $user->id)
-                              <div class="dropdown d-flex align-items-center">
-                                <a href="{{ url('books/' .$timeline->id. '/edit') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="fas fa-ellipsis-v fa-fw"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                <div class="">
                                   <form method="POST" book="{{ url('books/' .$timeline->id) }}" class="mb-0">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ url('books/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
                                     <button type="submit" class="dropdown-item del-btn">削除</button>
                                   </form>
                                 </div>
                               </div>
                             @endif
                           @endif
-                          <div class="d-flex align-items-center">
-                            <a href="{{ url('books/' .$timeline->id) }}#comment"><i class="far fa-comment fa-fw"></i></a>
-                            {{-- <p class="mb-0 text-secondary">{{ count($timeline->sentences) }}</p> --}}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              @endforeach
+                            @endforeach
               @else
                 <div class="mx-auto p-5">対象の記事がありません。</div>
               @endif
@@ -80,4 +84,4 @@
           <div class="my-4 d-flex justify-content-center">
             {{ $timelines->links() }}
           </div>
-        </div>
+</div>

@@ -89,7 +89,7 @@
 
 .favorite{
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
@@ -159,3 +159,16 @@
     transition: all 0.2s ease;
 }
 
+.select-box{
+    display: inline;
+}
+
+.select{
+    width:200px;
+    height: 35px;
+    border: 1px solid grey;
+    font-size:18px;
+    padding-left: 10px;
+    border-radius: 4px;
+    cursor : pointer;
+}

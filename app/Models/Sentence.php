@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sentence extends Model
 {
@@ -12,6 +13,12 @@ class Sentence extends Model
     ];
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function book()
     {
         return $this->belongsTo(User::class);
     }
@@ -44,8 +51,8 @@ class Sentence extends Model
 
     public function getUserTimeLine(Int $user_id, $status_id)
     {
-        //ユーザーを取得する
-      return $this->where('user_id', $user_id)->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
+    //innerjoinのクエリビルダを使いbooksテーブルと結合している
+    return $this->where('user_id', $user_id)->where('status', $status_id)->join('books', 'book_id', '=', 'books.id')->orderBy('sentences.created_at', 'DESC')->paginate(6);
     }
 
     public function getTimeLines(Int $status_id)
