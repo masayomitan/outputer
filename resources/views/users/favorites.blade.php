@@ -1,77 +1,61 @@
 @include('layouts.header')
 
 
+<link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
+<link rel="stylesheet" href="{{ asset('css/users/timeline_sentence.css') }}">
+
+
         @include('components.users.user_profile')
         @include('components.users.user_tab_list')
 
-        <div class="row p-3">
-          @if ($timelines->count())
+        <div class="timeline">
+
+            @if ($timelines->count())
             @foreach ($timelines as $timeline)
-              <div class="col-sm-6 mb-3">
-                <div class="card">
-                  <a href="{{ route('sentences.show', ['sentence'=>$timeline->id]) }}">
-                    <div class="header-image-wrapper">
-                      <div class="header-image-content" style="background-image:url('{{$timeline->header_image}}');"></div>
-                    </div>
-                  </a>
-                  <div class="card-haeder w-100 p-3">
-                    <div class="ml-2 d-flex flex-column">
-                      <div class="w-100 d-inline-flex">
-                        <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">
-                          <img src="{{ asset($timeline->user->profile_image) }}" class="rounded" width="39" height="39">
-                        </a>
-                        <a href="{{ route('sentences.show', ['sentence'=>$timeline->id]) }}">
-                          <p class="px-1">{{ $timeline->title }}</p>
-                        </a>
-                      </div>
-                      <p class="mb-0">
-                        @foreach((array)$timeline->tags as $tag)
-                          <a class="text-secondary" href="/tags/{{ $tag->id }}">
-                            <span class="tag-mark">{{$tag->name}}</span>
-                          </a>
-                        @endforeach
-                      </p>
-                      <div class="mt-1 d-flex">
-                        <div class="mr-auto text-secondary">
-                          <span>by &#064;{{$timeline->user->screen_name}}</span>
-                          {{-- <span>{{ $timeline->created_at->format('Y-m-d H:i') }}</span> --}}
-                          <span><i class="far fa-thumbs-up"></i>{{ count($timeline->favorites) }}</span>
-                        </div>
-                        @if (isset(auth()->user()->id))
-                          @if (auth()->user()->id == $user->id)
-                            <div class="dropdown d-flex align-items-center">
-                              <a href="{{ url('sentences/' .$timeline->id. '/edit') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-fw"></i>
-                              </a>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form method="POST" action="{{ url('sentences/' .$timeline->id) }}" class="mb-0">
-                                  @csrf
-                                  @method('DELETE')
-                                  <a href="{{ url('sentences/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
-                                  <button type="submit" class="dropdown-item del-btn">削除</button>
-                                </form>
-                              </div>
-                            </div>
-                          @endif
-                        @endif
-                        <div class="d-flex align-items-center">
-                          <a href="{{ url('sentences/' .$timeline->id) }}#comment"><i class="far fa-comment fa-fw"></i></a>
-                          {{-- <p class="mb-0 text-secondary">{{ count($timeline->sentences) }}</p> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="timeline-box">
+
+                <div class="timeline-book-box">
+                    <a href="{{ route('books.show', ['book'=>$timeline->book_id])}}">
+                    <img class="timeline-book-image" src="{{ asset('storage/book_image/' . $timeline->book_image) }}"></a>
+                    <p class="timeline-book-title">{!! nl2br(e(Str::limit($timeline->title, 18))) !!}</p>
+                    <p class="timeline-book-author">{!! nl2br(e(Str::limit($timeline->author, 18))) !!}</p>
                 </div>
-              </div>
+
+                <div class="timeline-sentence-box">
+                    <p class="timeline-book-text">{{$timeline->text_1}}</p>
+                    <p class="timeline-book-text">{{$timeline->text_2}}</p>
+                    <p class="timeline-book-text">{{$timeline->text_3}}</p>
+                    <div class="timeline-favorite">
+                        <div class="timeline-favorite-icon"></div>
+                        <div class="timeline-favorite-count">{{ count($timeline->favorites) }}</div>
+                    </div>
+                </div>
+
+                <div class="timeline-user-box">
+                    <img class="timeline-user-image" src="{{ asset('storage/profile_image/' .$timeline->user->profile_image)}}">
+                    <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
+                    <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                        @if (isset(auth()->user()->id))
+                        @if (auth()->user()->id == $user->id)
+                        <div class="timeline-delete">
+                                <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick='return confirm("当に削除するつもりかい？");'>
+                                        文の削除</button>
+                                </form>
+                        @endif
+                        @endif
+                        </div>
+                </div>
+
+
+            </div>
+
             @endforeach
-          @else
-            <div class="mx-auto p-5">対象の記事がありません。</div>
-          @endif
+            @else
+                <div class="timeline-null">対象の記事がありません。</div>
+            @endif
+            {{ $timelines->links() }}
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="my-4 d-flex justify-content-center">
-    {{ $timelines->links() }}
-  </div>
-</div>
+

@@ -93,8 +93,10 @@ class Sentence extends Model
 
     //to  User.php/getTabInfoList
     public function getFavoriteSentences(Int $user_id){
-        //いいねした記事取得、
-        $favorite_sentences = $this->whereHas('favorites', function($query) use ($user_id) {
+        //いいねした記事取得、joinでbookstableも取得,whereHasでリクエストしたuserのいいねだけにする
+        $favorite_sentences = $this->join('books', 'books.id', '=','book_id')
+        ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
+        ->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
             })->where('status', 0)->paginate(6);
         return $favorite_sentences;
