@@ -161,13 +161,13 @@ class User extends Authenticatable
         $sentence_count." " => [
             "link" => "/users/{$user_id}",
         ],
-        $favorite_count => [
+        $favorite_count."  " => [
             "link" => "/users/{$user_id}/favorites",
         ],
-        $follow_count=> [
+        $follow_count."   " => [
             "link" => "/users/{$user_id}/following",
         ],
-        $follower_count."  "=> [
+        $follower_count."    "=> [
             "link" => "/users/{$user_id}/followers",
         ],
     ];
