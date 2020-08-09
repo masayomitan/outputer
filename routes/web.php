@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store']]);
+    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'destroy']]);
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
     //いいね関連

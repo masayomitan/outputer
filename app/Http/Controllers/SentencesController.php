@@ -103,8 +103,15 @@ class SentencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sentence $sentence, Request $request)
     {
-        //
+        $user = auth()->user();
+        $sentence->sentenceDestroy($user->id, $sentence->id);
+        $redirect = $request->input('redirect');
+        if ($redirect == "on") {
+            return redirect('/');
+          } else {
+            return back();
+        }
     }
 }

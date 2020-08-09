@@ -48,11 +48,19 @@ class Sentence extends Model
       return;
     }
 
+    public function sentenceDestroy(Int $user_id, Int $sentence_id)
+    {
+        return $this->where('user_id',$user_id)->where('id',$sentence_id)->delete();
+    }
 
     public function getUserTimeLine(Int $user_id, $status_id)
     {
     //innerjoinのクエリビルダを使いbooksテーブルと結合している
-    return $this->where('user_id', $user_id)->where('status', $status_id)->join('books', 'book_id', '=', 'books.id')->orderBy('sentences.created_at', 'DESC')->paginate(6);
+    return $this
+    ->where('user_id', $user_id)->where('status', $status_id)
+    ->join('books', 'books.id', '=','book_id')
+    ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
+    ->orderBy('sentences.created_at', 'DESC')->paginate(6);
     }
 
     public function getTimeLines(Int $status_id)
@@ -91,6 +99,5 @@ class Sentence extends Model
             })->where('status', 0)->paginate(6);
         return $favorite_sentences;
         }
-
 
 }
