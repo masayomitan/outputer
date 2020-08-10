@@ -10,7 +10,6 @@
 @include('components.users.user_tab_list')
 
             @foreach ($all_users as $user)
-{{-- @php dd($all_users) @endphp --}}
             <div class="card">
               <div class="card-haeder p-3 w-100 d-flex flex-wrap">
                 <a href="{{ url('users/' .$user->id) }}" class="text-secondary">
