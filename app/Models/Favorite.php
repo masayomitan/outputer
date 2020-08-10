@@ -54,7 +54,7 @@ class Favorite extends Model
     public function getTotalFavoritedCount(Int $user_id)
     {
         $sentence = new Sentence;
-        //all()で全ての値を取得後、->pluckでidだけ選択
+        //all()で全ての値を取得後、->pluckでidをkeyに選択,user_idが含まれているデータだけ抽出
         $sentence_ids = $sentence::all()->where('user_id', $user_id)->pluck('id');
         //whereInでuser_idが入っているsentence_idを取得しcountする。
         $total_favorited_count = count($this->whereIn('sentence_id',$sentence_ids)->get());

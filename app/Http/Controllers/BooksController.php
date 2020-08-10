@@ -181,7 +181,6 @@ class BooksController extends Controller
         #カテゴリ名の重複登録を防ぐ
         $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
         $newTagNames = array_diff($data["tags"],$storedTagNames->all());
-
         //タグ挿入
         $tag->tagStore($newTagNames);
         //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
