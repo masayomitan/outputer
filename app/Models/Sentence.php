@@ -28,6 +28,9 @@ class Sentence extends Model
       return $this->hasMany(Favorite::class);
     }
 
+
+    
+
     public function getSentence(Int $book_id)
     {
         return $this->with('user')->where('book_id', $book_id)->get();

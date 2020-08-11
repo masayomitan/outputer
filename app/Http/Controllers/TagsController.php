@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TagsController extends Controller
 {
@@ -26,17 +28,22 @@ class TagsController extends Controller
     }
 
 
-    public function show(Tag $tag, User $user)
+    public function show(Tag $tag, User $user,Book $book )
     {
-        // $popular_tags = $tag->getPopularTags();
-        // $popular_users = $user->getPopularUsers();
-        // $api = "/fetch?mode=tag&tag_id={$tag->id}";
-        // return view('tags.show',[
-        //     'tag' => $tag,
-        //     'api' => $api,
-        //     'popular_tags' => $popular_tags,
-        //     'popular_users' => $popular_users,
-        // ]);
+
+        $bookTag = $tag->getBookTag($tag->id);
+
+
+
+        $popular_tags = $tag->getPopularTags();
+        $popular_users = $user->getPopularUsers();
+        return view('tags.show',[
+            // 'book'=> $book,
+            'bookTag' => $bookTag,
+
+            'popular_tags' => $popular_tags,
+            'popular_users' => $popular_users,
+        ]);
     }
 
 

@@ -6,8 +6,7 @@ use App\Models\Book;
 use App\Models\Sentence;
 use App\Models\Tag;
 use App\Models\User;
-
-
+use Illuminate\Database\Eloquent\Builder;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -17,6 +16,8 @@ use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,21 +26,15 @@ class BooksController extends Controller
     public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
+
         $books = Book::all();
-        // $contents = Storage::get('public/book_image');
-
-        // $path = storage_path('book_image/');
-        // $img = Image::make($path)->resize(320, 240);
-
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $tab_info_list = $book->getTabInfoList();
 
         return view('books.index',compact('books'), [
-            // 'image' => $img,
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
-            // 'api' => $api,
             'tab_info_list' => $tab_info_list,
         ]);
 
