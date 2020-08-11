@@ -14,7 +14,7 @@
       <nav>
         <ul class="main-nav">
         <li><a href="{{ route('books.index') }}">本一覧</a></li>
-        <li><a href="#">未アウトプット本</a></li>
+        <li><a href="{{ route('users.show',auth()->user()->id)}}">mypage</a></li>
         <p><a href="{{ route('books.create') }}">新規追加</a></p>
         <li><a href="#">人気</a></li>
         <li><a href="#">タグ</a></li>
