@@ -2,55 +2,63 @@
 {{-- <img  src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="{{ $book->book_image }}" width="100px" class="w-100"> --}}
 
 <link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
-
+<link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
 
 
 
 @include('components.users.user_profile')
 @include('components.users.user_tab_list')
 
+
+<div class="follow-users">
+    <div class="follow-users-box">
+        <div class="follow-user-icon">
             @foreach ($all_users as $user)
-            <div class="card">
-              <div class="card-haeder p-3 w-100 d-flex flex-wrap">
-                <a href="{{ url('users/' .$user->id) }}" class="text-secondary">
-                  <img src="{{ asset($user->profile_image) }}" class="rounded" width="39" height="39">
+                <a href="{{ url('users/' .$user->id) }}">
+                  <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}">
                 </a>
-                <div class="ml-2 d-flex flex-column w-50">
-                  <div class="mb-0 small w-100 text_ellipsis"><a href="{{ url('users/' .$user->id) }}">{{ $user->name }}</a></div>
-                  <div class="w-100 d-inline-flex">
-                    <div class="w-25 text_ellipsis"><span class="text-secondary">&#064;{{$user->screen_name}}</span></div>
-                    @if(auth()->user())
-                    @if (auth()->user()->isFollowed($user->id))
-                    <div class="w-75 text_ellipsis"><span class="small pl-2">フォローされてます</span></div>
-                    @endif
-                    @endif
-                  </div>
-                  <div class="w-100 d-inline-flex">
-                    <div class="text_ellipsis"><span class="text-secondary">{{$user->self_introduction}}</span></div>
-                  </div>
-                </div>
 
-                <div class="d-flex justify-content-end flex-grow-1 w-25">
-                  @if(auth()->user())
-                  @if(auth()->user()->isFollowing($user->id))
-                  <follow-button-component is-follow="{{ auth()->user()->isFollowing($user->id) }}" user-id="{{ $user->id }}"></follow-button-component>
-                  @else
-                  <follow-button-component is-follow="{{ auth()->user()->isFollowing($user->id) }}" user-id="{{ $user->id }}"></follow-button-component>
-                  @endif
-                  @else
-                  <follow-button-component></follow-button-component>
-                  @endif
-                </div>
-              </div>
-            </div>
-            @endforeach
-            <div class="my-4 d-flex justify-content-center">
-              {{ $all_users->links() }}
-            </div>
+                    <div class="follow-user-confirm">
+                        <div class="follow-user-confirm-edit">
+                            @if (isset(auth()->user()->id))
+                            @if (auth()->user()->id == $user->id)
+                                <a href="{{ url('users/' .$user->id .'/edit') }}" class="user-confirm-edit-button">編集する</a>
+                            @else
+                        </div>
+                        <div class="follow-user-confirm-result">
+                            @if (auth()->user()->isFollowed($user->id))
+                            <div>フォローされています</div>
+                            @endif
+                        </div>
+                        <div class="follow-follow-box">
+                            @if (auth()->user()->isFollowing($user->id))
+                                <form action="{{ route('users.unfollow', $user->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                        <button type="submit" class="follow-delete">フォロー解除</button>
+                                </form>
+                                @else
+                                    <form action="{{ route('users.follow', $user->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="follow-store">フォローする</button>
+                                    </form>
+                                @endif
+                                @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
 
-          </div>
+                    <div class="follow-user-info">
+                        <div class="follow-user-info-name">
+                            <a href="{{ url('users/' .$user->id) }}">{{ $user->name }}</a></div>
+                        </div>
+                        <div class="follow-user-info-intr">
+                            {{ $user->self_introduction }}
+                        <div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-</div>
-
+            @endforeach
+          {{ $all_users->links() }}

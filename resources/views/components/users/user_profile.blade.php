@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
-
 
 
 

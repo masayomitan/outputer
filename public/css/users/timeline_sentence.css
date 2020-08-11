@@ -39,18 +39,21 @@
 
 .timeline-sentence-box{
     width: 550px;
-    margin: 30px 0 0 30px;
+    margin: 40px 0 0 30px;
 
 }
 
 .timeline-book-text{
     font-weight: 700;
-    font-size: 17px;
+    font-size: 18px;
+    padding: 5px;
+    border-bottom: 1px solid #55c500;
+
 }
 
 .timeline-favorite{
     display: flex;
-    margin: 10px 0 0 10px;
+    margin: 30px 0 0 50px;
 }
 
 .timeline-favorite-icon{
