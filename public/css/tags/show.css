@@ -1,0 +1,36 @@
+
+.tags{
+    display: flex;
+    margin-top: 50px;
+}
+
+.tags-show{
+    margin-left: 90px;
+    width: 100%; max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.tags-show-each{
+    margin: 15px ;
+    display: inline;
+}
+
+.tags-image{
+    width: 200px;
+    height: 250px;
+    filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
+}
+
+.tags-title{
+    margin: 10px 0 5px;
+    font-weight: 700;
+}
+
+
+.tags-author
+{
+    color: #3c6ea6;
+}

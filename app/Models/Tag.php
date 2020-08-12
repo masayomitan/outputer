@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\DB;
 class Tag extends Model
 {
     protected $fillable = [
-          'name'
+        'name'
     ];
     public $timestamps = false;
 
     public function books()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsToMany(Book::class, 'book_tag', 'tag_id', 'book_id');
+    }
+
+
+    public function getBookTag(Int $tag_id){
+        return $this->with('books')->where('id', $tag_id)->paginate(3);
     }
 
 
@@ -29,17 +34,17 @@ class Tag extends Model
             DB::table('tags')
             ->insertOrIgnore($tag_names);
         }
-      }
+    }
+
 
     public function getTagIds($tag_names){
-
-    foreach($tag_names as $tag_name){
-        //idから名前を1から取り出して$tag_idに代入
-        $tag_id = $this::select('id')->where("name",$tag_name)->first();
-        //$tag_idのidを配列$tag_ids[]に全て代入
-        $tag_ids[] = $tag_id->id;
-    }
-    return $tag_ids;
+        foreach($tag_names as $tag_name){
+            //idから名前を1から取り出して$tag_idに代入
+            $tag_id = $this::select('id')->where("name",$tag_name)->first();
+            //$tag_idのidを配列$tag_ids[]に全て代入
+            $tag_ids[] = $tag_id->id;
+        }
+        return $tag_ids;
     }
 
 

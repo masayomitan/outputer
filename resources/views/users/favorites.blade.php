@@ -1,6 +1,5 @@
 @include('layouts.header')
 
-
 <link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
 <link rel="stylesheet" href="{{ asset('css/users/timeline_sentence.css') }}">
 
@@ -48,10 +47,8 @@
                         @endif
                         </div>
                 </div>
-
-
             </div>
-
+            
             @endforeach
             @else
                 <div class="timeline-null">対象の記事がありません。</div>

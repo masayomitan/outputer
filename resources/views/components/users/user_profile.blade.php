@@ -33,9 +33,9 @@
                         @endif
                         @endif
                         @endif
-                    </div>
                 </div>
             </div>
+        </div>
 
             <div class="user-info">
                 <div class="user-info-name">
@@ -43,8 +43,8 @@
                 </div>
                 <div class="user-info-intr">
                     {{ $user->self_introduction }}
-                <div>
+                </div>
             </div>
-        </div>
+
     </div>
 </div>

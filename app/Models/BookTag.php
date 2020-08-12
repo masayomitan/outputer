@@ -9,4 +9,6 @@ class BookTag extends Model
 {
     protected $table = 'book_tag';
     public $timestamps = false;
+
 }
+

@@ -1,0 +1,63 @@
+
+/* follow follower */
+
+.follow-users{
+    margin: auto;
+    margin-top: 20px;
+    width: 100%; max-width: 1150px;
+}
+.follow-users-box{
+    display: flex;
+    border-top: 2px solid #e03997;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    margin-bottom: 20px;
+    height: 270px;
+}
+
+.follow-user-icon{
+    margin: 30px 0 0 50px;
+
+}
+
+
+.follow-user-image{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.follow-user-confirm{
+    width: 180px;
+    margin-top: 10px;
+}
+
+.follow-user-confirm-edit-button{
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 20px;
+    background-color:  #007bff;
+    color: white;
+    border-radius: 3px;
+    padding: 8px 8px 8px 8px;
+}
+
+
+.follow-user-info{
+    margin-left: 30px;
+
+}
+
+.follow-user-info-name{
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 50px;
+    padding-bottom: 5px;
+    width: 700px;
+}
+
+.follow-user-info-intr{
+    margin-top: 10px;
+    padding-right: 10px;
+}
