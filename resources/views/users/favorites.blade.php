@@ -35,7 +35,7 @@
                     <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
                     <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                         @if (isset(auth()->user()->id))
-                        @if (auth()->user()->id == $user->id)
+                        @if (auth()->user()->id == $timeline->user->id)
                         <div class="timeline-delete">
                                 <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
                                     @csrf
@@ -48,7 +48,7 @@
                         </div>
                 </div>
             </div>
-            
+
             @endforeach
             @else
                 <div class="timeline-null">対象の記事がありません。</div>
