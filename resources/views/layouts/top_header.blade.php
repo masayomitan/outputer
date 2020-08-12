@@ -10,8 +10,15 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
 <head>
+
     <header class="main-header-wrapper">
-        <a class="main-header-title" href="{{ route('books.index') }}"></a>
+        <div class="main-header-title">
+            <a href="{{ route('books.index') }}"></a>
+
+                <form action="{{ url('/search') }}" class="search">
+                    <span class="search-box"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索"></span>
+                </form>
+        </div>
 
         <div class="user-box">
             @if (isset(auth()->user()->id))

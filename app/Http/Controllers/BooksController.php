@@ -46,11 +46,13 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     //ok
-    public function create()
+    public function create(Request $request)
     {
         $user = auth()->user();
+        $keyword = $request->input("keyword");
 
         return view('books.create',[
+            'keyword' => $keyword,
             'user' => $user,
 
         ]);
@@ -76,15 +78,16 @@ class BooksController extends Controller
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
             'author' => ['string', 'max:30'],
-            'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
+            'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:3000']
         ]);
         $validator->validate();
+
+
 
         $book->bookStore($data, $file_name);
 
         //array_filterで連想配列の空チェック
         $tag_name = array_filter($data["tags"]);
-
         if(empty($tag_name)) {
             return redirect('/books')->with('success', '投稿が完了しました。');
         } else{

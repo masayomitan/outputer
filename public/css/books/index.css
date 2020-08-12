@@ -10,14 +10,24 @@
     background-repeat: no-repeat;
 }
 
-#menu{
-    background-image: url("../../image/aaa.jpeg");
+#menu-box{
+    background-image: url("../../image/bookIcon.png");
     min-height: 100vh;
 }
 
+.header-null{
+    height: 40px;
+}
+
+.header{
+    margin: auto;
+    width: 100%; max-width: 1300px;
+
+    }
+
 .menu-content{
     max-width: 560px;
-    margin-top: 10%;
+    margin-top: 10px;
 }
 
 .menu-content .page-title{
