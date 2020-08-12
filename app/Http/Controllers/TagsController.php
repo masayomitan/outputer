@@ -28,19 +28,15 @@ class TagsController extends Controller
     }
 
 
-    public function show(Tag $tag, User $user,Book $book )
+    public function show(Tag $tag, User $user)
     {
 
+        //タグの紐づいた本の情報取得
         $bookTag = $tag->getBookTag($tag->id);
-
-
-
         $popular_tags = $tag->getPopularTags();
         $popular_users = $user->getPopularUsers();
         return view('tags.show',[
-            // 'book'=> $book,
             'bookTag' => $bookTag,
-
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
         ]);

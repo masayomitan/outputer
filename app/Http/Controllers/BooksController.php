@@ -26,18 +26,18 @@ class BooksController extends Controller
     public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
-
         $books = Book::all();
+
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $tab_info_list = $book->getTabInfoList();
-
+        $keyword = $request->input("keyword");
         return view('books.index',compact('books'), [
+            'keyword' => $keyword,
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
             'tab_info_list' => $tab_info_list,
         ]);
-
     }
 
     /**

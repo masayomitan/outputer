@@ -28,10 +28,10 @@
                 <div class="book_box">
                     <img  class="book_image" src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="">
                     <div class="book-title">
-                    {{ $book->title }}
+                        {{ $book->title }}
                     </div>
                     <div class="book-author">
-                    {{ $book->author }}
+                        {{ $book->author }}
                     </div>
                     <a href="{{ route('books.show',$book->id)}}">詳細</a>
                 <div class="most-favorite"></div>

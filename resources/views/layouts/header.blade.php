@@ -14,7 +14,17 @@
       <nav>
         <ul class="main-nav">
         <li><a href="{{ route('books.index') }}">本一覧</a></li>
+        @if (isset(auth()->user()->id))
+        {{-- @if ((auth()->user()->id) == $user->id) --}}
         <li><a href="{{ route('users.show',auth()->user()->id)}}">mypage</a></li>
+        @endif
+        {{-- @endif --}}
+
+        <form action="{{ url('/search') }}" class="form-inline mt-10 w-100">
+            <span class="p-2 w-100"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索"></span>
+        </form>
+
+
         <p><a href="{{ route('books.create') }}">新規追加</a></p>
         <li><a href="#">人気</a></li>
         <li><a href="#">タグ</a></li>

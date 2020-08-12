@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Tag extends Model
 {
     protected $fillable = [
-          'name'
+        'name'
     ];
     public $timestamps = false;
 
@@ -19,7 +19,7 @@ class Tag extends Model
 
 
     public function getBookTag(Int $tag_id){
-        return $this->with('books')->where('id', $tag_id)->get();
+        return $this->with('books')->where('id', $tag_id)->paginate(3);
     }
 
 
