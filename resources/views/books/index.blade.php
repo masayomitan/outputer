@@ -10,16 +10,18 @@
     <div class="header">
         @include('layouts.top_header')
     </div>
-        <div class="menu-content wrapper">
-            <h2 class="page-title">Menu</h2>
-            <p>
-                テストテストテストテストテストテストテストテストテストテストテストテスト
-            </p>
-        </div>
+
+    <div class="menu-content wrapper">
+        {{-- <h2 class="page-title">Menu</h2>
+        <p>
+            テストテストテストテストテストテストテストテストテストテストテストテスト
+        </p> --}}
+    </div>
 
 </div>
 
 <div class="body-content">
+
     <div class="body-content-popular">
         @include('components.popular_tag_list')
         @include('components.popular_user_list')

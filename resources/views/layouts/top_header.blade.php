@@ -12,13 +12,13 @@
 <head>
 
     <header class="main-header-wrapper">
-        <div class="main-header-title">
-            <a href="{{ route('books.index') }}"></a>
 
+            <a class="main-header-title" href="{{ route('books.index') }}"></a>
                 <form action="{{ url('/search') }}" class="search">
-                    <span class="search-box"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索"></span>
+                    <a class="search-box"><input class="search-input" type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索">
+                    <button  class="search-icon"></button></a>
                 </form>
-        </div>
+
 
         <div class="user-box">
             @if (isset(auth()->user()->id))
