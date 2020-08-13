@@ -9,7 +9,7 @@
                                 <p class="mb-0">{{ $user->name }}</p>
                                 <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
                             </div>
-                            <img  src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="{{ $book->book_image }}" width="100px" class="w-100">
+                            {{-- <img  src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="{{ $book->book_image }}" width="100px" class="w-100"> --}}
 
                             @if (auth()->user()->isFollowed($user->id))
                                 <div class="px-2">
@@ -44,5 +44,5 @@
             {{ $all_users->links() }}
         </div>
     </div>
-@endsection
+{{-- @endsection --}}
 
