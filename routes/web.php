@@ -52,9 +52,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'destroy']]);
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
+    //タグ
+    Route::resource('tags', 'tagsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::get('tags/create/{id}', 'TagsController@create')->name('tags.create');
+
     //いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store','destroy']]);
-
 
 
 });

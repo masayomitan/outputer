@@ -6,8 +6,8 @@
 
 <div class="book-create">
     <div class="new"><h1>新しい本を登録</h1></div>
-        <div class="search-box">
-            <div class="search-box-book">
+        <div class="search-box-create">
+            <div class="search-box-book-create">
                 <div class="search-exist">STEP1.既に登録されていないか調べる</div>
                 <form action="{{ url('/search') }}" class="search">
                     <span class="search-exist"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索" class="prompt"></span>
@@ -21,7 +21,7 @@
                 @csrf
                 <div class="input-book">STEP2.本情報の入力</div>
                 <div class="new-2">名前の打ち間違い等を確認してください。本の投稿後の修正はできません。</div>
-
+r
                 <p><label class="letter" for="title">タイトル名</label></p>
                 <input class="title-input" id="title" name="title" type="text" value="{{ old('title') }}" required autofocus>
 

@@ -23,17 +23,15 @@
                         </div>
 
                         <div class="bouder-line"></div>
-                        @php var_dump($book->tag); @endphp
                         <div class="book-tags">
                             <div class="book-tags-box">
                                 @foreach($book->tags as $tag)
-
                                     <div class="book-tag-show"> #{{ $tag->name }}</div>
                                 @endforeach
                             </div>
                         </div>
 
-                            <a href="{{ route('books.show',$book->id)}}">タグ追加</a>
+                            <a href="{{ route('tags.create',$book->id)}}">タグ追加</a>
 
                         <div class="book-share"></div>
                         <div class="twitter-image"></div>

@@ -82,10 +82,7 @@ class BooksController extends Controller
         ]);
         $validator->validate();
 
-
-
         $book->bookStore($data, $file_name);
-
         //array_filterで連想配列の空チェック
         $tag_name = array_filter($data["tags"]);
         if(empty($tag_name)) {
@@ -114,7 +111,6 @@ class BooksController extends Controller
 
         $user = auth()->user();
         $book = $book->getBook($book->id);
-        // $favorite_row = $favorite->getFavoriteRow($user->id, $sentence->id);
         $sentences = $sentence->getSentence($book->id);
         return view('books.show', compact('book'),[
             'user' => $user,
