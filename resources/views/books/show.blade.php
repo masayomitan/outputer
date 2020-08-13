@@ -23,10 +23,11 @@
                         </div>
 
                         <div class="bouder-line"></div>
-
+                        @php var_dump($book->tag); @endphp
                         <div class="book-tags">
                             <div class="book-tags-box">
                                 @foreach($book->tags as $tag)
+
                                     <div class="book-tag-show"> #{{ $tag->name }}</div>
                                 @endforeach
                             </div>
@@ -54,22 +55,21 @@
                         </form>
                     </div>
 
-                    <div class="sentence-box-each">
-                        <a href="{{ route('users.show',$sentence->user->id)}}"></a>
-                        <div class="sentence-box-name">
-                            <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
-                                <div class="line"></div>
-                            <div class="sentence-box-text-each">
-                                <p>{{ $sentence->text_1 }}</p>
-                                <p>{{ $sentence->text_2 }}</p>
-                                <p>{{ $sentence->text_3 }}</p>
-                            </div>
-                        </div>
-                        <div class="sentence-box-user">
-                            <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
-                            <p class="sentence-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
+                <div class="sentence-box-each">
+                    <a href="{{ route('users.show',$sentence->user->id)}}"></a>
+                    <div class="sentence-box-name">
+                        <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
+                            <div class="line"></div>
+                        <div class="sentence-box-text-each">
+                            <p>{{ $sentence->text_1 }}</p>
+                            <p>{{ $sentence->text_2 }}</p>
+                            <p>{{ $sentence->text_3 }}</p>
                         </div>
                     </div>
+                    <div class="sentence-box-user">
+                        <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
+                    </div>
+                </div>
 
                     @endforeach
                 </div>

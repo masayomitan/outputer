@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 <head>
     <header class="main-header-wrapper">
         <a class="main-header-title" href="{{ route('books.index') }}"></a>

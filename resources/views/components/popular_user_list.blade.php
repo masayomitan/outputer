@@ -1,7 +1,7 @@
 
 <div class="card">
     <div class="card-header-user-mark">
-        <div class="user-mark">いいねののユーザー</div>
+        <div class="user-mark"><i class="fas fa-users"></i>人気のユーザー</div>
     </div>
     <div class="card-body">
     @foreach ($popular_users as $user)
