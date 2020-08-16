@@ -21,8 +21,8 @@ class CreateFollowersTable extends Migration
             $table->index('followed_id');
 
             $table->unique([
-              'following_id',
-              'followed_id'
+                'following_id',
+                'followed_id'
             ]);
         });
     }

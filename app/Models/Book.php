@@ -51,15 +51,13 @@ class Book extends Model
         ->where('id', $book_id)->first();
     }
 
-
     public function bookStore(Array $data, $file_name)
     {
-
-      $this->book_image =  $file_name;
-      $this->title = $data['title'];
-      $this->author = $data['author'];
-      $this->save();
-      return;
+        $this->book_image =  $file_name;
+        $this->title = $data['title'];
+        $this->author = $data['author'];
+        $this->save();
+        return;
     }
 
 
@@ -96,6 +94,8 @@ class Book extends Model
         //syncメソッドは中間テーブルに設置しておくIDの配列を渡す。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
         $this->tags()->sync($tag_ids);
     }
+
+
 
       public function getTabInfoList(){
         $tab_info_list = [

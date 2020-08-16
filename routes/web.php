@@ -57,8 +57,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('tags/create/{id}', 'TagsController@create')->name('tags.create');
 
     //いいね関連
-    Route::resource('favorites', 'FavoritesController', ['only' => ['store','destroy']]);
-
+    Route::post('sentences/{sentence}/favorites', 'FavoritesController@store')->name('favorites');
+    Route::post('sentences/{sentence}/unfavorites', 'FavoritesController@destroy')->name('unfavorites');
 
 });
 

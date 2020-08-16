@@ -30,8 +30,8 @@
 
 .book-image-show-box{
     filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
-    width: 220px;
-    height: auto;
+    width: 200px;
+    height: 250px;
 }
 
 .book-info{

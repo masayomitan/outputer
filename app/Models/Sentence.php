@@ -9,14 +9,20 @@ class Sentence extends Model
 {
 
     protected $filable = [
-        'text',
+        'text_1',
+        'text_2',
+        'text_3',
     ];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     public function book()
     {
@@ -25,15 +31,13 @@ class Sentence extends Model
 
     public function favorites()
     {
-      return $this->hasMany(Favorite::class);
+        return $this->hasMany(Favorite::class);
     }
 
 
-    
-
     public function getSentence(Int $book_id)
     {
-        return $this->with('user')->where('book_id', $book_id)->get();
+        return $this->with('user')->where('book_id', $book_id)->orderBy('created_at', 'DESC')->get();
     }
 
 

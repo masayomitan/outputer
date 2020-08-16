@@ -28,5 +28,8 @@
         "ts-loader": "^8.0.1",
         "typescript": "^3.9.7",
         "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.14.0"
     }
 }

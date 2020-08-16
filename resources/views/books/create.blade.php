@@ -21,7 +21,7 @@
                 @csrf
                 <div class="input-book">STEP2.本情報の入力</div>
                 <div class="new-2">名前の打ち間違い等を確認してください。本の投稿後の修正はできません。</div>
-r
+
                 <p><label class="letter" for="title">タイトル名</label></p>
                 <input class="title-input" id="title" name="title" type="text" value="{{ old('title') }}" required autofocus>
 

@@ -45,8 +45,8 @@
 
 
 .wrapper-item{
-    margin: auto;
-    width: 100%; max-width: 900px;
+    margin: 0 0 0 20px;
+    width: 100%; max-width: 1000px;
 
 
 }
@@ -55,6 +55,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 5%;
+    justify-content: space-around;
     margin-bottom: 50px;
 }
 

@@ -13,43 +13,40 @@ class Favorite extends Model
         return $this->belongsTo(sentence::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
      //いいねしてるかの判定処理
-     public function isFavorite(Int $user_id, Int $sentence_id)
-     {
-         return (boolean) $this->where('user_id', $user_id)->where('sentence_id', $sentence_id)->first();
-     }
+    public function isFavorite(Int $user_id, Int $sentence_id)
+    {
+        return (boolean) $this->where('user_id', $user_id)->where('sentence_id', $sentence_id)->first();
+    }
 
-     public function favoriteStore(Int $user_id, Int $sentence_id)
-     {
+    public function favoriteStore(Int $user_id, Int $sentence_id)
+    {
         $this->user_id = $user_id;
         $this->sentence_id = $sentence_id;
         $this->save();
         return;
-     }
-
-     public function favoriteDestroy(Int $favorite_id)
-    {
-        return $this->where('id', $favorite_id)->delete();
     }
 
 
 
-    public function getFavoritedCount(Int $sentence_id) {
-        //一個取得
+    public function getFavoritedCount(Int $sentence_id)
+    {
         $favorited_count = count($this->where('sentence_id', $sentence_id)->get());
         return $favorited_count;
     }
 
-    public function getFavoriteRow(Int $user_id, Int $sentence_id) {
-        //行取得
-        $favorite_row = $this->where([
-            ['sentence_id', $sentence_id],
-            ["user_id", $user_id],
-        ])->first();
 
-        return $favorite_row;
+    public function getSentence(Int $book_id)
+    {
+        return $this->with('user')->where('book_id', $book_id)->orderBy('created_at', 'DESC')->get();
     }
+
 
     public function getTotalFavoritedCount(Int $user_id)
     {
