@@ -6,6 +6,7 @@
 
 
 <div id="menu-box" class="big-bg">
+
     <div class="header-null"></div>
     <div class="header">
         @include('layouts.top_header')
@@ -32,14 +33,16 @@
         <div class="wrapper-item-box">
             @foreach ($books as $book)
                 <div class="book_box">
+                    <a href="{{ route('books.show',$book->id)}}">
                     <img  class="book_image" src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="">
+                    </a>
                     <div class="book-title">
-                        {{ $book->title }}
+                        <a href="{{ route('books.show',$book->id)}}">
+                        {!! nl2br(e(Str::limit($book->title, 25))) !!}</p></a>
                     </div>
                     <div class="book-author">
-                        {{ $book->author }}
+                        {!! nl2br(e(Str::limit($book->author, 18))) !!}</p>
                     </div>
-                    <a href="{{ route('books.show',$book->id)}}">詳細</a>
                 <div class="most-favorite"></div>
             </div>
             @endforeach

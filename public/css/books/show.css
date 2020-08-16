@@ -30,8 +30,8 @@
 
 .book-image-show-box{
     filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
-    width: 220px;
-    height: auto;
+    width: 200px;
+    height: 250px;
 }
 
 .book-info{
@@ -40,10 +40,7 @@
 }
 
 .book-author-box{
-    cursor : pointer;
     margin: 40px 0 10px 20px;
-    background-color: #eef2fb;
-    border-radius: 7px;
     display: inline-block;
     padding: 7px 20px 7px 20px;
 }

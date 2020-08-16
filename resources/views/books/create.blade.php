@@ -6,8 +6,8 @@
 
 <div class="book-create">
     <div class="new"><h1>新しい本を登録</h1></div>
-        <div class="search-box">
-            <div class="search-box-book">
+        <div class="search-box-create">
+            <div class="search-box-book-create">
                 <div class="search-exist">STEP1.既に登録されていないか調べる</div>
                 <form action="{{ url('/search') }}" class="search">
                     <span class="search-exist"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索" class="prompt"></span>

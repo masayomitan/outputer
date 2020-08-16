@@ -31,7 +31,7 @@ class Book extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'book_tag', 'tag_id', 'book_id');
+        return $this->belongsToMany(Tag::class);
     }
 
 
@@ -44,23 +44,22 @@ class Book extends Model
     }
 
 
-
-
     public function getBook(Int $book_id)
     {
         //本id取得
-        return $this->with('user')->where('id', $book_id)->first();
+        return $this->with('user')->with('tags')
+        ->where('id', $book_id)->first();
     }
 
     public function bookStore(Array $data, $file_name)
     {
-
-      $this->book_image =  $file_name;
-      $this->title = $data['title'];
-      $this->author = $data['author'];
-      $this->save();
-      return;
+        $this->book_image =  $file_name;
+        $this->title = $data['title'];
+        $this->author = $data['author'];
+        $this->save();
+        return;
     }
+
 
     public function getEditBook(Int $user_id, Int $book_id)
     {
@@ -97,6 +96,7 @@ class Book extends Model
     }
 
 
+
       public function getTabInfoList(){
         $tab_info_list = [
           'タイムライン' => [
@@ -108,7 +108,6 @@ class Book extends Model
               'icon_class' => 'fas fa-fire'
           ],
         ];
-
         return $tab_info_list;
       }
 

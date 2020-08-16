@@ -14,7 +14,7 @@ class Tag extends Model
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'book_tag', 'tag_id', 'book_id');
+        return $this->belongsToMany(Book::class);
     }
 
 
@@ -24,6 +24,7 @@ class Tag extends Model
 
 
     public function tagStore(Array $_tag_names){
+
         //タグがすでにあるかの判定
         if(!empty($_tag_names)){
             //タグがあるかforeachで探す.['name' => $tag_name]
@@ -36,7 +37,6 @@ class Tag extends Model
         }
     }
 
-
     public function getTagIds($tag_names){
         foreach($tag_names as $tag_name){
             //idから名前を1から取り出して$tag_idに代入
@@ -46,7 +46,6 @@ class Tag extends Model
         }
         return $tag_ids;
     }
-
 
     //人気タグ取得
     public function getPopularTags(){
@@ -60,5 +59,6 @@ class Tag extends Model
         ->get();
         return $popular_tags;
     }
+
 
 }

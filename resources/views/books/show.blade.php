@@ -23,7 +23,6 @@
                         </div>
 
                         <div class="bouder-line"></div>
-
                         <div class="book-tags">
                             <div class="book-tags-box">
                                 @foreach($book->tags as $tag)
@@ -32,7 +31,7 @@
                             </div>
                         </div>
 
-                            <a href="{{ route('books.show',$book->id)}}">タグ追加</a>
+                            <a href="{{ route('tags.create',$book->id)}}">タグ追加</a>
 
                         <div class="book-share"></div>
                         <div class="twitter-image"></div>
@@ -45,14 +44,24 @@
             <div class="book-show-below">
                 <div class="sentence-box">
                     @foreach($sentences as $sentence)
-                    <div class="favorite">
-                        <form method="POST" action="{{ route('favorites.store') }}">
+                        @if ($user)
+                        <div class="favorite">
+                            <form action="{{ route('favorites', $sentence) }}" method="POST">
                             @csrf
                             <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                            <button  class="sentence-favorite">
+                            <input type="submit" value="&#xf164;いいね" class="fas btn btn-danger">
                             </button>
-                        </form>
-                    </div>
+                            </form>
+                            @else
+                            <form action="{{ route('unfavorites', $sentence) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+                            <input type="hidden" name="favorite" value="{{ $favorite }}">
+                            <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                            </form>
+                            @endif
+                        </div>
+
 
                     <div class="sentence-box-each">
                         <a href="{{ route('users.show',$sentence->user->id)}}"></a>
@@ -67,10 +76,8 @@
                         </div>
                         <div class="sentence-box-user">
                             <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
-                            <p class="sentence-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
-
                     @endforeach
                 </div>
             </div>

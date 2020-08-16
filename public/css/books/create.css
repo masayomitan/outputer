@@ -9,8 +9,7 @@
     text-align: center;
 }
 
-
-.search-box-book{
+.search-box-book-create{
     text-align: center;
     padding: 1em 1em;
     margin: 2em 0;
@@ -85,9 +84,10 @@
 }
 
 
-/* .file-input {
+.file-input {
     /* display: none; */
- */
+}
+
 
 .book_image {
     margin: 1em auto;

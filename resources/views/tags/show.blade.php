@@ -1,3 +1,4 @@
+{{-- foreach二回回し --}}
 @foreach($bookTag as $tags)
 
 
