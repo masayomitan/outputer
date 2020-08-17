@@ -28,8 +28,13 @@
                 <p><label class="letter" for="author">著者</label></p>
                 <input class="author-input" id="author" name="author" type="text" value="{{ old('author') }}" required autofocus>
 
-                <p><label class="letter" for="tag">タグ （任意・10文字以内）</label></p>
+                <p><label class="letter" for="tag">タグ （任意・10文字以内 ５個まで付けれます）</label></p>
                 <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+
 
                 <p><label class="letter" for="tag">画像ファイル</label></p>
                 <label><div class="book_image"></div>

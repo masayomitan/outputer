@@ -26,12 +26,14 @@
                         <div class="book-tags">
                             <div class="book-tags-box">
                                 @foreach($book->tags as $tag)
+                                <a class="book-tags-each" href="{{ route('tags.show', ['tag'=>$tag->id]) }}">
                                     <div class="book-tag-show"> #{{ $tag->name }}</div>
+                                </a>
                                 @endforeach
                             </div>
                         </div>
 
-                            <a href="{{ route('tags.create',$book->id)}}">タグ追加</a>
+                            {{-- <a href="{{ route('tags.create',$book->id)}}">タグ追加</a> --}}
 
                         <div class="book-share"></div>
                         <div class="twitter-image"></div>
@@ -44,24 +46,19 @@
             <div class="book-show-below">
                 <div class="sentence-box">
                     @foreach($sentences as $sentence)
-                        @if ($user)
-                        <div class="favorite">
-                            <form action="{{ route('favorites', $sentence) }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                            <input type="submit" value="&#xf164;いいね" class="fas btn btn-danger">
-                            </button>
+                    @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
+                            <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
+                                @csrf
+                                <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-like">
                             </form>
                             @else
-                            <form action="{{ route('unfavorites', $sentence) }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                            <input type="hidden" name="favorite" value="{{ $favorite }}">
-                            <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                            <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="favorite-unlike">
+                                @csrf
+                                <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-unlike">
                             </form>
                             @endif
-                        </div>
-
 
                     <div class="sentence-box-each">
                         <a href="{{ route('users.show',$sentence->user->id)}}"></a>

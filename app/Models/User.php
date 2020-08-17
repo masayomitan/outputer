@@ -62,8 +62,6 @@ class User extends Authenticatable
 
 
 
-
-
     public function getAllUsers($user_id){
         return $this->where('id', '<>', $user_id)->paginate(6);
     }
@@ -117,7 +115,7 @@ class User extends Authenticatable
 
     public function getFollowingUsers($user_id)
     {
-      return $this->follows()->where('following_id', $user_id)->paginate(6);
+        return $this->follows()->where('following_id', $user_id)->paginate(6);
     }
 
     public function getFollowerUsers($user_id)

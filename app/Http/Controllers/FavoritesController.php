@@ -16,12 +16,9 @@ class FavoritesController extends Controller
         $sentence_id = $request->sentence_id;
        //取得した$sentence_idをisFavoriteメソッドに送り込んで既にいいねしてるかの判定を行う
         $is_favorite = $favorite->isFavorite($user->id, $sentence_id);
-       //否定されたらfavoriteStore処理
-        if(!$is_favorite)
-        {
-            $favorite->favoriteStore($user->id, $sentence_id);
-        }
 
+       //否定されたらfavoriteStore処理
+        $favorite->favoriteStore($user->id, $sentence_id);
         return redirect()->back();
     }
 
