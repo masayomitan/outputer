@@ -1,0 +1,85 @@
+
+
+
+
+.user-register{
+    margin: auto;
+    width: 100%; max-width: 800px;
+}
+
+.user-register-header{
+    text-align: center;
+}
+
+.user-register-box{
+    margin: auto;
+    width: 100%; max-width: 800px;
+}
+
+
+
+input#name{
+    height: 45px;
+    font-size: 18px;
+    padding: .375rem .75rem;
+    width: 50%;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 10px 0 10px 100px;
+}
+
+input#email{
+    height: 45px;
+    font-size: 18px;
+    padding: .375rem .75rem;
+    width: 50%;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 10px 0 10px 70px;
+}
+
+textarea.self_introduction{
+    height: 150px;
+    font-size: 18px;
+    padding: .375rem .75rem;
+    width: 50%;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 10px 0 10px 185px;
+}
+
+input#password{
+    height: 45px;
+    font-size: 18px;
+    padding: .375rem .75rem;
+    width: 50%;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 10px 0 10px 100px;
+}
+input#password-confirm{
+    height: 45px;
+    font-size: 18px;
+    padding: .375rem .75rem;
+    width: 50%;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 10px 0 10px 70px;
+}
+
+.register-button{
+    margin-left: 15px;
+    font-size: 16px;
+    background-color:  #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}
+.register-button p{
+    color: #fff;
+}

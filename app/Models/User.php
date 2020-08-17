@@ -126,7 +126,6 @@ class User extends Authenticatable
 
     //投稿ユーザーのいいね数
     public function getPopularUsers() {
-
         $favorite_list = Favorite::all();
         //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
         foreach($favorite_list as $favorite_item) {
@@ -147,7 +146,6 @@ class User extends Authenticatable
             ->orderBy('id', 'desc')
             ->take(5)
             ->get();
-
         }
         return $popular_users;
     }
