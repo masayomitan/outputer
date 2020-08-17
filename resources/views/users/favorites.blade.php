@@ -40,7 +40,7 @@
                                 <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick='return confirm("当に削除するつもりかい？");'>
+                                    <button type="submit" onclick='return confirm("本当に削除する？");'>
                                         文の削除</button>
                                 </form>
                         @endif

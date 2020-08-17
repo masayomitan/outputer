@@ -40,7 +40,4 @@ class Follower extends Model
       //user_idをfollowing_idとし、紐づいたfollowed_idを取得
         return $this->where('following_id', $user_id)->get('followed_id');
     }
-
-
-
 }

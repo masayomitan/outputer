@@ -32,8 +32,8 @@ class SentencesController extends Controller
         $book->id = $book_id;
         $book = $book->getBook($book_id);
 
-
         $sentence_status_texts = $sentence->getPostSentenceStatusTexts();
+
         return view('sentences.create',[
             'sentence_status_texts' => $sentence_status_texts,
             'user' => $user,
@@ -53,9 +53,9 @@ class SentencesController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, [
             'book_id' => ['required', 'integer'],
-            'text_1' => ['required', 'string', 'max:2000'],
-            'text_2' => ['required', 'string', 'max:2000'],
-            'text_3' => ['required', 'string', 'max:2000']
+            'text_1' => ['required', 'string', 'max:35'],
+            'text_2' => ['required', 'string', 'max:35'],
+            'text_3' => ['required', 'string', 'max:35']
         ]);
         $validator->validate();
         $sentence->sentenceStore($user->id, $data);
@@ -79,9 +79,21 @@ class SentencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, Book $book, Sentence $sentence)
     {
-        //
+        $user = auth()->user();
+
+        $book = $sentence->getBookEditSentence($user->id, $sentence->id);
+        $sentences = $sentence->getEditSentence($user->id, $sentence->id);
+
+        $sentence_status_texts = $sentence->getPostSentenceStatusTexts();
+
+        return view('sentences.edit', [
+            'sentence_status_texts' => $sentence_status_texts,
+            'user' => $user,
+            'sentences' => $sentences,
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -91,9 +103,18 @@ class SentencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sentence $sentence)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'text_1' => ['required', 'string', 'max:35'],
+            'text_2' => ['required', 'string', 'max:35'],
+            'text_3' => ['required', 'string', 'max:35']
+        ]);
+        $validator->validate();
+        $sentence->sentenceUpdate($user->id, $data);
+        return redirect()->route('books.show', $sentence['book_id']);
     }
 
     /**

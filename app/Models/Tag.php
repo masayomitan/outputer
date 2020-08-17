@@ -24,7 +24,6 @@ class Tag extends Model
 
 
     public function tagStore(Array $_tag_names){
-
         //タグがすでにあるかの判定
         if(!empty($_tag_names)){
             //タグがあるかforeachで探す.['name' => $tag_name]
@@ -59,6 +58,4 @@ class Tag extends Model
         ->get();
         return $popular_tags;
     }
-
-
 }
