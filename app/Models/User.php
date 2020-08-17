@@ -16,7 +16,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'screen_name',
         'name',
         'email',
         'password',
@@ -67,7 +66,7 @@ class User extends Authenticatable
     }
 
 
-    public function userUpdate(Array $params, $file_name)
+    public function userUpdate(Array $params)
     {
 
         if(isset($params['profile_image'])){
@@ -75,7 +74,7 @@ class User extends Authenticatable
           ->update([
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
-            'profile_image' => $file_name,
+            'profile_image' => $params['profile_image'],
             'email' => $params['email'],
           ]);
       } else {
@@ -157,14 +156,14 @@ class User extends Authenticatable
 
     //to getUserInfoList
     public function getTabInfoList(){
-      $sentence = new Sentence();
-      $follower = new Follower();
+        $sentence = new Sentence();
+        $follower = new Follower();
 
-      $user_id = $this->id;
-      $sentence_count = $sentence->getSentenceCount($user_id);
-      $favorite_count = $sentence->getFavoriteSentences($user_id)->total();
-      $follow_count = $follower->getFollowCount($user_id);
-      $follower_count = $follower->getFollowerCount($user_id);
+        $user_id = $this->id;
+        $sentence_count = $sentence->getSentenceCount($user_id);
+        $favorite_count = $sentence->getFavoriteSentences($user_id)->total();
+        $follow_count = $follower->getFollowCount($user_id);
+        $follower_count = $follower->getFollowerCount($user_id);
 
     $tab_info_list = [
         $sentence_count." " => [
@@ -178,8 +177,7 @@ class User extends Authenticatable
         ],
         $follower_count."    "=> [
             "link" => "/users/{$user_id}/followers",
-        ],
-    ];
+        ],];
     return $tab_info_list;
     }
 
