@@ -146,7 +146,6 @@ class BooksController extends Controller
         foreach($book->tags as $tag){
             $tags[] = $tag;
         }
-        // $tags =DB::table('tags')->get();
 
         return view('books.edit', [
             'user' => $user,

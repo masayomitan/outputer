@@ -26,7 +26,7 @@ class Book extends Model
 
     public function sentences()
     {
-      return $this->hasMany(Sentence::class);
+        return $this->hasMany(Sentence::class);
     }
 
     public function tags()
@@ -39,8 +39,8 @@ class Book extends Model
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
     {
       //自身とフォローしているユーザーを結合する
-      $follow_ids[] = $user_id;
-      return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+        $follow_ids[] = $user_id;
+        return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 
 
@@ -60,27 +60,10 @@ class Book extends Model
         return;
     }
 
-
-    public function getEditBook(Int $user_id, Int $book_id)
-    {
-      return $this->where('user_id', $user_id)->where('id', $book_id)->first();
-    }
-
-    public function bookUpdate(Int $book_id, Array $data, $file_name)
-    {
-
-      $this->book_image =  $file_name;
-      $this->title = $data['title'];
-      $this->author = $data['author'];
-      $this->update();
-      return;
-    }
-
     public function bookDestroy(Int $user_id, Int $book_id)
     {
         return $this->where('user_id',$user_id)->where('id',$book_id)->delete();
     }
-
 
     //タグ
     public function bookTagStore(Array $tag_ids){
@@ -95,20 +78,18 @@ class Book extends Model
         $this->tags()->sync($tag_ids);
     }
 
-
-
-      public function getTabInfoList(){
+    public function getTabInfoList(){
         $tab_info_list = [
-          'タイムライン' => [
-              'param' => '',
-              'icon_class' => 'fas fa-stream'
-          ],
-          '人気' => [
-              'param' => '?mode=popular',
-              'icon_class' => 'fas fa-fire'
-          ],
-        ];
-        return $tab_info_list;
-      }
+        'タイムライン' => [
+            'param' => '',
+            'icon_class' => 'fas fa-stream'
+        ],
+        '人気' => [
+            'param' => '?mode=popular',
+            'icon_class' => 'fas fa-fire'
+        ],
+    ];
+    return $tab_info_list;
+    }
 
 }

@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'destroy']]);
+    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
     //タグ

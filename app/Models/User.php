@@ -71,21 +71,21 @@ class User extends Authenticatable
 
         if(isset($params['profile_image'])){
         $this::where('id', $this->id)
-          ->update([
+        ->update([
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
             'profile_image' => $params['profile_image'],
             'email' => $params['email'],
-          ]);
-      } else {
+        ]);
+    } else {
         $this::where('id', $this->id)
-          ->update([
+        ->update([
             'name' => $params['name'],
             'self_introduction' => $params['self_introduction'],
             'email' => $params['email'],
-          ]);
-      }
-      return;
+        ]);
+    }
+    return;
     }
 
     // フォローする
@@ -119,7 +119,7 @@ class User extends Authenticatable
 
     public function getFollowerUsers($user_id)
     {
-      return $this->followers()->where('followed_id', $user_id)->paginate(6);
+    return $this->followers()->where('followed_id', $user_id)->paginate(6);
 
     }
 
@@ -184,45 +184,45 @@ class User extends Authenticatable
     //to getUserInfoList
     public function getFollowStatuses($login_user) {
         if(isset($login_user)) {
-          $follow_statuses["is_following"] = $login_user->isFollowing($this->id);
-          $follow_statuses["is_followed"] = $login_user->isFollowed($this->id);
+        $follow_statuses["is_following"] = $login_user->isFollowing($this->id);
+        $follow_statuses["is_followed"] = $login_user->isFollowed($this->id);
         } else {
-          $follow_statuses["is_following"] = false;
-          $follow_statuses["is_followed"] = false;
+        $follow_statuses["is_following"] = false;
+        $follow_statuses["is_followed"] = false;
         }
         return $follow_statuses;
     }
 
 
     public function getUserInfoList(){
-      $favorite = new Favorite;
+    $favorite = new Favorite;
 
-      $login_user = auth()->user();
-      $follow_statuses = $this->getFollowStatuses($login_user);
-      $total_favorited_count = $favorite->getTotalFavoritedCount($this->id);
+    $login_user = auth()->user();
+    $follow_statuses = $this->getFollowStatuses($login_user);
+    $total_favorited_count = $favorite->getTotalFavoritedCount($this->id);
 
-      $user_info_list["user"] = $this;
-      $user_info_list["total_favorited_count"] = $total_favorited_count;
-      $user_info_list["is_following"] = $follow_statuses["is_following"];
-      $user_info_list["is_followed"] = $follow_statuses["is_followed"];
+    $user_info_list["user"] = $this;
+    $user_info_list["total_favorited_count"] = $total_favorited_count;
+    $user_info_list["is_following"] = $follow_statuses["is_following"];
+    $user_info_list["is_followed"] = $follow_statuses["is_followed"];
 
-      $user_info_list["tab_info_list"] = $this->getTabInfoList();
-      return $user_info_list;
+    $user_info_list["tab_info_list"] = $this->getTabInfoList();
+    return $user_info_list;
     }
 
-      public function isSelfSentence($request,$user){
+    public function isSelfSentence($request,$user){
         $login_user = auth()->user();
         if(isset($login_user)) {
-          if($login_user->id != $user->id) {
+        if($login_user->id != $user->id) {
             return FALSE;
             redirect($request->path());
-          }
+        }
         } else {
-          return FALSE;
-          redirect($request->path());
+        return FALSE;
+        redirect($request->path());
         }
 
         return true;
-      }
+    }
 
-  }
+}

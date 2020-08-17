@@ -33,20 +33,12 @@ class Favorite extends Model
         return;
     }
 
-
-
+    
     public function getFavoritedCount(Int $sentence_id)
     {
         $favorited_count = count($this->where('sentence_id', $sentence_id)->get());
         return $favorited_count;
     }
-
-
-    public function getSentence(Int $book_id)
-    {
-        return $this->with('user')->where('book_id', $book_id)->orderBy('created_at', 'DESC')->get();
-    }
-
 
     public function getTotalFavoritedCount(Int $user_id)
     {

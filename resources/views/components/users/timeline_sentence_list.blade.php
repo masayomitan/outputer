@@ -36,7 +36,13 @@
             <div class="timeline-favorite">
                 <div class="timeline-favorite-icon"></div>
                 <div class="timeline-favorite-count">{{ count($timeline->favorites) }}</div>
+
+                @if ($request_status_id == 1)
+                {{-- <a  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</a> --}}
+                <a href="{{ url('sentences/' .$timeline->id .'/edit') }}" class="user-confirm-edit-button">編集して公開する</a>
+                @endif
             </div>
+
         </div>
 
         <div class="timeline-user-box">
