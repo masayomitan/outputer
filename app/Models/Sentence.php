@@ -39,6 +39,7 @@ class Sentence extends Model
         return $this->with('user')->where('book_id', $book_id)->orderBy('updated_at', 'DESC')->get();
     }
 
+
     //sentencesのstoreメソッドの作成、引数はidとテキストを配列で
     public function sentenceStore(Int $user_id, Array $data)
     {
@@ -129,5 +130,10 @@ class Sentence extends Model
         })->where('status', 0)->paginate(6);
         return $favorite_sentences;
     }
+
+    public function sentenceWithCount(Int $book_id){
+        return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
+    }
+
 
 }

@@ -86,10 +86,7 @@ class SentencesController extends Controller
         $book = $sentence->getBookEditSentence($user->id, $sentence->id);
         $sentences = $sentence->getEditSentence($user->id, $sentence->id);
 
-        $sentence_status_texts = $sentence->getPostSentenceStatusTexts();
-
         return view('sentences.edit', [
-            'sentence_status_texts' => $sentence_status_texts,
             'user' => $user,
             'sentences' => $sentences,
             'book' => $book,
@@ -114,7 +111,7 @@ class SentencesController extends Controller
         ]);
         $validator->validate();
         $sentence->sentenceUpdate($user->id, $data);
-        return redirect()->route('books.show', $sentence['book_id']);
+        return redirect('users/' . $user->id);
     }
 
     /**

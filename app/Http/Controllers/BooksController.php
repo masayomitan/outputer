@@ -110,10 +110,13 @@ class BooksController extends Controller
     public function show(Book $book, Sentence $sentence, Favorite $favorite)
     {
 
+
         $user = auth()->user();
 
         $book = $book->getBook($book->id);
         $sentences = $sentence->getSentence($book->id);
+        // dd($sentences);
+        // $sentencespop = $sentence->getSentencePopular($sentences->id);
         $favorite = $favorite->all();
 
 

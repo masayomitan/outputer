@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
+        "kyslik/column-sortable": "^6.3",
         "laravel/framework": "v7.19.1",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.1",

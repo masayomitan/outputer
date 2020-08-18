@@ -24,7 +24,9 @@
             <li><a href="#">Menu</a>
                 <ul>
                     @if (isset(auth()->user()->id))
-                    <li><a href="{{ route('users.show',auth()->user()->id)}}">mypage</a></li>@endif
+                    <li><a href="{{ route('users.show',auth()->user()->id)}}">mypage</a></li>
+                    <li><a href="{{ route('users.edit',auth()->user()->id)}}">プロフィール編集</a></li>
+                    @endif
                     <li><a href="{{ route('books.create') }}">本の新規追加</a></li>
                     @guest
                     <li>

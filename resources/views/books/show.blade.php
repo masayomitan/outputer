@@ -46,7 +46,8 @@
             <div class="book-show-below">
                 <div class="sentence-box">
                     @foreach($sentences as $sentence)
-                    @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
+                    @if(isset($user))
+                        @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
                             <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
                                 @csrf
                                 <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
@@ -58,7 +59,8 @@
                                 <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
                                 <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-unlike">
                             </form>
-                            @endif
+                        @endif
+                    @endif
 
                     <div class="sentence-box-each">
                         <a href="{{ route('users.show',$sentence->user->id)}}"></a>

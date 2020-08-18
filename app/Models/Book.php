@@ -80,7 +80,7 @@ class Book extends Model
 
     public function getTabInfoList(){
         $tab_info_list = [
-        'タイムライン' => [
+        'saisinn' => [
             'param' => '',
             'icon_class' => 'fas fa-stream'
         ],
