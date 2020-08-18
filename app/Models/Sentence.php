@@ -39,10 +39,6 @@ class Sentence extends Model
         return $this->with('user')->where('book_id', $book_id)->orderBy('updated_at', 'DESC')->get();
     }
 
-    public function getSentencePopular(Int $book_id)
-    {
-        return $this->with('user')->where('book_id', $book_id)->orderBy('updated_at', 'DESC')->count();
-    }
 
     //sentencesのstoreメソッドの作成、引数はidとテキストを配列で
     public function sentenceStore(Int $user_id, Array $data)
@@ -135,6 +131,9 @@ class Sentence extends Model
         return $favorite_sentences;
     }
 
-    public function getTabInfoList
+    public function sentenceWithCount(Int $book_id){
+        return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
+    }
+
 
 }
