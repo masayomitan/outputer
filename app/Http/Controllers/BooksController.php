@@ -123,9 +123,8 @@ class BooksController extends Controller
             default:
                 $sentences = $sentence->getSentence($book->id);
         }
-
-
         $favorite = $favorite->all();
+        
         return view('books.show', compact('book'),[
             'user' => $user,
             'book' => $book,
@@ -143,23 +142,9 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit()
     {
 
-        $user = auth()->user();
-        $books = $book->getEditbook($user->id, $book->id);
-        if(!isset($books)) {
-            return redirect('books');
-        }
-        $tags = [];
-        foreach($book->tags as $tag){
-            $tags[] = $tag;
-        }
-        return view('books.edit', [
-            'user' => $user,
-            'books' => $books,
-            'tags' => $tags,
-        ]);
     }
 
 
@@ -170,32 +155,9 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book, Tag $tag)
+    public function update()
     {
 
-        $file_name = $request->file('book_image')->getClientOriginalName();
-        $request->file('book_image')->storeAs('public/book_image',$file_name);
-
-        $data = $request->all();
-        $validator = Validator::make($data,[
-            'title' => ['string', 'max:30'],
-            'author' => ['string', 'max:30'],
-            'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:20480']
-        ]);
-        $validator->validate();
-        $book->bookUpdate($book->id, $data, $file_name);
-
-        #カテゴリ名の重複登録を防ぐ
-        $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
-        $newTagNames = array_diff($data["tags"],$storedTagNames->all());
-        //タグ挿入
-        $tag->tagStore($newTagNames);
-        //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
-        $tag_ids = $tag->getTagIds($data["tags"]);
-        //中間テーブルにidを設置
-        $book->bookTagSync($tag_ids);
-
-        return redirect()->route('books.show', $book['id'])->with('success', '編集完了しました');
     }
 
     /**
@@ -204,16 +166,9 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book, Request $request)
+    public function destroy()
     {
-        $user = auth()->user();
-        $book->bookDestroy($user->id, $book->id);
-        $redirect = $request->input('redirect');
-        if ($redirect == "on") {
-            return redirect('/');
-          } else {
-            return back();
-        }
+
     }
 
 }

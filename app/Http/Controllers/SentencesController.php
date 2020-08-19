@@ -127,7 +127,7 @@ class SentencesController extends Controller
         $redirect = $request->input('redirect');
         if ($redirect == "on") {
             return redirect('/');
-          } else {
+            } else {
             return back();
         }
     }

@@ -137,7 +137,7 @@ class UsersController extends Controller
     //
     }
 
-   // フォロー
+    // フォロー
     public function follow(User $user)
     {
         $follower = auth()->user();
@@ -150,7 +150,7 @@ class UsersController extends Controller
         }
     }
 
-   // フォロー解除
+    // フォロー解除
     public function unfollow(User $user)
     {
         $follower = auth()->user();
