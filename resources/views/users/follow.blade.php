@@ -1,5 +1,4 @@
 @include('layouts.header')
-{{-- <img  src="{{ asset('storage/book_image/' . $book->book_image) }}" alt="{{ $book->book_image }}" width="100px" class="w-100"> --}}
 
 <link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
 <link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
@@ -12,12 +11,9 @@
 
     <div class="follow-users">
 
-
         @foreach ($all_users as $user)
         <div class="follow-users-box">
-
             <div class="follow-user-icon">
-
                 <div class="follow-user-pics">
                     <a href="{{ url('users/' .$user->id) }}">
                         <img class="follow-user-image" src="{{ asset('storage/profile_image/' .$user->profile_image) }}">
@@ -25,7 +21,6 @@
                 </div>
 
                 <div class="follow-user-confirm">
-
                     <div class="follow-user-confirm-edit">
                         @if (isset(auth()->user()->id))
                         @if (auth()->user()->id == $user->id)
@@ -55,7 +50,6 @@
                         @endif
                         @endif
                     </div>
-
                 </div>
             </div>
 
@@ -67,9 +61,7 @@
                     {{ $user->self_introduction }}
                 </div>
             </div>
-
         </div>
-
         @endforeach
     </div>
 
