@@ -40,45 +40,6 @@ class TagsController extends Controller
 
     public function store(Request $request,Book $book, Tag $tag)
     {
-
-        $user = auth()->user();
-        $data = $request->all();
-        $books = $book->all();
-        // var_dump($data["book_id"]);
-        foreach($books as $book)
-            $book_ids = $book->id;
-            // var_dump($book_ids);
-            // $book_id = $book["id"];
-            // foreach($data as $data_id)
-            //     $data_id = $data["book_id"];
-                // var_dump($data["book_id"]);
-                // var_dump($book_id);
-                // var_dump($book);
-                // dd($book);
-
-
-
-        // var_dump((int)$data["book_id"]);
-        // $booking = array_search($data["book_id"], ($book->id));
-        // var_dump($booking );
-
-
-        // $validator = Validator::make($data,[
-        //     'tags' => ['string', 'max:10'],
-        // ]);
-        // $validator->validate();
-        #カテゴリ名の重複登録を防ぐ
-        $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
-        $newTagNames = array_diff($data["tags"],$storedTagNames->all());
-        //タグ挿入
-        $tag->tagStore($newTagNames);
-        //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
-        $tag_ids = $tag->getTagIds($data["tags"]);
-
-        //中間テーブルにidを設置
-        $book->bookTagSync($tag_ids);
-
-        return redirect()->route('books.show', $book['id'])->with('success', 'タグ追加完了しました');
     }
 
 

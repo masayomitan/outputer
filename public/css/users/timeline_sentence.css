@@ -33,12 +33,9 @@
     text-align: center;
 }
 
-
-
 .timeline-sentence-box{
     width: 660px;
     margin: 40px 0 0 30px;
-
 }
 
 .timeline-book-text{
@@ -46,7 +43,6 @@
     font-size: 18px;
     padding: 5px;
     border-bottom: 1px solid #55c500;
-
 }
 
 .timeline-favorite{
