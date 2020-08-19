@@ -20,7 +20,6 @@ class Book extends Model
 
     public function user()
     {
-        //userIdに紐づく
         return $this->belongsTo(User::class);
     }
 
@@ -38,7 +37,6 @@ class Book extends Model
 
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
     {
-      //自身とフォローしているユーザーを結合する
         $follow_ids[] = $user_id;
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
@@ -60,11 +58,6 @@ class Book extends Model
         return;
     }
 
-    public function bookDestroy(Int $user_id, Int $book_id)
-    {
-        return $this->where('user_id',$user_id)->where('id',$book_id)->delete();
-    }
-
     //タグ
     public function bookTagStore(Array $tag_ids){
         //attch
@@ -76,20 +69,6 @@ class Book extends Model
     public function bookTagSync(Array $tag_ids){
         //syncメソッドは中間テーブルに設置しておくIDの配列を渡す。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
         $this->tags()->sync($tag_ids);
-    }
-
-    public function getTabInfoList(){
-        $tab_info_list = [
-        'saisinn' => [
-            'param' => '',
-            'icon_class' => 'fas fa-stream'
-        ],
-        '人気' => [
-            'param' => '?mode=popular',
-            'icon_class' => 'fas fa-fire'
-        ],
-    ];
-    return $tab_info_list;
     }
 
 }

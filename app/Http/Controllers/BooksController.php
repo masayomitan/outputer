@@ -31,13 +31,11 @@ class BooksController extends Controller
 
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
-        $tab_info_list = $book->getTabInfoList();
         $keyword = $request->input("keyword");
         return view('books.index',compact('books'), [
             'keyword' => $keyword,
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
-            'tab_info_list' => $tab_info_list,
         ]);
     }
 
@@ -124,7 +122,7 @@ class BooksController extends Controller
                 $sentences = $sentence->getSentence($book->id);
         }
         $favorite = $favorite->all();
-        
+
         return view('books.show', compact('book'),[
             'user' => $user,
             'book' => $book,
