@@ -135,12 +135,10 @@ class User extends Authenticatable
         if(empty($user_id_list)) {
             $popular_users = [];
         } else {
-            //array_count_valuesでid集計
-            $rank_list = array_count_values($user_id_list);
-            //array_keysでindex番号振り分け
-            $rank_keys = array_keys($rank_list);
-            //array_sliceで振り分けた番号を取り出し
-            $rank_keys = array_slice($rank_keys, 0, 10);
+
+            $rank_list = array_count_values($user_id_list);   //array_count_valuesでid集計
+            $rank_keys = array_keys($rank_list);              //array_keysでindex番号振り分け
+            $rank_keys = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し
 
             $popular_users = $this->whereIn('id',$rank_keys)
             ->orderBy('id', 'desc')
@@ -149,7 +147,6 @@ class User extends Authenticatable
         }
         return $popular_users;
     }
-
 
 
     //to getUserInfoList
