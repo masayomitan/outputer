@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
 
 <body>
+
+
     <div class="book-show">
 
         <div class="book-show-header">
@@ -45,7 +47,18 @@
 
             <div class="book-show-below">
                 <div class="sentence-box">
+
+                    <form method="PUT">
+                        @csrf
+                        <select  class="sentence-select" id="select" name="data_id" onchange="this.form.submit()">
+                            @foreach ( $data_list as $id => $text)
+                                <option @if($request->data_id == $id) selected @endif value="{{ $id }}" >{{ $text }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+
                     @foreach($sentences as $sentence)
+
                     @if(isset($user))
                         @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
                             <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
@@ -75,9 +88,12 @@
                         </div>
                         <div class="sentence-box-user">
                             <img class="profile_image" src="{{ asset('storage/profile_image/' .$sentence->user->profile_image)}}">
+                            <p class="timeline-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
                     @endforeach
+
                 </div>
             </div>
 </body>
+

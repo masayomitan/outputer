@@ -73,7 +73,7 @@ class UsersController extends Controller
     public function show(User $user, Book $book, Sentence $sentence, Request $request)
     {
         if (!isset($request["status"])) {
-        $request["status"] = 0;
+            $request["status"] = 0;
         }
 
         #ログインユーザーじゃないユーザーが下書きページに遷移した際、リダイレクトして閲覧を防ぐ
@@ -81,7 +81,7 @@ class UsersController extends Controller
         $is_self_sentence = $user->isSelfSentence($request, $user);
         if (!$is_self_sentence) {
             return redirect($request->path());
-        }
+            }
         }
 
         $timelines = $sentence->getUserTimeLine($user->id, $request["status"]);

@@ -193,18 +193,17 @@ class User extends Authenticatable
 
 
     public function getUserInfoList(){
-    $favorite = new Favorite;
+        $favorite = new Favorite;
 
-    $login_user = auth()->user();
-    $follow_statuses = $this->getFollowStatuses($login_user);
-    $total_favorited_count = $favorite->getTotalFavoritedCount($this->id);
+        $login_user = auth()->user();
+        $follow_statuses = $this->getFollowStatuses($login_user);
+        $total_favorited_count = $favorite->getTotalFavoritedCount($this->id);
 
-    $user_info_list["user"] = $this;
-    $user_info_list["total_favorited_count"] = $total_favorited_count;
-    $user_info_list["is_following"] = $follow_statuses["is_following"];
-    $user_info_list["is_followed"] = $follow_statuses["is_followed"];
-
-    $user_info_list["tab_info_list"] = $this->getTabInfoList();
+        $user_info_list["user"] = $this;
+        $user_info_list["total_favorited_count"] = $total_favorited_count;
+        $user_info_list["is_following"] = $follow_statuses["is_following"];
+        $user_info_list["is_followed"] = $follow_statuses["is_followed"];
+        $user_info_list["tab_info_list"] = $this->getTabInfoList();
     return $user_info_list;
     }
 
