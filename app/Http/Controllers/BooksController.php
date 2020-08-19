@@ -69,11 +69,8 @@ class BooksController extends Controller
     public function store(Request $request, Book $book, Tag $tag)
     {
         $user = auth()->user();
-
-
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('/public/book_image',$file_name);
-
 
         $data = $request->all();
         $validator = Validator::make($data,[
@@ -95,10 +92,10 @@ class BooksController extends Controller
             $tag_ids = $tag->getTagIds($data["tags"]);
             //中間テーブルにidを設置
             $book->bookTagSync($tag_ids);
-          }
-          return redirect('/books')->with('success', '投稿が完了しました。');
-
+        }
+        return redirect('/books')->with('success', '投稿が完了しました。');
     }
+
 
 
     /**
@@ -107,24 +104,34 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book, Sentence $sentence, Favorite $favorite)
+    public function show(Request $request, Book $book, Sentence $sentence, Favorite $favorite)
     {
-
-
         $user = auth()->user();
-
         $book = $book->getBook($book->id);
-        $sentences = $sentence->getSentence($book->id);
-        // dd($sentences);
-        // $sentencespop = $sentence->getSentencePopular($sentences->id);
+
+        $data_list = [
+            1 => "最新順",
+            2 => "評価順"
+        ];
+        switch($request->data_id) {
+            case 1:
+                $sentences = $sentence->getSentence($book->id);
+            break;
+            case 2:
+                $sentences = $sentence->sentenceWithCount($book->id);
+            break;
+            default:
+                $sentences = $sentence->getSentence($book->id);
+        }
+
+
         $favorite = $favorite->all();
-
-
-
         return view('books.show', compact('book'),[
             'user' => $user,
             'book' => $book,
             'sentences' => $sentences,
+            'data_list' => $data_list,
+            'request' => $request,
             'favorite' => $favorite,
         ]);
     }
@@ -141,7 +148,6 @@ class BooksController extends Controller
 
         $user = auth()->user();
         $books = $book->getEditbook($user->id, $book->id);
-
         if(!isset($books)) {
             return redirect('books');
         }
@@ -149,7 +155,6 @@ class BooksController extends Controller
         foreach($book->tags as $tag){
             $tags[] = $tag;
         }
-
         return view('books.edit', [
             'user' => $user,
             'books' => $books,
@@ -179,7 +184,6 @@ class BooksController extends Controller
         ]);
         $validator->validate();
         $book->bookUpdate($book->id, $data, $file_name);
-
 
         #カテゴリ名の重複登録を防ぐ
         $storedTagNames = $tag->whereIn('name',$data["tags"])->pluck('name');
