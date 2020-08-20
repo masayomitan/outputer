@@ -14,11 +14,12 @@ class FavoritesController extends Controller
     {
         $user = auth()->user();
         $sentence_id = $request->sentence_id;
-       //取得した$sentence_idをisFavoriteメソッドに送り込んで既にいいねしてるかの判定を行う
-        $is_favorite = $favorite->isFavorite($user->id, $sentence_id);
+        $is_favorite = $favorite->isFavorite($user->id, $sentence_id);  //取得した$sentence_idをisFavoriteメソッドに送り込んで既にいいねしてるかの判定を行う
 
-       //否定されたらfavoriteStore処理
-        $favorite->favoriteStore($user->id, $sentence_id);
+        if(!$is_favorite)  //取得した$sentence_idをisFavoriteメソッドに送り込んで既にいいねしてるかの判定を行う
+        {
+            $favorite->favoriteStore($user->id, $sentence_id);
+        }
         return redirect()->back();
     }
 
