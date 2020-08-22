@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('/books');
-// });
+Route::get('/', function () {
+    return redirect('/books');
+});
 
 
 
