@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/books');
-});
+// Route::get('/', function () {
+//     return redirect('/books');
+// });
 
 
 
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('sentences', 'sentencesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
     //タグ
