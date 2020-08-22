@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
 
     //タグ
-    Route::resource('tags', 'tagsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::resource('tags', 'tagsController', ['only' => ['store', 'destroy']]);
     Route::get('tags/create/{id}', 'TagsController@create')->name('tags.create');
 
     //いいね関連
