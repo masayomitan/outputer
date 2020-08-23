@@ -84,6 +84,7 @@ class BooksController extends Controller
             return redirect('/books')->with('success', '投稿が完了しました。');
         } else{
             $tag->tagStore($data["tags"]);
+            var_dump($data["tags"]);
             $tag_ids = $tag->getTagIds($data["tags"]);       //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $book->bookTagSync($tag_ids);                //中間テーブルにidを設置
         }
