@@ -51,11 +51,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
-    Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
+    Route::resource('sentences', 'SentencesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
+    Route::get('sentences/create/{id}', 'SentencesController@create')->name('sentences.create');
 
     //タグ
-    Route::resource('tags', 'tagsController', ['only' => ['store', 'destroy']]);
+    Route::resource('tags', 'TagsController', ['only' => ['store', 'destroy']]);
     Route::get('tags/create/{id}', 'TagsController@create')->name('tags.create');
 
     //いいね関連
