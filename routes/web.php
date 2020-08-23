@@ -24,7 +24,7 @@ Auth::routes();
 
 
 
-Route::get('books', 'booksController@index')->name('books.index');
+Route::get('books', 'BooksController@index')->name('books.index');
 
 Route::get('search', 'SearchesController@index')->name('search.index');
 
@@ -48,14 +48,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('users.unfollow');
 
     //投稿記事関連
-    Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('books', 'BooksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
-    Route::resource('sentences', 'sentencesController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-    Route::get('sentences/create/{id}', 'sentencesController@create')->name('sentences.create');
+    Route::resource('sentences', 'SentencesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
+    Route::get('sentences/create/{id}', 'SentencesController@create')->name('sentences.create');
 
     //タグ
-    Route::resource('tags', 'tagsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::resource('tags', 'TagsController', ['only' => ['store', 'destroy']]);
     Route::get('tags/create/{id}', 'TagsController@create')->name('tags.create');
 
     //いいね関連
@@ -67,4 +67,4 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
 Route::get('/fetch', 'BooksController@fetch')->name('book.fetch');
 Route::get('books/{book}', 'BooksController@show')->name('books.show');
-Route::get('sentences/{sentence}', 'sentencesController@show')->name('sentences.show');
+Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
