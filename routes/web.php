@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('users.unfollow');
 
     //投稿記事関連
-    Route::resource('books', 'booksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('books', 'BooksController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     //アウトプット
     Route::resource('sentences', 'SentencesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
