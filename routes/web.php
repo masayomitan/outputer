@@ -24,7 +24,7 @@ Auth::routes();
 
 
 
-Route::get('books', 'booksController@index')->name('books.index');
+Route::get('books', 'BooksController@index')->name('books.index');
 
 Route::get('search', 'SearchesController@index')->name('search.index');
 
