@@ -67,4 +67,4 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
 Route::get('/fetch', 'BooksController@fetch')->name('book.fetch');
 Route::get('books/{book}', 'BooksController@show')->name('books.show');
-Route::get('sentences/{sentence}', 'sentencesController@show')->name('sentences.show');
+Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
