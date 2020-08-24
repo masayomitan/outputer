@@ -4,9 +4,15 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
+if(config('app.env') === 'production'){
+    // asset()やurl()がhttpsで生成される
+    URL::forceScheme('https');
+}
 class RouteServiceProvider extends ServiceProvider
 {
+
     /**
      * This namespace is applied to your controller routes.
      *
