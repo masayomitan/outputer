@@ -1,14 +1,14 @@
+@extends('layouts.app')
+@include('layouts.header')
+
 {{-- foreach二回回し --}}
 @foreach($bookTag as $tags)
-
-
-<link rel="stylesheet" href="{{ asset('css/tags/show.css') }}">
-@include('layouts.header')
 
     <div class="tags">
 
         <div class="side-navi">
-            @include('components.side_navi')
+            @include('components.popular_tag_list')
+            @include('components.popular_user_list')
         </div>
         <div class="tags-show">
             @foreach($tags->books as $tags)

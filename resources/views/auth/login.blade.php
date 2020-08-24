@@ -1,9 +1,4 @@
-@push('cropper')
-<link href="{{ asset('css/cropper-custom.css') }}" rel="stylesheet">
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
-<script src="{{ asset('js/cropper-custom.js') }}" defer></script>
-@endpush
+
 @extends('layouts.app')
 @section('content')
 

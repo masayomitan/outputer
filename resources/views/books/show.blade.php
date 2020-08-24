@@ -1,8 +1,8 @@
 
-
+@extends('layouts.app')
 @include('layouts.header')
 
-<link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
+
 
 <body>
 

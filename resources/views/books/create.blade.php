@@ -1,6 +1,6 @@
 
- <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
 
+@extends('layouts.app')
 @include('layouts.header')
 
 

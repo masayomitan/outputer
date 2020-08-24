@@ -1,8 +1,4 @@
-
-
-{{-- @if(app('env') == 'production') --}}
-<link rel="stylesheet" href="{{ secure_asset('css/popular.css') }}">
-<link rel="stylesheet" href="{{ secure_asset('css/books/index.css') }}">
+@extends('layouts.app')
 
 
 <div id="menu-box" class="big-bg">

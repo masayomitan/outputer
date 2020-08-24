@@ -1,6 +1,4 @@
-
-<link rel="stylesheet" href="{{ asset('css/sentences/create.css') }}">
-
+@extends('layouts.app')
 @include('layouts.header')
 
 <div class="book-sentence-show">

@@ -1,7 +1,7 @@
+@extends('layouts.app')
 @include('layouts.header')
 
-<link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
-<link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
+
 
 
 

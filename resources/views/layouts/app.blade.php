@@ -19,9 +19,43 @@
 
 
     <!-- Styles -->
+    @if(app('env') == 'production')
+        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ secure_asset('css/books/index.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/books/create.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/books/show.css') }}">
 
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/sentences/create.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/sentences/create.css') }}">
+
+        <link rel="stylesheet" href="{{ secure_asset('css/tags/show.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/popular.css') }}">
+
+        <link rel="stylesheet" href="{{ secure_asset('css/users/show.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/users/edit.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/users/register.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/users/timeline_sentence.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/users/follow.css') }}">
+    @else
+        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/sentences/create.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/sentences/create.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/tags/show.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/popular.css') }}">
+
+
+        <link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/users/edit.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/users/register.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/users/timeline_sentence.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
+    @endif
+
 
 
 
