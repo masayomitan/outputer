@@ -17,8 +17,8 @@ class SearchesController extends Controller
         $keyword = $request->input("keyword");
 
         if(!empty($keyword)) {
-            $search_books = Book::where('title', 'LIKE', '%'.$keyword.'%')->paginate(6);  #記事タイトルから検索
-            $search_users = User::where('name', 'LIKE', '%'.$keyword.'%')->paginate(6);   #ユーザーネームから検索
+            $search_books = Book::where('title', 'LIKE', '%'.$keyword.'%')->paginate(20);  #記事タイトルから検索
+            $search_users = User::where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);   #ユーザーネームから検索
         }
         return view('search.index', [
             'keyword' => $keyword,

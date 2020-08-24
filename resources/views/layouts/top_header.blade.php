@@ -22,8 +22,8 @@
 
         <div class="user-box">
             @if (isset(auth()->user()->id))
-                <a href="{{ route('users.show',auth()->user()->id)}}"src="{{ asset('storage/profile_image/' .auth()->user()->profile_image)}}">
-                <img class="user-header-image" src="{{ asset('storage/profile_image/' .auth()->user()->profile_image)}}"></a>
+                <a href="{{ route('users.show',auth()->user()->id)}}"src="{{ secure_asset('storage/profile_image/' .auth()->user()->profile_image)}}">
+                <img class="user-header-image" src="{{ secure_asset('storage/profile_image/' .auth()->user()->profile_image)}}"></a>
             @endif
 
         <ul id="menu">
@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a></li>
                             @if (Route::has('register'))
                         <li>
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a></li>@endif
+                            <a class="nav-link" href="{{ secure_url('register') }}">{{ __('新規登録') }}</a></li>@endif
                             @else
                         <li><a  href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
