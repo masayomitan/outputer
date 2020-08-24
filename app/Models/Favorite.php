@@ -10,7 +10,7 @@ class Favorite extends Model
 
     public function sentence()
     {
-        return $this->belongsTo(sentence::class);
+        return $this->belongsTo(Sentence::class);
     }
 
     public function user()
@@ -33,7 +33,7 @@ class Favorite extends Model
         return;
     }
 
-    
+
     public function getFavoritedCount(Int $sentence_id)
     {
         $favorited_count = count($this->where('sentence_id', $sentence_id)->get());
