@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 
-<!doctype html>
+
 <html lang="ja">
 
 <meta charset="UTF-8">
