@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a></li>
                             @if (Route::has('register'))
                         <li>
-                            <a class="nav-link" href="{{ secure_url('register') }}">{{ __('新規登録') }}</a></li>@endif
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a></li>@endif
                             @else
                         <li><a  href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">

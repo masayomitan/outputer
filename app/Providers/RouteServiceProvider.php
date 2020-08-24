@@ -6,10 +6,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
-if(config('app.env') === 'production'){
-    // asset()やurl()がhttpsで生成される
-    URL::forceScheme('https');
-}
+
 class RouteServiceProvider extends ServiceProvider
 {
 
