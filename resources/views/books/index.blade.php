@@ -1,8 +1,8 @@
 
 
-
-<link rel="stylesheet" href="{{ asset('css/popular.css') }}">
-<link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
+{{-- @if(app('env') == 'production') --}}
+<link rel="stylesheet" href="{{ secure_asset('css/popular.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/books/index.css') }}">
 
 
 <div id="menu-box" class="big-bg">
