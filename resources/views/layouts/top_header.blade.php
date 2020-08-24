@@ -12,7 +12,7 @@
     <header class="main-header-wrapper">
 
         <a class="main-header-title" href="{{ route('books.index') }}"></a>
-            <form action="{{ url('/search') }}" class="search">
+            <form action="{{ secure_url('/search') }}" class="search">
                 <a class="search-box"><input class="search-input" type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索">
                 <button  class="search-icon"></button></a>
             </form>
