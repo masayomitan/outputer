@@ -15,7 +15,7 @@
 
         <div class="user-box">
             @if (isset(auth()->user()->id))
-                <a href="{{ route('users.show',auth()->user()->id)}}" src="{{ secure_asset('storage/profile_image/' .auth()->user()->profile_image)}}">
+                <a href="{{ sucure_url('users.show',auth()->user()->id)}}" src="{{ secure_asset('storage/profile_image/' .auth()->user()->profile_image)}}">
                 <img class="user-header-image" src="{{ secure_asset('storage/profile_image/' .auth()->user()->profile_image)}}"></a>
             @endif
 
