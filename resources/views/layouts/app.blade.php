@@ -19,8 +19,8 @@
 
 
     <!-- Styles -->
-    {{-- @if(app('env') == 'production') --}}
-        <link rel="stylesheet" href="{{ secure_asset('css/header.css') }}">
+
+        {{-- <link rel="stylesheet" href="{{ secure_asset('css/header.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/books/index.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/books/create.css') }}">
@@ -36,8 +36,8 @@
         <link rel="stylesheet" href="{{ secure_asset('css/users/edit.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/users/register.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/users/timeline_sentence.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/users/follow.css') }}">
-    {{-- @else
+        <link rel="stylesheet" href="{{ secure_asset('css/users/follow.css') }}"> --}}
+
         <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
@@ -55,7 +55,7 @@
         <link rel="stylesheet" href="{{ asset('css/users/register.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users/timeline_sentence.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
-    @endif --}}
+
 
 
 
