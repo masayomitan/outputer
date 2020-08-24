@@ -20,7 +20,8 @@
 
     <!-- Styles -->
     {{-- @if(app('env') == 'production') --}}
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ secure_asset('css/header.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/books/index.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/books/create.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/books/show.css') }}">
