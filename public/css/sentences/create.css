@@ -27,13 +27,14 @@
 
 .book-info-others{
     margin-top: 20px;
-    width: 500px;
+    display: inline-block;
     color: #333333;
 }
 
 .book-info-title{
-    margin: 20px 0 0 80px;
+    margin: 20px 0 0 60px;
     font-size: 1.5rem;
+    width: 500px;
     height: 70px;
 }
 
