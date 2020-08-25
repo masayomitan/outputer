@@ -38,6 +38,7 @@
         <link rel="stylesheet" href="{{ secure_asset('css/users/timeline_sentence.css') }}">
         <link rel="stylesheet" href="{{ secure_asset('css/users/follow.css') }}"> --}}
 
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}">
         <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
