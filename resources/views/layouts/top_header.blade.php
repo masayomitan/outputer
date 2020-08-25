@@ -24,7 +24,7 @@
                 @if (isset(auth()->user()->profile_image))
                     <img class="user-header-image" src="{{ asset('storage/profile_image/' .auth()->user()->profile_image)}}"></a>
                 @else
-                    <img class="user-header-image" src="{{ asset('storage/profile_image/noname.jpg')}}"></a>
+                    <img class="user-header-image" src="{{ asset('image/noname.jpg')}}"></a>
                 @endif
                 @endif
 
