@@ -7,8 +7,9 @@
             @if (isset(auth()->user()->profile_image))
                 <img class="user-image" src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="user-image" width="100" height="100">
             @else
-                <img class="user-header-image" src="{{ asset('image/noname.jpg')}}"></a>
+                <img class="user-image" src="{{ asset('image/noname.jpg')}}"></a>
             @endif
+
             <div class="user-confirm">
                 <div class="user-confirm-edit">
                     @if (isset(auth()->user()->id))
