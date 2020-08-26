@@ -24,7 +24,6 @@
                             <a class="book-author-show"> {{ $book->author }} </a>
                         </div>
 
-                        <div class="bouder-line"></div>
                         <div class="book-tags">
                             <div class="book-tags-box">
                                 @foreach($book->tags as $tag)
@@ -64,13 +63,13 @@
                             <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
                                 @csrf
                                 <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-like">
+                                <input type="submit" value="&#xf164;" class="fas btn btn-like">
                             </form>
                             @else
                             <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="favorite-unlike">
                                 @csrf
                                 <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-unlike">
+                                <input type="submit" value="&#xf164;取り消す" class="fas btn btn-unlike">
                             </form>
                         @endif
                     @endif
