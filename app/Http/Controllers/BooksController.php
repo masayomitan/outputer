@@ -68,11 +68,10 @@ class BooksController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
-        $file_name = $request->file('book_image')->getClientOriginalName();
+        $file_name = $request->file('book_image');
         // $request->file('book_image')->storeAs('/public/book_image',$file_name);
 
         $book_image = Storage::disk('s3')->putFile('book_image', $file_name, 'public');
-
         $data["book_image"]  = Storage::disk('s3')->url($book_image);
 
         $validator = Validator::make($data,[
