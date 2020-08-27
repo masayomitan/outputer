@@ -6,7 +6,7 @@
     <div class="book-sentence-box">
         <div class="book-sentence-new"><h1>まとめの投稿</h1></div>
             <div class="book-info">
-                <img class="book-info-image" src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}">
+                <img class="book-info-image" src="{{ $book->book_image }}">
                     <div class="book-info-others">
                         <div class="book-info-title">
                             <a {{ url('books/' .$book->id) }}>{{ $book->title }}</a>

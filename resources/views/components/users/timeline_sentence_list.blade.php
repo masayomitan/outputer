@@ -24,7 +24,7 @@
 
         <div class="timeline-book-box">
             <a href="{{ route('books.show', ['book'=>$timeline->book_id])}}">
-            <img class="timeline-book-image" src="{{ asset('storage/book_image/' . $timeline->book_image) }}"></a>
+            <img class="timeline-book-image" src="{{ $timeline->book_image) }}"></a>
             <p class="timeline-book-title">{!! nl2br(e(Str::limit($timeline->title, 18))) !!}</p>
             <p class="timeline-book-author">{!! nl2br(e(Str::limit($timeline->author, 18))) !!}</p>
         </div>
