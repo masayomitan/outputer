@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="sentence-box-user">
-                            <img class="profile_image" src="{{ $sentence->user->profile_image)}}">
+                            <img class="profile_image" src="{{ $sentence->user->profile_image }}">
                             <p class="timeline-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
