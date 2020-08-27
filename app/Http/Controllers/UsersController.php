@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
@@ -114,7 +115,11 @@ class UsersController extends Controller
         if(isset($data["profile_image"])){
             $file_name = $request->file('profile_image')->getClientOriginalName();
             $request->file('profile_image')->storeAs('public/profile_image',$file_name);
-            $data["profile_image"] = $file_name;
+
+            $file_name = $request->file('profile_image');
+            $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
+            $data["profile_image"] = Storage::disk('s3')->url($profile_image);
+            
         }
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:50'],
