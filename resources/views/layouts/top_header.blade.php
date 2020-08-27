@@ -20,9 +20,9 @@
 
         <div class="user-box">
             @if (isset(auth()->user()->id))
-                <a href="{{ route('users.show',auth()->user()->id)}}"src="{{ auth()->user()->profile_image)}}">
+                <a href="{{ route('users.show',auth()->user()->id)}}"src="{{ auth()->user()->profile_image}}">
                 @if (isset(auth()->user()->profile_image))
-                    <img class="user-header-image" src="{{ auth()->user()->profile_image)}}"></a>
+                    <img class="user-header-image" src="{{ auth()->user()->profile_image}}"></a>
                 @else
                     <img class="user-header-image" src="{{ asset('image/noname.jpg')}}"></a>
                 @endif
