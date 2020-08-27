@@ -15,7 +15,7 @@
 
             <div class="book-show-above">
                 <div class="book-image-show">
-                    <img class="book-image-show-box" src="{{ URL::to('storage/book_image/') }}/{{ $book->book_image }}">
+                    <img class="book-image-show-box" src="{{ $book->book_image }}">
                 </div>
 
                     <div class="book-info">
