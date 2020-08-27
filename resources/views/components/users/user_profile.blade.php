@@ -5,7 +5,7 @@
     <div class="users-box">
         <div class="user-icon">
             @if (isset(auth()->user()->profile_image))
-                <img class="user-image" src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="user-image" width="100" height="100">
+                <img class="user-image" src="{{ $user->profile_image) }}" class="user-image" width="100" height="100">
             @else
                 <img class="user-image" src="{{ asset('image/noname.jpg')}}"></a>
             @endif
