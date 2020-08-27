@@ -70,7 +70,7 @@ class BooksController extends Controller
         $data = $request->all();
         $file_name = $request->file('book_image')->getClientOriginalName();
 
-        $file_nameAs = $request->file('book_image')->storeAs('/public/book_image',$file_name);
+        $file_nameAs = $request->file('book_image')->storeAs('/public/storage/book_image',$file_name);
 
         $book_image = Storage::disk('s3')->putFile('book_image', $file_nameAs, 'public');
 
