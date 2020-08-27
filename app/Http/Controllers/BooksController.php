@@ -67,18 +67,21 @@ class BooksController extends Controller
     public function store(Request $request, Book $book, Tag $tag)
     {
         $user = auth()->user();
-        $file_name = $request->file('book_image')->getClientOriginalName();
-        $request->file('book_image')->storeAs('/public/book_image',$file_name);
-
         $data = $request->all();
+        $file_name = $request->file('book_image')->getClientOriginalName();
+
+        $request->file('book_image')->storeAs('/public/book_image',$file_name);
+        $book_image = Storage::disk('s3')->putFile('/public/book_image', $file_name, 'public');
+
+        $data["book_image"] = Storage::disk('s3')->url($book_image);
+
         $validator = Validator::make($data,[
             'title' => ['string', 'max:30'],
             'author' => ['string', 'max:30'],
-            'book_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:3000']
         ]);
         $validator->validate();
 
-        $book->bookStore($data, $file_name);
+        $book->bookStore($data);
 
         $tag_name = array_filter($data["tags"]);  //array_filterで連想配列の空チェック
         if(empty($tag_name)) {
@@ -88,7 +91,7 @@ class BooksController extends Controller
             $tag_ids = $tag->getTagIds($data["tags"]);       //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $book->bookTagSync($tag_ids);                //中間テーブルにidを設置
         }
-        
+
         return redirect('/books')->with('success', '投稿が完了しました。');
     }
 

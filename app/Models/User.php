@@ -160,19 +160,19 @@ class User extends Authenticatable
         $follow_count = $follower->getFollowCount($user_id);
         $follower_count = $follower->getFollowerCount($user_id);
 
-    $tab_info_list = [
-        $sentence_count." " => [
-            "link" => "/users/{$user_id}",
-        ],
-        $favorite_count."  " => [
-            "link" => "/users/{$user_id}/favorites",
-        ],
-        $follow_count."   " => [
-            "link" => "/users/{$user_id}/following",
-        ],
-        $follower_count."    "=> [
-            "link" => "/users/{$user_id}/followers",
-        ],];
+        $tab_info_list = [
+            $sentence_count." " => [
+                "link" => "/users/{$user_id}",
+            ],
+            $favorite_count."  " => [
+                "link" => "/users/{$user_id}/favorites",
+            ],
+            $follow_count."   " => [
+                "link" => "/users/{$user_id}/following",
+            ],
+            $follower_count."    "=> [
+                "link" => "/users/{$user_id}/followers",
+            ],];
     return $tab_info_list;
     }
 

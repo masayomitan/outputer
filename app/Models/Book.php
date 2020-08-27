@@ -49,9 +49,9 @@ class Book extends Model
         ->where('id', $book_id)->first();
     }
 
-    public function bookStore(Array $data, $file_name)
+    public function bookStore(Array $data)
     {
-        $this->book_image =  $file_name;
+        $this->book_image =  $data["book_image"];
         $this->title = $data['title'];
         $this->author = $data['author'];
         $this->save();
