@@ -30,7 +30,7 @@
             @foreach ($books as $book)
                 <div class="book_box">
                     <a href="{{ route('books.show',$book->id)}}">
-                    <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
+                    <img  class="book_image-index" src="{{ asset($book->book_image) }}" alt="">
                     </a>
                     <div class="book-title">
                         <a href="{{ route('books.show',$book->id)}}">
