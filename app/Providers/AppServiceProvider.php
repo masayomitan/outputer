@@ -17,17 +17,16 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    public function boot()
-    {
-        //
-    }
-
-
-    // public function boot(UrlGenerator $url)
+    // public function boot()
     // {
-    //     if (env('APP_ENV') === 'production'){
-    //     $url->forceScheme('https');
-    //     }
+    //     //
     // }
+
+
+    public function boot(UrlGenerator $url)
+    {
+        $url->forceScheme('https');
+        
+    }
 }
 
