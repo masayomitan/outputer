@@ -24,7 +24,6 @@ class Tag extends Model
 
 
     public function tagStore(Array $_tag_names){
-
         if(!empty($_tag_names)){                      //タグがすでにあるかの判定
             foreach($_tag_names as $tag_name){        //タグがあるかforeachで探す.['name' => $tag_name]
                 $tag_names[] = ['name' => $tag_name];
@@ -42,8 +41,8 @@ class Tag extends Model
         return $tag_ids;
     }
 
-    //人気タグ取得
-    public function getPopularTags(){
+
+    public function getPopularTags(){      //人気タグ取得
         $popular_tags = $this::withCount([ 'books' => function($query) {        //withCountでレコード数をとる, 0で公開しているbooksのデータを呼び出し
             $query;
         }])

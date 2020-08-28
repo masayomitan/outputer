@@ -52,6 +52,7 @@
     margin: 1em auto;
     padding: 0.7em;
     width: 80%;
+    
     background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
 }
@@ -63,10 +64,11 @@
     background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
 }
+
 .tag-input{
     margin: 1em auto;
     padding: 0.7em;
-    width: 17%;
+    width: 80%;
     background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
 }
