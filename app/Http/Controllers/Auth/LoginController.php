@@ -47,8 +47,8 @@ class LoginController extends Controller
     }
 
     protected function loggedOut(Request $request)
-     {
-         return redirect(route('books.index'));
-     }
+    {
+        return redirect(route('books.index'));
+    }
 
-  }
+}
