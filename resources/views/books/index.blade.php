@@ -9,10 +9,7 @@
     </div>
 
     <div class="menu-content wrapper">
-        {{-- <h2 class="page-title">Menu</h2>
-        <p>
-            テストテストテストテストテストテストテストテストテストテストテストテスト
-        </p> --}}
+
     </div>
 
 </div>

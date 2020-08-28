@@ -8,11 +8,14 @@ Route::get('/', function () {
     return redirect('/books');
 });
 
+
+
 Auth::routes();
 
 Route::get('books', 'BooksController@index')->name('books.index');
 
 Route::get('search', 'SearchesController@index')->name('search.index');
+
 
 #####ユーザー
 Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
@@ -21,12 +24,6 @@ Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
 Route::get('users/{user}/following', 'UsersController@following')->name('users.following');
 Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
 Route::get('users/{user}/favorites', 'UsersController@favorites')->name('users.favorites');
-
-
-Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
-Route::get('books/{book}', 'BooksController@show')->name('books.show');
-Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
-
 
 
 #ログイン状態
@@ -55,4 +52,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-
+Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
+Route::get('books/{book}', 'BooksController@show')->name('books.show');
+Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
