@@ -8,7 +8,7 @@
             新規登録
         </div>
         <div class="user-register-box">
-            <form method="POST" action="{{ secure_url('register') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="user-name">
