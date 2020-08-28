@@ -3,22 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return redirect('/books');
 });
-
-
 
 Auth::routes();
 
@@ -36,10 +24,16 @@ Route::get('users/{user}/followers', 'UsersController@followers')->name('users.f
 Route::get('users/{user}/favorites', 'UsersController@favorites')->name('users.favorites');
 
 
+Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
+Route::get('books/{book}', 'BooksController@show')->name('books.show');
+Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
+
+
+
 #ログイン状態
 Route::group(['middleware' => 'auth'], function() {
     #ユーザ関連
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update', 'destroy']]);
+    Route::resource('users', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'UsersController@follow')->name('users.follow');
@@ -62,7 +56,4 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
-Route::get('/fetch', 'BooksController@fetch')->name('book.fetch');
-Route::get('books/{book}', 'BooksController@show')->name('books.show');
-Route::get('sentences/{sentence}', 'SentencesController@show')->name('sentences.show');
+
