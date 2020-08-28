@@ -16,7 +16,7 @@
             <div class="follow-user-icon">
                 <div class="follow-user-pics">
                     <a href="{{ url('users/' .$user->id) }}">
-                        <img class="follow-user-image" src="{{ asset('storage/profile_image/' .$user->profile_image) }}">
+                        <img class="follow-user-image" src="{{ $user->profile_image }}">
                     </a>
                 </div>
 

@@ -15,7 +15,7 @@
 
                 <div class="timeline-book-box">
                     <a href="{{ route('books.show', ['book'=>$timeline->book_id])}}">
-                    <img class="timeline-book-image" src="{{ asset('storage/book_image/' . $timeline->book_image) }}"></a>
+                    <img class="timeline-book-image" src="{{ $timeline->book_image }}"></a>
                     <p class="timeline-book-title">{!! nl2br(e(Str::limit($timeline->title, 18))) !!}</p>
                     <p class="timeline-book-author">{!! nl2br(e(Str::limit($timeline->author, 18))) !!}</p>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="timeline-user-box">
-                    <img class="timeline-user-image" src="{{ asset('storage/profile_image/' .$timeline->user->profile_image)}}">
+                    <img class="timeline-user-image" src="{{ $timeline->user->profile_image }}">
                     <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
                     <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                         @if (isset(auth()->user()->id))
