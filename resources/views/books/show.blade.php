@@ -22,18 +22,18 @@
 
                         <div class="book-author-box">
                             <a class="book-author-show"> {{ $book->author }} </a>
-                        </div>
 
-                        <div class="book-tags">
-                            <div class="book-tags-box">
-                                @foreach($book->tags as $tag)
-                                <a class="book-tags-each" href="{{ route('tags.show', ['tag'=>$tag->id]) }}">
-                                    <div class="book-tag-show"> #{{ $tag->name }}</div>
-                                </a>
-                                @endforeach
+
+                            <div class="book-tags">
+                                <div class="book-tags-box">
+                                    @foreach($book->tags as $tag)
+                                    <a class="book-tags-each" href="{{ route('tags.show', ['tag'=>$tag->id]) }}">
+                                        <div class="book-tag-show"> #{{ $tag->name }}</div>
+                                    </a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-
                             {{-- <a href="{{ route('tags.create',$book->id)}}">タグ追加</a> --}}
 
                         <div class="book-share"></div>
