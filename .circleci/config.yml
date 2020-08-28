@@ -1,58 +1,69 @@
-# PHP CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-php/ for more details
-#
 version: 2
+
 jobs:
   build:
     docker:
-      # Specify the version you desire here
       - image: circleci/php:7.4.7-fpm
+      - image: circleci/mysql:5.7
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # Using the RAM variation mitigates I/O contention
-      # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
-      #
-      # - image: redis:2.8.19
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
+      - DB_CONNECTION: circle_testing
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    working_directory: ~/repo
 
     steps:
       - checkout
-
-      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
-
-      # Download and cache dependencies
+      - run:
+          name: Install PHP Extensions
+          command: sudo docker-php-ext-install pdo_mysql
       - restore_cache:
           keys:
-            # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+          - v1-dependencies-{{ checksum "composer.json" }}
+          - v1-dependencies-
       - run: composer install -n --prefer-dist
-
       - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
       - restore_cache:
-          keys:
-            - node-v1-{{ checksum "package.json" }}
-            - node-v1-
-      - run: yarn install
+              keys:
+                  - node-v1-{{ checksum "package-lock.json" }}
+                  - node-v1-
+
       - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+              key: node-v1-{{ checksum "package-lock.json" }}
+              paths:
+                  - node_modules
 
-      # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - run:
+          name: Run unit test
+          command:
+              php artisan migrate
+              ./vendor/bin/phpunit
+      - run:
+          name: Run Laravel Server
+          command: php artisan serve
+          background: true
+      - run: php artisan migrate
+      - run: php ./vendor/bin/phpunit
 
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run
+
+    deploy:
+        docker:
+            - image: circleci/php:7.4.7-fpm
+            - image: docker:19.03
+
+        steps:
+            - checkout
+            - setup_remote_docker
+
+            - run:
+                name: install aws cli
+                command: |
+                    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                    unzip awscli-bundle.zip
+                    sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
