@@ -53,7 +53,6 @@ class BooksController extends Controller
         return view('books.create',[
             'keyword' => $keyword,
             'user' => $user,
-
         ]);
     }
 
@@ -72,28 +71,36 @@ class BooksController extends Controller
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('/public/book_image',$file_name);
 
-        $file_name = $request->file('book_image');
-        $book_image = Storage::disk('s3')->putFile('book_image', $file_name, 'public');
-        $data["book_image"] = Storage::disk('s3')->url($book_image);
+        // $file_name = $request->file('book_image');
+        // $book_image = Storage::disk('s3')->putFile('book_image', $file_name, 'public');
+        $data["book_image"] = $file_name;
 
-        $validator = Validator::make($data,[
-            'title' => ['string', 'max:30'],
+        $rules = [
+            'title' =>  ['string', 'max:50'],
             'author' => ['string', 'max:30'],
-        ]);
-        $validator->validate();
+            'tags.*' =>   ['string', 'max:10'],
+        ];
+        $messages = [
+            'title.max'        => 'タイトルは:max文字以内で入力してください。',
+            'author.max'       => '著者名は:max文字以内で入力してください。',
+            'tags.*.max'         => 'タグは10文字以内で入力してください',
+        ];
+
+        $validator = Validator::make($data, $rules, $messages);
+        $validated = $validator->validate();
 
         $book->bookStore($data);
 
         $tag_name = array_filter($data["tags"]);  //array_filterで連想配列の空チェック
         if(empty($tag_name)) {
-            return redirect('/books')->with('success', '投稿が完了しました。');
+            return redirect('/books')->with(['validated'=>$validated]);
         } else{
             $tag->tagStore($data["tags"]);
             $tag_ids = $tag->getTagIds($data["tags"]);       //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $book->bookTagSync($tag_ids);                //中間テーブルにidを設置
         }
 
-        return redirect('/books')->with('success', '投稿が完了しました。');
+        return redirect('/books')->with(['validated'=>$validated]);
     }
 
 

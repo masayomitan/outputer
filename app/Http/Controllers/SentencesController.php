@@ -51,15 +51,24 @@ class SentencesController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
-        $validator = Validator::make($data, [
+
+        $rules = [
             'book_id' => ['required', 'integer'],
             'text_1' => ['required', 'string', 'max:35'],
             'text_2' => ['required', 'string', 'max:35'],
             'text_3' => ['required', 'string', 'max:35']
-        ]);
-        $validator->validate();
+        ];
+        $messages = [
+            'text_1.max'   => '文字数が超えてしまってます！',
+            'text_2.max'   => '文字数が超えてしまってます！',
+            'text_3.max'   => '文字数が超えてしまってます！',
+        ];
+
+        $validator = Validator::make($data, $rules, $messages);
+        $validated = $validator->validate();
+
         $sentence->sentenceStore($user->id, $data);
-        return redirect()->route('books.show', $sentence['book_id']);
+        return redirect()->route('books.show', $sentence['book_id'])->with(['validated'=>$validated]);;
     }
 
     /**
