@@ -23,7 +23,6 @@
                         <div class="book-author-box">
                             <a class="book-author-show"> {{ $book->author }} </a>
 
-
                             <div class="book-tags">
                                 <div class="book-tags-box">
                                     @foreach($book->tags as $tag)

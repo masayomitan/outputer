@@ -8,10 +8,6 @@
         @include('layouts.top_header')
     </div>
 
-    <div class="menu-content wrapper">
-
-    </div>
-
 </div>
 
 <div class="body-content">

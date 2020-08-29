@@ -9,7 +9,7 @@
         <div class="search-box-create">
             <div class="search-box-book-create">
                 <div class="search-exist">STEP1.既に登録されていないか調べる</div>
-                <form action="{{ url('/search') }}" class="search">
+                <form action="{{ route('search.index') }}" class="search">
                     <span class="search-exist"><input type="text" name="keyword" value="{{$keyword}}" placeholder="キーワード検索" class="prompt"></span>
                 </form>
             </div>
@@ -24,13 +24,15 @@
 
                 <p><label class="letter" for="title">タイトル名</label></p>
                 <input class="title-input" id="title" name="title" type="text" value="{{ old('title') }}" required autofocus>
+                @if ($errors->has('title'))<div class="text-danger">{{$errors->first('title')}}</div>@endif
 
                 <p><label class="letter" for="author">著者</label></p>
                 <input class="author-input" id="author" name="author" type="text" value="{{ old('author') }}" required autofocus>
+                @if ($errors->has('author'))<div class="text-danger">{{$errors->first('author')}}</div>@endif
 
                 <p><label class="letter" for="tag">タグ （任意・10文字以内 ５個まで付けれます）</label></p>
                 <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
-
+                @if ($errors->has('tags.*'))<div class="text-danger">{{$errors->first('tags.*')}}</div>@endif
 
                 <p><label class="letter" for="tag">画像ファイル</label></p>
                 <label><div class="book_image"></div>

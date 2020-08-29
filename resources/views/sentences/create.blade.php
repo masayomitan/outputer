@@ -29,11 +29,16 @@
 
                 <input type="hidden" name="book_id" value="{{ $book->id }}">
                 <div class="gyo-1"><h3>1行目</h3></div>
-                <input class="sentence-create-box-text" type="text" name="text_1" required autofocus>
+                <input class="sentence-create-box-text" type="text" value="{{ old('text_1') }}" name="text_1" required autofocus>
+                @if ($errors->has('text_1'))<div class="text-danger">{{$errors->first('text_1')}}</div>@endif
+
                 <div class="gyo"><h3>2行目</h3></div>
-                <input class="sentence-create-box-text" type="text" name="text_2" required>
+                <input class="sentence-create-box-text" type="text" value="{{ old('text_2') }}" name="text_2" required>
+                @if ($errors->has('text_2'))<div class="text-danger">{{$errors->first('text_2')}}</div>@endif
+
                 <div class="gyo"><h3>3行目</h3></div>
-                <input class="sentence-create-box-text" type="text" name="text_3" required>
+                <input class="sentence-create-box-text" type="text" value="{{ old('text_3') }}" name="text_3" required>
+                @if ($errors->has('text_3'))<div class="text-danger">{{$errors->first('text_3')}}</div>@endif
         </div>
 
             <div class="sentence-btn">

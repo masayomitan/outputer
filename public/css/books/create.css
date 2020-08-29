@@ -1,4 +1,6 @@
-
+.text-danger{
+    color: red;
+}
 
 .book-create{
 
@@ -52,7 +54,7 @@
     margin: 1em auto;
     padding: 0.7em;
     width: 80%;
-    
+
     background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
 }
@@ -121,3 +123,5 @@
     font-size: 15px;
     background-color: #ffa300;
 }
+
+
