@@ -18,7 +18,7 @@ class Sentence extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function users()
+    public function users()  //いいね
     {
         return $this->belongsToMany(User::class);
     }

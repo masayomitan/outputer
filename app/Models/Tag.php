@@ -19,7 +19,7 @@ class Tag extends Model
 
 
     public function getBookTag(Int $tag_id){
-        return $this->with('books')->where('id', $tag_id)->paginate(3);
+        return $this->with('books')->where('id', $tag_id)->get();
     }
 
 

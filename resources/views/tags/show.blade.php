@@ -15,7 +15,7 @@
             <div class="tags-show-each">
                 <div class="tags-show-image">
                     <a href="{{ route('books.show',$tags->id)}}">
-                    <img  class="tags-image" src="{{ asset('storage/book_image/' .$tags->book_image)}}">
+                    <img  class="tags-image" src="{{ $tags->book_image}}">
                 </div>
                 <div class="tags-title">
                     {!! nl2br(e(Str::limit($tags->title, 25))) !!}</p>
