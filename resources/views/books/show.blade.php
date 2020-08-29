@@ -55,42 +55,46 @@
                         </select>
                     </form>
 
-                    @foreach($sentences as $sentence)
+                    @if ($sentences->count())
+                        @foreach($sentences as $sentence)
+                            @if ($sentence->status == 0)
+                                @if(isset($user))
+                                    @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
+                                        <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
+                                            @csrf
+                                            <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+                                            <input type="submit" value="&#xf164;" class="fas btn btn-like">
+                                        </form>
+                                        @else
+                                        <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="favorite-unlike">
+                                            @csrf
+                                            <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
+                                            <input type="submit" value="&#xf164;取り消す" class="fas btn btn-unlike">
+                                        </form>
+                                    @endif
+                                @endif
 
-                    @if(isset($user))
-                        @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
-                            <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
-                                @csrf
-                                <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                <input type="submit" value="&#xf164;" class="fas btn btn-like">
-                            </form>
-                            @else
-                            <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="favorite-unlike">
-                                @csrf
-                                <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                <input type="submit" value="&#xf164;取り消す" class="fas btn btn-unlike">
-                            </form>
-                        @endif
+                                <div class="sentence-box-each">
+                                    <a href="{{ route('users.show',$sentence->user->id)}}"></a>
+                                    <div class="sentence-box-name">
+                                        <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
+                                            <div class="line"></div>
+                                        <div class="sentence-box-text-each">
+                                            <p>{{ $sentence->text_1 }}</p>
+                                            <p>{{ $sentence->text_2 }}</p>
+                                            <p>{{ $sentence->text_3 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="sentence-box-user">
+                                        <img class="profile_image" src="{{ $sentence->user->profile_image }}">
+                                        <p class="timeline-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                    <div class="timeline-null">まだまとめがありません。</div>
                     @endif
-
-                    <div class="sentence-box-each">
-                        <a href="{{ route('users.show',$sentence->user->id)}}"></a>
-                        <div class="sentence-box-name">
-                            <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
-                                <div class="line"></div>
-                            <div class="sentence-box-text-each">
-                                <p>{{ $sentence->text_1 }}</p>
-                                <p>{{ $sentence->text_2 }}</p>
-                                <p>{{ $sentence->text_3 }}</p>
-                            </div>
-                        </div>
-                        <div class="sentence-box-user">
-                            <img class="profile_image" src="{{ $sentence->user->profile_image }}">
-                            <p class="timeline-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
-                        </div>
-                    </div>
-                    @endforeach
-
                 </div>
             </div>
 </body>

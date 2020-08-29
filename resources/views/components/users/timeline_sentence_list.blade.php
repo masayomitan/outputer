@@ -62,9 +62,7 @@
                 </div>
         </div>
 
-
     </div>
-
     @endforeach
     @else
         <div class="timeline-null">対象の記事がありません。</div>

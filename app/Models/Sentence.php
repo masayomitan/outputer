@@ -113,17 +113,16 @@ class Sentence extends Model
     }
 
 
-    //to  User.php/getTabInfoList
-    public function getSentenceCount(Int $user_id)
+
+    public function getSentenceCount(Int $user_id)          //User.phpファイルのgetTabInfoListメソッドで使用
     {
         return $this->where('user_id', $user_id)->count();
     }
 
-    //to  User.php/getTabInfoList
-    public function getFavoriteSentences(Int $user_id)
+
+    public function getFavoriteSentences(Int $user_id)      //User.phpファイルのgetTabInfoListメソッドで使用
     {
-        //いいねした記事取得、joinでbookstableも取得,whereHasでリクエストしたuserのいいねだけにする
-        $favorite_sentences = $this->join('books', 'books.id', '=','book_id')
+        $favorite_sentences = $this->join('books', 'books.id', '=','book_id')  //いいねした記事取得、joinでbookstableも取得,whereHasでリクエストしたuserのいいねだけにする
         ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
         ->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
@@ -131,7 +130,8 @@ class Sentence extends Model
         return $favorite_sentences;
     }
 
-    public function sentenceWithCount(Int $book_id){
+    public function sentenceWithCount(Int $book_id) //まとめのいいねが多い順、withcountで取得
+    {
         return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
     }
 
