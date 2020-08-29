@@ -49,7 +49,6 @@ jobs:
       #     command: php artisan serve
       #     background: true
 
-
     deploy:
         docker:
             - image: circleci/php:7.4.7-fpm
