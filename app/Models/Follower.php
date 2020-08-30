@@ -9,9 +9,8 @@ class Follower extends Model
     public $timestamps = false;
     public $incrementing = false;
 
-    // https://qiita.com/ayayo/items/ba38853bca0c2cc2acb7
-    // IDリクワイアドと言うアンチパターンあり
-    protected $primaryKey = [
+
+    protected $primaryKey = [  // https://qiita.com/ayayo/items/ba38853bca0c2cc2acb7   // IDリクワイアドと言うアンチパターンあり
         'following_id',
         'followed_id'
     ];

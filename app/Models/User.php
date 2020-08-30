@@ -124,15 +124,15 @@ class User extends Authenticatable
     }
 
 
-    //投稿ユーザーのいいね数
+    //投稿ユーザーのいいね数ランキング
     public function getPopularUsers() {
         $favorite_list = Favorite::all();
-        //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
-        foreach($favorite_list as $favorite_item) {
+
+        foreach($favorite_list as $favorite_item) {    //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
             $user_id_list[] = $favorite_item->sentence()->value('user_id');
         }
-        //空ならそのまま
-        if(empty($user_id_list)) {
+
+        if(empty($user_id_list)) {    //空ならそのまま
             $popular_users = [];
         } else {
 
@@ -207,15 +207,14 @@ class User extends Authenticatable
     public function isSelfSentence($request,$user){
         $login_user = auth()->user();
         if(isset($login_user)) {
-        if($login_user->id != $user->id) {
+            if($login_user->id != $user->id) {
+                return FALSE;
+                redirect($request->path());
+            }
+        } else {
             return FALSE;
             redirect($request->path());
         }
-        } else {
-        return FALSE;
-        redirect($request->path());
-        }
-
         return true;
     }
 

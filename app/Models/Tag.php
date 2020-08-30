@@ -10,6 +10,7 @@ class Tag extends Model
     protected $fillable = [
         'name'
     ];
+
     public $timestamps = false;
 
     public function books()
@@ -21,7 +22,6 @@ class Tag extends Model
     public function getBookTag(Int $tag_id){
         return $this->with('books')->where('id', $tag_id)->get();
     }
-
 
     public function tagStore(Array $_tag_names){
         if(!empty($_tag_names)){                      //タグがすでにあるかの判定
@@ -40,7 +40,6 @@ class Tag extends Model
         }
         return $tag_ids;
     }
-
 
     public function getPopularTags(){      //人気タグ取得
         $popular_tags = $this::withCount([ 'books' => function($query) {        //withCountでレコード数をとる, 0で公開しているbooksのデータを呼び出し
