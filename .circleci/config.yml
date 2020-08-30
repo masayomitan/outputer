@@ -39,15 +39,15 @@ jobs:
               paths:
                   - node_modules
 
-      - run:
-          name: Run unit test
-          command: |
-              php artisan migrate
-              ./vendor/bin/phpunit
-      - run:
-          name: Run Laravel Server
-          command: php artisan serve
-          background: true
+      # - run:
+      #     name: Run unit test
+      #     command: |
+      #         php artisan migrate
+      #         ./vendor/bin/phpunit
+      # - run:
+      #     name: Run Laravel Server
+      #     command: php artisan serve
+      #     background: true
 
     deploy:
         docker:
