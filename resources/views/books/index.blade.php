@@ -27,7 +27,7 @@
                     </a>
                     <div class="book-title">
                         <a href="{{ route('books.show',$book->id)}}">
-                        {!! nl2br(e(Str::limit($book->title, 25))) !!}</p></a>
+                        {!! nl2br(e(Str::limit($book->title, 20))) !!}</p></a>
                     </div>
                     <div class="book-author">
                         {!! nl2br(e(Str::limit($book->author, 18))) !!}</p>
