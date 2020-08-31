@@ -39,6 +39,18 @@ jobs:
               paths:
                   - node_modules
       - run:
+          name: update npm
+          command: |
+            mkdir -p ~/tmp
+            cd ~/tmp
+            npm install npm@4
+            rm -rf /usr/local/lib/node_modules
+            mv node_modules /usr/local/lib/
+            cd
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - run:
           name: Run dusk
           command: |
               npm run production
