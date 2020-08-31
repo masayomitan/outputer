@@ -37,33 +37,5 @@ class TagTest extends TestCase
             'name' => $testTags
         ]);
 
-
-
-        // #登録したタグ名が登録テーブルに登録されているかテスト
-        // foreach($testTags as $testTag){
-        //     $response->assertDatabaseHas('tags', [
-        //         'name' => $testTag,
-        //     ]);
-        //     $tag_id = Tag::select('id')->where("name",$testTag)->first();
-        //     $tag_ids[] = $tag_id->id;
-        // }
-
-        // // #登録したカテゴリーが中間テーブルに保存されているかテスト
-        // // foreach($tag_ids as $tag_id){
-        // //     $response->assertDatabaseHas('article_tag',['tag_id' => $tag_id]);
-        // // }
-
-        // // #不正な形式の記事が登録されないかテスト
-        // // #タイトル0文字または３1文字以上の記事が投稿されないかテスト
-        // // $lengths = [0,31];
-        // // foreach($lengths as $length) {
-        // //     $Bad_testTitle = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', $length)), 0, $length);
-
-        // //     $response->post('/articles', ['title' => $Bad_testTitle, 'body' => $testBody]);
-        // //     $response->assertDatabaseMissing('articles', [
-        // //         'title' => $Bad_testTitle,
-        // //         'body' => $testBody
-        // //     ]);
-        // // }
     }
 }

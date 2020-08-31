@@ -54,8 +54,8 @@ class BookTest extends TestCase
         foreach($titleLengths as $length) {
             $Bad_testTitle = substr(str_shuffle(str_repeat('01234567890123456789abcdefghijklmnopqrstuvwxyz', $length)), 0, $length);
             $response->post('/books', ['title' => $Bad_testTitle, 'author' => $testAuthor]);
-            $response->assertDatabaseHas('books', [
-            'title' => $testTitle,
+            $response->assertDatabaseMissing('books', [
+            'title' => $Bad_testTitle,
             'author' => $testAuthor,
         ]);
         }
@@ -64,10 +64,11 @@ class BookTest extends TestCase
         foreach($authorLengths as $length) {
             $Bad_testAuthor = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', $length)), 0, $length);
             $response->post('/books', ['title' => $testTitle, 'author' => $Bad_testAuthor]);
-            $response->assertDatabaseHas('books', [
+            $response->assertDatabaseMissing('books', [
             'title' => $testTitle,
-            'author' => $testAuthor,
+            'author' => $Bad_testAuthor,
         ]);
         }
     }
 }
+
