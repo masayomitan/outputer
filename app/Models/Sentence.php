@@ -114,11 +114,15 @@ class Sentence extends Model
 
 
 
-    public function getSentenceCount(Int $user_id)          //User.phpファイルのgetTabInfoListメソッドで使用
+    public function getSentenceCount(Int $user_id)  //User.phpファイルのgetTabInfoListメソッドで使用 数字のカウントするだけで並べ替えはしない
     {
         return $this->where('user_id', $user_id)->count();
     }
 
+    public function sentenceWithCount(Int $book_id) //まとめのいいねが多い順、withcountで取得 並べ替えで使用
+    {
+        return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
+    }
 
     public function getFavoriteSentences(Int $user_id)      //User.phpファイルのgetTabInfoListメソッドで使用
     {
@@ -130,10 +134,7 @@ class Sentence extends Model
         return $favorite_sentences;
     }
 
-    public function sentenceWithCount(Int $book_id) //まとめのいいねが多い順、withcountで取得
-    {
-        return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
-    }
+
 
 
 }

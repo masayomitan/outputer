@@ -119,7 +119,7 @@ class UsersController extends Controller
             $file_name = $request->file('profile_image');
             $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
             $data["profile_image"] = Storage::disk('s3')->url($profile_image);
-            
+
         }
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:50'],
