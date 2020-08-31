@@ -50,16 +50,6 @@ jobs:
           command: php artisan serve
           background: true
 
-      - run:
-          name: Run browser
-          command: docker run -d -p 4444:4444 selenium/standalone-chrome
-      - run:
-          name: Run dusk
-          command: |
-              npm run production
-              cp .env.testing .env
-              php artisan dusk --env=circleci
-
     deploy:
         docker:
             - image: circleci/php:7.4.7-fpm
