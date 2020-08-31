@@ -6,12 +6,12 @@ jobs:
       - image: circleci/php:7.4.7-fpm
       - image: circleci/mysql:5.7
 
-    environment:
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
-      - DB_CONNECTION: circle_testing
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      environment:
+        - APP_DEBUG: true
+        - APP_ENV: testing
+        - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
+        - DB_CONNECTION: circle_testing
+        - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/repo
 
@@ -39,15 +39,26 @@ jobs:
               paths:
                   - node_modules
 
-      # - run:
-      #     name: Run unit test
-      #     command: |
-      #         php artisan migrate
-      #         ./vendor/bin/phpunit
-      # - run:
-      #     name: Run Laravel Server
-      #     command: php artisan serve
-      #     background: true
+      - run:
+          name: Run unit test
+          command: |
+              php artisan migrate
+              ./vendor/bin/phpunit
+
+      - run:
+          name: Run Laravel Server
+          command: php artisan serve
+          background: true
+
+      - run:
+          name: Run browser
+          command: docker run -d -p 4444:4444 selenium/standalone-chrome
+      - run:
+          name: Run dusk
+          command: |
+              npm run production
+              cp .env.testing .env
+              php artisan dusk --env=circleci
 
     deploy:
         docker:
