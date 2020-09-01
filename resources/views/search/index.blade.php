@@ -17,7 +17,7 @@
                 @foreach ($search_books_title as $book)
                     <div class="search-book-result-box">
                         <a href="{{ route('books.show',$book->id)}}">
-                            <img class="search-book-result-image" src="{{ asset('storage/book_image/' .$book->book_image)}}">
+                            <img class="search-book-result-image" src="{{ $book->book_image }}">
                         </a>
                         <div class="search-book-result-title">
                             <a href="{{ route('books.show',$book->id)}}">
@@ -44,7 +44,7 @@
                 @foreach ($search_books_author as $book)
                     <div class="search-book-result-box">
                         <a href="{{ route('books.show',$book->id)}}">
-                            <img class="search-book-result-image" src="{{ asset('storage/book_image/' .$book->book_image)}}"></a>
+                            <img class="search-book-result-image" src="{{ $book->book_image }}"></a>
                         <div class="search-book-result-title">
                             <a href="{{ route('books.show',$book->id)}}">
                             <p>{{$book->title}}</p></a>
