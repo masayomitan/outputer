@@ -27,13 +27,14 @@
                     </a>
                     <div class="book-title">
                         <a href="{{ route('books.show',$book->id)}}">
-                        {!! nl2br(e(Str::limit($book->title, 20))) !!}</p></a>
+                        {{$book->title}}
+                        </a>
                     </div>
                     <div class="book-author">
-                        {!! nl2br(e(Str::limit($book->author, 18))) !!}</p>
+                        {{$book->author}}</p>
                     </div>
-                <div class="most-favorite"></div>
-            </div>
+                    <div class="most-favorite"></div>
+                </div>
             @endforeach
         </div>
     </div>
