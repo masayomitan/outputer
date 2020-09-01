@@ -6,7 +6,7 @@
     <div class="card-body">
     @foreach ($popular_users as $user)
         <a href="{{ route('users.show', ['user'=>$user->id]) }}">
-            <p>{{$user->name}}({{$user->favorites_count}})</p>
+            <p>{{$user->name}}</p>
         </a>
     @endforeach
     </div>
