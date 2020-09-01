@@ -1,0 +1,71 @@
+
+.search-result{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.search-index{
+    margin: auto;
+    width: 100%; max-width: 850px;
+}
+
+.search-book-ex{
+    font-size: 18px;
+    color: #34a0ad;
+    border-bottom: solid 1px;
+    flex-grow: 1;
+    margin-left: .5em;
+}
+
+.search-book-result{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+.search-book-result-image{
+    width: 150px;
+    height: 190px;
+    filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
+}
+.search-book-result-title{
+    margin: 10px 0 5px;
+    font-weight: 700;
+    width: 150px;
+}
+.search-book-result-author{
+    color: #3c6ea6;
+    width: 150px;
+}
+
+.search-tags-result{
+    margin-top: 5%;
+}
+.search-tags-each{
+    display: inline-block;
+}
+.book-tags-result-each{
+    text-decoration: none;
+}
+.book-tags-result-each-name{
+    cursor : pointer;
+    font-size: 15px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px 12px 5px 12px;
+    color: rgb(23, 162, 184);
+    border-color: rgb(23, 162, 184);;
+    background-color: #fff;
+    margin: 5px;
+    text-align: center;
+}
+.book-tags-result-each-name:hover {
+    background-color: rgb(23, 162, 184);
+    color: #fff;
+}
+
+.search-result-null{
+    text-align: center;
+    margin: 20px 0 20px ;
+}

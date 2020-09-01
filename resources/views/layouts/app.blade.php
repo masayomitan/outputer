@@ -19,7 +19,7 @@
 
 
         <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset('css/books/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/books/create.css') }}">
         <link rel="stylesheet" href="{{ asset('css/books/show.css') }}">
@@ -36,6 +36,8 @@
         <link rel="stylesheet" href="{{ asset('css/users/register.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users/timeline_sentence.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users/follow.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/searches/index.css') }}">
 
             @yield('content')
         </main>

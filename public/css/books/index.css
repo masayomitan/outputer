@@ -72,12 +72,14 @@
 .book-title{
     margin: 10px 0 5px;
     font-weight: 700;
+    width: 200px;
 }
 
 
-.book-author
-{
+.book-author{
     color: #3c6ea6;
+    width: 200px;
+
 }
 
 
