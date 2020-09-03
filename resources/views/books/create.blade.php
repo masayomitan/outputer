@@ -32,6 +32,10 @@
 
                 <p><label class="letter" for="tag">タグ （任意・10文字以内 ５個まで付けれます）</label></p>
                 <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
+                <input class="tag-input" id="tag" name="tags[]" type="text" value="{{ old('tags[]') }}"  autofocus>
                 @if ($errors->has('tags.*'))<div class="text-danger">{{$errors->first('tags.*')}}</div>@endif
 
                 <p><label class="letter" for="tag">画像ファイル</label></p>
