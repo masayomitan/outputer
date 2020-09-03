@@ -102,3 +102,9 @@
     height: 38px;
     border-bottom: 1px solid #fff;
   }
+
+  .breadcrumb-item{
+    display: inline-block;
+    color: grey;
+    margin-bottom: 20px;
+}

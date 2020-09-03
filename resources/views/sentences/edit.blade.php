@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @include('layouts.header')
 
+{{ Breadcrumbs::render('sentence.edit', $user, $book, $sentences) }}
+
 <div class="book-sentence-show">
 
     <div class="book-sentence-box">
@@ -18,7 +20,6 @@
                     </div>
             </div>
     </div>
-
 
 
     <div class="sentence-create">

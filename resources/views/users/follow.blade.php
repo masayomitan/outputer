@@ -2,7 +2,7 @@
 @include('layouts.header')
 
 
-
+{{ Breadcrumbs::render('users.show', $user) }}
 
 
 @include('components.users.user_profile')

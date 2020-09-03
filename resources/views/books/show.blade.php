@@ -3,16 +3,13 @@
 @include('layouts.header')
 
 
-
+{{ Breadcrumbs::render('books.show', $book, $user) }}
 <body>
 
-
     <div class="book-show">
-
         <div class="book-show-header">
             <div class="book-title-show">{{$book->title }}</div>
         </div>
-
             <div class="book-show-above">
                 <div class="book-image-show">
                     <img class="book-image-show-box" src="{{ $book->book_image }}">
@@ -22,7 +19,6 @@
 
                         <div class="book-author-box">
                             <a class="book-author-show"> {{ $book->author }} </a>
-
                             <div class="book-tags">
                                 <div class="book-tags-box">
                                     @foreach($book->tags as $tag)
@@ -75,7 +71,7 @@
                                 @endif
 
                                 <div class="sentence-box-each">
-                                    <a href="{{ route('users.show',$sentence->user->id)}}"></a>
+                                    <a href="{{ route('users.show', $sentence->user->id)}}"></a>
                                     <div class="sentence-box-name">
                                         <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
                                             <div class="line"></div>

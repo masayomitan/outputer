@@ -113,6 +113,7 @@ class BooksController extends Controller
      */
     public function show(Request $request, Book $book, Sentence $sentence, Favorite $favorite)
     {
+
         $user = auth()->user();
         $book = $book->getBook($book->id);
 
