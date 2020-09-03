@@ -94,9 +94,10 @@ class BooksController extends Controller
         $tag_name = array_filter($data["tags"]);  //array_filterで連想配列の空チェック
         if(empty($tag_name)) {
             return redirect('/books')->with(['validated'=>$validated]);
-        } else{
-            $tag->tagStore($data["tags"]);
-            $tag_ids = $tag->getTagIds($data["tags"]);       //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
+        } else {
+            $tag->tagStore($data["tags"]);       //タグ登録メソッド
+            $tags = array_filter($data["tags"]); //array_filterで連想配列の空チェック,空削除でエラー防ぐ
+            $tag_ids = $tag->getTagIds($tags);   //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $book->bookTagSync($tag_ids);                //中間テーブルにidを設置
         }
 

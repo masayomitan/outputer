@@ -35,8 +35,8 @@ class Tag extends Model
 
     public function getTagIds($tag_names){
         foreach($tag_names as $tag_name){
-            $tag_id = $this::select('id')->where("name",$tag_name)->first();  //idから名前を1から取り出して$tag_idに代入
-            $tag_ids[] = $tag_id->id;                                         //$tag_idのidを配列$tag_ids[]に全て代入
+            $tag_id = $this::select('id')->where("name",$tag_name)->first();  //tagのidから、名前が一致したタグを$tag_idに代入
+            $tag_ids[] = $tag_id->id;                                         //$tag_idのidを配列$tag_ids[]に全て代入しリターン
         }
         return $tag_ids;
     }
