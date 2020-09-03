@@ -1,22 +1,25 @@
 @extends('layouts.app')
 @include('layouts.header')
 
+{{ Breadcrumbs::render('sentences.create', $book) }}
+
 <div class="book-sentence-show">
 
     <div class="book-sentence-box">
-        <div class="book-sentence-new"><h1>まとめの投稿</h1></div>
-            <div class="book-info">
-                <img class="book-info-image" src="{{ $book->book_image }}">
-                    <div class="book-info-others">
-                        <div class="book-info-title">
-                            <a {{ url('books/' .$book->id) }}>{{ $book->title }}</a>
-                        </div>
-
-                        <div class="book-info-author">
-                            <a {{ url('books/' .$book->id) }}>{{ $book->author}}</a>
-                        </div>
+        <div class="book-sentence-new">
+            <h1>まとめの投稿</h1>
+        </div>
+        <div class="book-info">
+            <img class="book-info-image" src="{{ $book->book_image }}">
+                <div class="book-info-others">
+                    <div class="book-info-title">
+                        <a {{ url('books/' .$book->id) }}>{{ $book->title }}</a>
                     </div>
-            </div>
+                    <div class="book-info-author">
+                        <a {{ url('books/' .$book->id) }}>{{ $book->author}}</a>
+                    </div>
+                </div>
+        </div>
     </div>
 
 
@@ -41,18 +44,16 @@
                 @if ($errors->has('text_3'))<div class="text-danger">{{$errors->first('text_3')}}</div>@endif
         </div>
 
-            <div class="sentence-btn">
-                    <p><select class="status" name="status" type="select">
-                            @foreach($sentence_status_texts as $key => $val)
-                                <option value="{{$val}}">{{$key}}</option>
-                            @endforeach
-                        </select></p>
-
-                    <p><button type="submit" class="sentence-btn-comfirm">
-                            投稿する
-                    </button></p>
-                </form>
-            </div>
-        <button type="button" onclick="history.back()">戻る</button>
+        <div class="sentence-btn">
+                <p><select class="status" name="status" type="select">
+                        @foreach($sentence_status_texts as $key => $val)
+                            <option value="{{$val}}">{{$key}}</option>
+                        @endforeach
+                    </select></p>
+                <button type="submit" class="sentence-btn-comfirm">
+                        投稿する
+                </button>
+            </form>
+        </div>
     </div>
 </div>

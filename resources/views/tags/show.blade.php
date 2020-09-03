@@ -4,12 +4,13 @@
 {{-- foreach二回回し --}}
 @foreach($bookTag as $tags)
 
+    {{ Breadcrumbs::render('tags.show', $tags) }}
     <div class="tags">
-
         <div class="side-navi">
             @include('components.popular_tag_list')
             @include('components.popular_user_list')
         </div>
+
         <div class="tags-show">
             @foreach($tags->books as $tags)
             <div class="tags-show-each">

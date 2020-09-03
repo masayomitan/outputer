@@ -4,8 +4,8 @@
 <div class="users">
     <div class="users-box">
         <div class="user-icon">
-            @if (isset(auth()->user()->profile_image))
-                <img class="user-image" src="{{ $user->profile_image }}" class="user-image" width="100" height="100">
+            @if (isset($user->profile_image))
+                <img class="user-image"  src="{{ $user->profile_image}}">
             @else
                 <img class="user-image" src="{{ asset('image/noname.jpg')}}"></a>
             @endif

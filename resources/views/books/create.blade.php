@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @include('layouts.header')
-
+{{ Breadcrumbs::render('books.create') }}
 
 <div class="book-create">
     <div class="new"><h1>新しい本を登録</h1></div>

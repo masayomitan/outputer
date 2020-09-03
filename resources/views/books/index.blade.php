@@ -7,6 +7,7 @@
     <div class="header">
         @include('layouts.top_header')
     </div>
+    {{ Breadcrumbs::render('books.index') }}
 
 </div>
 
