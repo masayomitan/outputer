@@ -121,7 +121,7 @@ class Sentence extends Model
 
     public function sentenceWithCount(Int $book_id) //まとめのいいねが多い順、withcountで取得 並べ替えで使用
     {
-        return $this->withCount('favorites')->orderBy('favorites_count', 'desc')->get();
+        return $this->withCount('favorites')->where('book_id', $book_id)->orderBy('favorites_count', 'desc')->get();
     }
 
     public function getFavoriteSentences(Int $user_id)      //User.phpファイルのgetTabInfoListメソッドで使用
