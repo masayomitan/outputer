@@ -67,6 +67,7 @@ class BooksController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
+        $data["tags"] = array_filter($data["tags"]);    //array_filterで連想配列の空チェック,空削除でエラー防ぐ
 
         $file_name = $request->file('book_image')->getClientOriginalName();
         $request->file('book_image')->storeAs('/public/book_image',$file_name);
@@ -75,14 +76,12 @@ class BooksController extends Controller
         $book_image = Storage::disk('s3')->putFile('book_image', $file_name, 'public');
         $data["book_image"] = Storage::disk('s3')->url($book_image);
 
-        $data["tags"] = array_filter($data["tags"]);
         $rules = [
             'title' =>  ['string', 'max:50'],
             'author' => ['string', 'max:30'],
             'tags.*' =>   ['string', 'max:10'],
         ];
 
-        // dd($rules);
         $messages = [
             'title.max'        => 'タイトルは:max文字以内で入力してください。',
             'author.max'       => '著者名は:max文字以内で入力してください。',
@@ -94,13 +93,12 @@ class BooksController extends Controller
 
         $book->bookStore($data);
 
-        $tag_name = array_filter($data["tags"]);  //array_filterで連想配列の空チェック
+        $tag_name = $data["tags"];
         if(empty($tag_name)) {
             return redirect('/books')->with(['validated'=>$validated]);
         } else {
             $tag->tagStore($data["tags"]);        //タグ登録メソッド
-            $tags = array_filter($data["tags"]);  //array_filterで連想配列の空チェック,空削除でエラー防ぐ
-            $tag_ids = $tag->getTagIds($tags);    //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
+            $tag_ids = $tag->getTagIds($data["tags"]);    //$tagテーブルに挿入した値の名前からidを取得し中間テーブルへ
             $book->bookTagSync($tag_ids);         //中間テーブルにidを設置
         }
 
