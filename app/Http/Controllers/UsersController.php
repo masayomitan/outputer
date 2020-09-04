@@ -142,55 +142,49 @@ class UsersController extends Controller
     //
     }
 
-    // フォロー
-    public function follow(User $user)
+
+    public function follow(User $user)    // フォロー
     {
         $follower = auth()->user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
+        $is_following = $follower->isFollowing($user->id);  // フォローしているか
         if(!$is_following) {
-            // フォローしていなければフォローする
-            $follower->follow($user->id);
+            $follower->follow($user->id);  // フォローしていなければフォローする
             return back();
         }
     }
 
-    // フォロー解除
-    public function unfollow(User $user)
+    public function unfollow(User $user)    // フォロー解除
     {
         $follower = auth()->user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
+        $is_following = $follower->isFollowing($user->id);  // フォローしているか
         if($is_following) {
-            // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
+            $follower->unfollow($user->id);  // フォローしていればフォローを解除する
             return back();
         }
     }
 
-   //フォローリスト表示 :example(users/{id}/following)
-    public function following(User $user)
+    public function following(User $user)    //フォローリスト表示 :URL(users/{id}/following)
     {
         $following_users = $user->getFollowingUsers($user->id);
         $user_info_list = $user->getUserInfoList();
         $user_info_list["all_users"] = $following_users;
-        //view先で条件分岐
-        return view('users.follow', $user_info_list);
+
+        return view('users.follow', $user_info_list);  //view先でフォロー、アンフォロー条件分岐
     }
 
 
-    //フォロワーリスト表示 :example(users/{id}/followers)
-    public function followers(User $user)
+
+    public function followers(User $user)    //フォロワーリスト表示 :URL(users/{id}/followers)
     {
         $followers = $user->getFollowerUsers($user->id);
         $user_info_list = $user->getUserInfoList();
         $user_info_list["all_users"] = $followers;
-        //view先で条件分岐
-        return view('users.follow', $user_info_list);
+
+        return view('users.follow', $user_info_list);  //view先でフォロー、アンフォロー条件分岐
     }
 
-    //いいねした記事リスト表示 :example(users/{id}/favorites)
-    public function favorites(User $user, Sentence $sentence)
+
+    public function favorites(User $user, Sentence $sentence)  //いいねした記事リスト表示 :URL(users/{id}/favorites)
     {
         $timelines = $sentence->getFavoriteSentences($user->id);
         $user_info_list = $user->getUserInfoList();
