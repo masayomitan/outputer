@@ -1,6 +1,7 @@
 
 .body-content{
     display: flex;
+
 }
 
 
@@ -11,10 +12,7 @@
 }
 
 #menu-box{
-    background-image: url("../../image/321288_m.jpg");
-    min-height: 100vh;
-    height: 680px;
-    overflow: hidden;
+    height: 150px;
     position: relative;
 }
 

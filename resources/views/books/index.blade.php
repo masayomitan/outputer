@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
-
 <div id="menu-box" class="big-bg">
-
     <div class="header-null"></div>
     <div class="header">
         @include('layouts.top_header')
     </div>
+</div>
     {{ Breadcrumbs::render('books.index') }}
 
-</div>
 
 <div class="body-content">
 
@@ -17,6 +15,7 @@
         @include('components.popular_tag_list')
         @include('components.popular_user_list')
     </div>
+
 
 
     <div class="wrapper-item">
