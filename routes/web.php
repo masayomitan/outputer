@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect('/books');
+    return redirect('/home');
 });
 
 
@@ -13,6 +13,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/guideline', 'HomeController@guideline');
 
 Route::get('books', 'BooksController@index')->name('books.index');
 
