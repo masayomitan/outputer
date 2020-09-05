@@ -17,15 +17,15 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    // public function boot()
-    // {
-    //     //
-    // }
-
-
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
-        $url->forceScheme('https');
+        //
     }
+
+
+    // public function boot(UrlGenerator $url)
+    // {
+    //     $url->forceScheme('https');
+    // }
 }
 

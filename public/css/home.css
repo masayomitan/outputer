@@ -1,0 +1,110 @@
+
+.home{
+    margin: auto;
+    width: 100%;
+    background-color: #d5e68b;
+}
+.home-image{
+    text-align: center;
+}
+
+.home-image-log{
+    border-radius: 50%;
+    width : 400px;
+    height : 400px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.home-text{
+    text-align :center;
+    margin: 50px 0 50px 0;
+    font-weight: 700;
+    font-size: 2.0rem;
+    color: #1b515c;
+    font-family: sans-serif;
+}
+
+
+.home-login{
+
+    height: 50px;
+    text-align: center;
+}
+
+.nav-login{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1b515c;
+    border: solid 3px;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+}
+.nav-login:hover{
+    color: white;
+    background-color: #1b515c;
+}
+.nav-index{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1b515c;
+    border: solid 3px;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.nav-index:hover{
+    color: white;
+    background-color: #1b515c;
+}
+
+.home-text-box{
+    background-color: #eee;;
+    border: solid #1b515c;
+    color: #267594;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.home-text-2{
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 10px 0 10px ;
+
+}
+.home-text-3{
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.home-usage{
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #1b515c;
+}
+
+.home-step-1 {
+    display: flex;
+}
+.home-step-1 p{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.home-step-2 {
+    margin: auto;
+}
+
+.home-image-log-step{
+    width : 250px;
+    height : 280px;
+    border-radius: 5px;
+    margin: 10px 0 0 50px;
+}
+
+.home-under{
+    background-color:  #eee;
+}
