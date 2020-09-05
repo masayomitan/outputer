@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @include('layouts.header')
 
-{{ Breadcrumbs::render('users.show', $user) }}
+{{ Breadcrumbs::render('users.edit', $user) }}
 
 
     <div class="user-edit">

@@ -13,10 +13,10 @@
             <img class="book-info-image" src="{{ $book->book_image }}">
                 <div class="book-info-others">
                     <div class="book-info-title">
-                        <a {{ url('books/' .$book->id) }}>{{ $book->title }}</a>
+                        {{ $book->title }}
                     </div>
                     <div class="book-info-author">
-                        <a {{ url('books/' .$book->id) }}>{{ $book->author}}</a>
+                        {{ $book->author}}
                     </div>
                 </div>
         </div>
