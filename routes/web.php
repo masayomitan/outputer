@@ -13,13 +13,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/guideline', 'HomeController@guideline');
+Route::get('/home/term_of_service', 'HomeController@term_of_service')->name('home/term_of_service');
+Route::get('/home/guideline', 'HomeController@guideline')->name('home/guideline');
 
 Route::get('books', 'BooksController@index')->name('books.index');
 
-
 Route::get('search', 'SearchesController@index')->name('search.index');
-
 
 #####ユーザー
 Route::resource('users', 'UsersController',['only' => ['index', 'show']]);

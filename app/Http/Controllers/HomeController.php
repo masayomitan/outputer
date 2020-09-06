@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function term_of_service()
+    {
+        return view('term_of_service');
+    }
+
     public function guideline()
     {
         return view('guideline');
