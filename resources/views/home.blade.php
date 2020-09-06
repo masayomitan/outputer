@@ -48,22 +48,19 @@
         使い方も簡単♪
     </div>
 
-    <div class="home-step-1">
-        <img class="home-image-log-step" src="{{ asset('image/book_create.png')}}">
-        <div class="home-step-2">
+    <div class="home-usage-1">
+        <img class="home-image-log-usage" src="{{ asset('image/book_create.png')}}">
+        <div class="home-usage-2">
             <p>読書済みの本を簡単に登録するだけ。  題名、著者、写真のみでok</p>
         </div>
     </div>
 
-    <div class="home-step-1">
-        <img class="home-image-log-step" src="{{ asset('image/sentence_create.png')}}">
-        <div class="home-step-2">
+    <div class="home-usage-1">
+        <img class="home-image-log-usage" src="{{ asset('image/sentence_create.png')}}">
+        <div class="home-usage-2">
             <p>後は頑張って悩んで要点短く3行でまとめるのみ！</p>
             <p>参考になるユーザーの投稿も見てどんどん練習していこう！</p>
         </div>
-    </div>
-    <div class="home-step-3">
-
     </div>
 
     <div class="home-login" >

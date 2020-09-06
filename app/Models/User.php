@@ -128,7 +128,7 @@ class User extends Authenticatable
     public function getPopularUsers() {
         $favorite_list = Favorite::all();
 
-        foreach($favorite_list as $favorite_item) {    //Favoriteのsentence_idに紐づいたuser_idを全部取り出し
+        foreach($favorite_list as $favorite_item) {    //FavoriteのsentenceTableのuser_idを全部取り出し
             $user_id_list[] = $favorite_item->sentence()->value('user_id');
         }
 

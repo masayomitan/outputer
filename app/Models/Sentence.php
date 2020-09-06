@@ -89,13 +89,13 @@ class Sentence extends Model
         ->where('user_id', $user_id)->where('status', $status_id)
         ->join('books', 'books.id', '=','book_id')
         ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
-        ->orderBy('sentences.updated_at', 'DESC')->paginate(6);
+        ->orderBy('sentences.updated_at', 'DESC')->paginate(20);
     }
 
     public function getTimeLines(Int $status_id)
     {
         //全ての記事を取得する
-        return $this->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(6);
+        return $this->where('status', $status_id)->orderBy('created_at', 'DESC')->paginate(20);
     }
 
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
@@ -128,7 +128,7 @@ class Sentence extends Model
     {
         $favorite_sentences = $this->join('books', 'books.id', '=','book_id')  //いいねした記事取得、joinでbookstableも取得,whereHasでリクエストしたuserのいいねだけにする
         ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
-        ->whereHas('favorites', function($query) use ($user_id) { 
+        ->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
         })->where('status', 0)->paginate(20);
         return $favorite_sentences;

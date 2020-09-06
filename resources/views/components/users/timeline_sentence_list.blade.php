@@ -21,7 +21,6 @@
     @if ($timelines->count())
     @foreach ($timelines as $timeline)
     <div class="timeline-box">
-
         <div class="timeline-book-box">
             <a href="{{ route('books.show', ['book'=>$timeline->book_id])}}">
             <img class="timeline-book-image" src="{{ $timeline->book_image }}"></a>

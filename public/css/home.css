@@ -87,18 +87,19 @@
     color: #1b515c;
 }
 
-.home-step-1 {
+.home-usage-1 {
     display: flex;
+    margin-top: 10px;
 }
-.home-step-1 p{
+.home-usage-1 p{
     font-size: 1.5rem;
     font-weight: 700;
 }
-.home-step-2 {
+.home-usage-2 {
     margin: auto;
 }
 
-.home-image-log-step{
+.home-image-log-usage{
     width : 250px;
     height : 280px;
     border-radius: 5px;
