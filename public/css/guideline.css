@@ -1,0 +1,17 @@
+
+.guideline-body{
+    margin: auto;
+    width: 100%; max-width: 1200px;
+}
+.guideline-body p{
+    font-family: 'Noto Sans JP',sans-serif;
+    font-size: 17px;
+    font-weight: 100;
+}
+
+.guideline-first{
+    margin: 20px;
+    font-size: 2rem;
+    border-bottom: solid 1px #e4e4e4;
+    min-height: 70px;
+}
