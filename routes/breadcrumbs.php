@@ -5,7 +5,7 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 
 Breadcrumbs::for('home', function ($trail) {
-    $trail->push('ホーム', url('home'));
+    $trail->push('Home', route('home'));
 });
 
 
@@ -65,11 +65,12 @@ Breadcrumbs::for('sentence.edit', function ($trail, $user, $book, $sentences){
 });
 //ここまで
 
+Breadcrumbs::for('tags.index', function ($trail, $tags) {
+    $trail->parent('books.index');
+    $trail->push('タグ一覧', route('tags.index'));
+});
 
 Breadcrumbs::for('tags.show', function ($trail, $tags) {
     $trail->parent('books.index');
     $trail->push("$tags->name",  url('tags/'. $tags->id));
 });
-
-
-
