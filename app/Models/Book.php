@@ -65,13 +65,15 @@ class Book extends Model
     {
         return $this->withCount('sentences')->where('books.id', '<>', $book)
                     ->having('sentences_count' , '>=', 1)
-                    ->orderBy('sentences_count', 'desc')->paginate(8);
+                    ->orderBy('sentences_count', 'desc')
+                    ->orderBY('updated_at', 'DESC' )->paginate(8);
     }
     public function getAllBooksWithPopularSentences($book)
     {
         return $this->withCount('sentences')->where('books.id', '<>', $book)
                     ->having('sentences_count' , '>=', 1)
-                    ->orderBy('sentences_count', 'desc')->get();
+                    ->orderBy('sentences_count', 'desc')
+                    ->orderBY('updated_at', 'DESC' )->get();
     }
 
 
