@@ -8,8 +8,7 @@
         @include('components.users.user_tab_list')
 
         <div class="timeline">
-
-            @if ($timelines->count())
+        @if ($timelines->count())
             @foreach ($timelines as $timeline)
             <div class="timeline-box">
 
@@ -25,8 +24,10 @@
                     <p class="timeline-book-text">{{$timeline->text_2}}</p>
                     <p class="timeline-book-text">{{$timeline->text_3}}</p>
                     <div class="timeline-favorite">
-                        <div class="timeline-favorite-icon"></div>
-                        <div class="timeline-favorite-count">{{ count($timeline->favorites) }}</div>
+                        <img class="timeline-favorite-icon" src="{{ asset('image/heart.png')}}">
+                        <div class="timeline-favorite-count">
+                            {{ count($timeline->favorites) }}
+                        </div>
                     </div>
                 </div>
 
@@ -48,7 +49,6 @@
                         </div>
                 </div>
             </div>
-
             @endforeach
             @else
                 <div class="timeline-null">対象の記事がありません。</div>
