@@ -33,9 +33,10 @@
             <p class="timeline-book-text">{{$timeline->text_2}}</p>
             <p class="timeline-book-text">{{$timeline->text_3}}</p>
             <div class="timeline-favorite">
-                <div class="timeline-favorite-icon"></div>
-                <div class="timeline-favorite-count">{{ count($timeline->favorites) }}</div>
-
+                    <img class="timeline-favorite-icon" src="{{ asset('image/heart.png')}}">
+                <div class="timeline-favorite-count">
+                    {{ count($timeline->favorites) }}
+                </div>
                 @if ($request_status_id == 1)
                 <a href="{{ url('sentences/' .$timeline->id .'/edit') }}" class="user-confirm-edit-button">編集して公開する</a>
                 @endif
@@ -53,7 +54,7 @@
                         <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick='return confirm("当に削除するつもりかい？");'>
+                            <button type="submit" onclick='return confirm("本当に削除しますか？");'>
                                 3行削除</button>
                         </form>
                 @endif
