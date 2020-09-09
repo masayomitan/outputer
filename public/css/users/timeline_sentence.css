@@ -51,17 +51,15 @@
 }
 
 .timeline-favorite-icon{
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    background-image: url("../../image/like.jpeg");
+    width: 40px;
+    height: 40px;
 }
 
 .timeline-favorite-count{
     font-weight: 700;
-    font-size: 35px;
-    margin-left: 5px;
-    color: #55c500;
+    font-size: 30px;
+    margin-left: 15px;
+    color: grey;
 }
 
 .timeline-delete{
