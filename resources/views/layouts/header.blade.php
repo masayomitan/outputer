@@ -30,10 +30,12 @@
             <li><a href="#">Menu</a>
                 <ul>
                     @if (isset(auth()->user()->id))
-                    <li><a href="{{ route('users.show',auth()->user()->id)}}">mypage</a></li>
-                    <li><a href="{{ route('users.edit',auth()->user()->id)}}">プロフィール編集</a></li>
+                    <li><a href="{{ route('users.show',auth()->user()->id)}}">マイページ</a></li>
+                            <li><a href="{{ route('users.edit',auth()->user()->id)}}">プロフィール編集</a></li>
+                            <li><a href="{{ route('users.show',auth()->user()->id)}}?status=1">下書き</a></li>
+                            <li><a href="{{ route('books.create') }}">本の新規追加</a></li>
                     @endif
-                    <li><a href="{{ route('books.create') }}">本の新規追加</a></li>
+
                     @guest
                     <li>
                         <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a></li>

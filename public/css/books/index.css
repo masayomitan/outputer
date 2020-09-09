@@ -7,6 +7,7 @@
 
 .home-book-box{
     text-align: center;
+    width: 100%;
 }
 
 .home-list-name{
@@ -21,7 +22,7 @@
 
 .home-book-list {
     display: flex;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 3%;
     flex-wrap: wrap;
     margin-bottom: 20px;
@@ -43,12 +44,11 @@
     font-weight: 700;
     width: 200px;
 }
-
-
 .book-author{
     color: #3c6ea6;
     width: 200px;
 }
+
 
 
 .home-view-sentence{
