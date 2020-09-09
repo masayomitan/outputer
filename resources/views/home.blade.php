@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
-
+<head>
+<link rel="shortcut icon" href="{{ asset('image/favicon/favicon.png') }}">
+</head>
 <div class="home">
     <div class="home-image">
         <img class="home-image-log" src="{{ asset('image/outputer.log2.png')}}">
