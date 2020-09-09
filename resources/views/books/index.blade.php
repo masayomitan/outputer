@@ -1,44 +1,92 @@
+
 @extends('layouts.app')
-
-<div id="menu-box" class="big-bg">
-    <div class="header-null"></div>
-    <div class="header">
-        @include('layouts.top_header')
-    </div>
-</div>
-    {{ Breadcrumbs::render('books.index') }}
+@include('layouts.top_header')
+{{ Breadcrumbs::render('books.index') }}
 
 
-<div class="body-content">
 
-    <div class="body-content-popular">
+
+
+
+<div class="home-body">
+
+    <div class="home-body-left">
         @include('components.popular_tag_list')
         @include('components.popular_user_list')
     </div>
 
+    <div class="home-book-box">
 
-
-    <div class="wrapper-item">
-        <div class="wrapper-item-box">
-            @foreach ($books as $book)
-                <div class="book_box">
+        <div class="home-list-name">
+            新着本
+        </div>
+        <div class="home-book-list">
+            @foreach ($books["all"] as $book)
+                <div class="book_box-list-each">
                     <a href="{{ route('books.show',$book->id)}}">
-                    <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
+                        <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
                     </a>
                     <div class="book-title">
                         <a href="{{ route('books.show',$book->id)}}">
-                        {{$book->title}}
+                            {{$book->title}}
                         </a>
                     </div>
                     <div class="book-author">
-                        {{$book->author}}</p>
+                        {{$book->author}}
                     </div>
-                    <div class="most-favorite"></div>
                 </div>
             @endforeach
         </div>
-    </div>
 
+        <div class="home-list-name">
+            新しくまとめられた本
+        </div>
+        <div class="home-book-list">
+            @foreach ($books["new"] as $book)
+                <div class="book_box-list-each">
+                    <a href="{{ route('books.show',$book->id)}}">
+                        <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
+                    </a>
+                    <div class="book-title">
+                        <a href="{{ route('books.show',$book->id)}}">
+                            {{$book->title}}
+                        </a>
+                    </div>
+                    <div class="book-author">
+                        {{$book->author}}
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="home-view-sentence">
+            <a class="home-view-sentence" href="{{ route('books.put_new_sentence') }}">一覧を見る</a>
+        </div>
+
+        <div class="home-list-name">
+            まとめが多い順
+        </div>
+        <div class="home-book-list">
+            @foreach ($books["pop"] as $book)
+                <div class="book_box-list-each">
+                    <a href="{{ route('books.show',$book->id)}}">
+                        <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
+                    </a>
+                    <div class="book-title">
+                        <a href="{{ route('books.show',$book->id)}}">
+                            {{$book->title}}
+                        </a>
+                    </div>
+                    <div class="book-author">
+                        {{$book->author}}
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="home-view-sentence">
+            <a class="home-view-sentence" href="{{ route('books.put_popular_sentence') }}">一覧を見る</a>
+        </div>
+
+    </div>
 </div>
 
-
+@include('layouts.footer')

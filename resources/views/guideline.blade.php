@@ -120,3 +120,4 @@
     【2020 年9 月1 日制定】
 
 </div>
+@include('layouts.footer')

@@ -171,8 +171,6 @@ class UsersController extends Controller
         return view('users.follow', $user_info_list);  //view先でフォロー、アンフォロー条件分岐
     }
 
-
-
     public function followers(User $user)    //フォロワーリスト表示 :URL(users/{id}/followers)
     {
         $followers = $user->getFollowerUsers($user->id);
@@ -181,7 +179,6 @@ class UsersController extends Controller
 
         return view('users.follow', $user_info_list);  //view先でフォロー、アンフォロー条件分岐
     }
-
 
     public function favorites(User $user, Sentence $sentence)  //いいねした記事リスト表示 :URL(users/{id}/favorites)
     {

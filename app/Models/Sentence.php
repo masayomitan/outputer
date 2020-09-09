@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Sentence extends Model
 {
 
-    protected $filable = [
+    protected $fillable = [
         'text_1',
         'text_2',
         'text_3',

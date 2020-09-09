@@ -14,6 +14,7 @@
 }
 
 .book-title-show{
+
     font-size: 36px;
     margin: auto;
     width: 100%; max-width: 800px;
@@ -55,7 +56,7 @@
     margin-top: 30px;
     flex-wrap: wrap;
     display: flex;
-    
+
 }
 
 .book-tags-each{
@@ -123,29 +124,16 @@
     margin-bottom: 20px;
 }
 
-.fas.btn.btn-like{
-    text-decoration: none;
-    margin-left: 15px;
-    font-size: 16px;
-    background-color:  #007bff;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 5px 5px 5px;
-}
-
-.fas.btn.btn-unlike{
-    text-decoration: none;
-    margin-left: 15px;
-    font-size: 16px;
-    background-color:  #e03997;
-    color: white;
-    border-radius: 10px;
-    padding: 5px 5px 5px 5px;
-}
-
 .sentence-box{
     margin: auto;
     width: 100%; max-width: 800px;
+
+}
+.book-show-favorites{
+    display: inline-block;
+}
+.book-show-favorites-count{
+    display: inline-block;
 }
 
 .sentence-box-each {

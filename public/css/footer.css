@@ -1,0 +1,12 @@
+
+.footer{
+    display: flex;
+    height: 50px;
+    list-style: none;
+    justify-content: space-evenly;
+    border-top: 1px solid grey;
+}
+
+.footer-list{
+    margin-top: 10px;
+}
