@@ -1,36 +1,54 @@
 
-.tags{
+
+.tag-body{
     display: flex;
-    margin-top: 50px;
+    margin: auto;
+    width: 100%; max-width: 1300px;
+}
+.tag-book-box{
+    text-align: center;
+    width: 100%;
 }
 
-.tags-show{
-    margin-left: 90px;
-    width: 100%; max-width: 800px;
+.tag-list-name{
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 30px;
+    text-decoration: none;
+    box-shadow: 0 -6px 0 0 #DCECF8 inset;
+    display: inline ;
+}
+
+.tag-book-list {
     display: flex;
+    margin-top: 3%;
+    margin-left: 3%;
     flex-wrap: wrap;
-    justify-content: space-around;
+    margin-bottom: 20px;
 }
-
 
 .tags-show-each{
     margin: 15px ;
     display: inline;
+
 }
 
 .tags-image{
-    width: 200px;
-    height: 250px;
+    width: 180px;
+    height: 230px;
     filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.6));
 }
 
 .tags-title{
     margin: 10px 0 5px;
     font-weight: 700;
+    width: 200px;
 }
 
 
 .tags-author
 {
     color: #3c6ea6;
+    width: 200px;
 }
