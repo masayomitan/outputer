@@ -62,7 +62,7 @@ class User extends Authenticatable
 
 
     public function getAllUsers($user_id){
-        return $this->where('id', '<>', $user_id)->paginate(6);
+        return $this->where('id', '<>', $user_id)->orderBy('created_at', 'DESC')->paginate(6);
     }
 
 
@@ -186,7 +186,6 @@ class User extends Authenticatable
         }
         return $follow_statuses;
     }
-
 
     public function getUserInfoList(){
         $favorite = new Favorite;

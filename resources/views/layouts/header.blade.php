@@ -5,19 +5,22 @@
 <html lang="ja">
 
 <meta charset="UTF-8">
-<title>outputer</title>
+<title>サンギョー</title>
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 <head>
+    <link rel="shortcut icon" href="{{ asset('image/favicon/favicon.png') }}">
     <header class="main-header-wrapper">
-        <a class="main-header-title" href="{{ route('books.index') }}"></a>
+        <a class="main-header-title" href="{{ route('books.index') }}">
+            <img class="main-header-title-log" src="{{ asset('image/title.log.png')}}">
+        </a>
 
         <div class="user-box">
             @if (isset(auth()->user()->id))
                 <a href="{{ route('users.show',auth()->user()->id)}}"src="{{ auth()->user()->profile_image}}">
                 @if (isset(auth()->user()->profile_image))
-                    <img class="user-header-image" src="{{ auth()->user()->profile_image}}"></a>
+                    <img class="user-header-image" src="{{ asset('storage/profile_image/' .auth()->user()->profile_image)}}"></a>
                 @else
                     <img class="user-header-image" src="{{ asset('image/noname.jpg')}}"></a>
                 @endif

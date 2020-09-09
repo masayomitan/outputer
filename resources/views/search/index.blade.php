@@ -2,8 +2,11 @@
 @extends('layouts.app')
 @include('layouts.top_header')
 
-<h2 class="search-result">{{$keyword}}<span class="ml-2">で検索</span></h2>
-
+@if(!empty($keyword))
+    <h2 class="search-result">{{$keyword}}<span class="ml-2">で検索</span></h2>
+@else
+    <h2 class="search-result"><span class="ml-2">すべて検索</span></h2>
+@endif
 
 <div class="search-index">
 

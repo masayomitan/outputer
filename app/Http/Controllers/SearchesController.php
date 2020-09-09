@@ -15,15 +15,10 @@ class SearchesController extends Controller
     {
 
         $keyword = $request->input("keyword");
-
-        if(!empty($keyword)) {
             $search_books_title = Book::where('title', 'LIKE', '%'.$keyword.'%')->paginate(20);  #記事タイトルから検索
             $search_books_author = Book::where('author', 'LIKE', '%'.$keyword.'%')->paginate(20); #著者から検索
             $search_users = User::where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);   #ユーザーネームから検索
             $search_tags = Tag::where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);     #タグから検索
-        } else {
-            return redirect('/books');
-        }
 
         return view('search.index', [
             'keyword' => $keyword,

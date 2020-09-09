@@ -8,11 +8,13 @@
 }
 
 .main-header-title{
-    margin: 10px 0 0 20px;
-    width: 250px;
-    background-image: url("../../image/logo.png");
+    margin: 10px 0 0 50px;
 }
+.main-header-title-log{
+    height: 80px;
+    width: 250px;
 
+}
 .search{
     display: inline;
     margin: 40px;
@@ -50,20 +52,21 @@
     border-radius: 50%;
 }
 
-  #menu{
+#menu{
     list-style-type: none;
     width: 150px;
     height: 40px;
     background: #276baa;
     border-radius: 10px;
+    margin-right: 40px;
 
-  }
-  #menu li{
+}
+#menu li{
     text-align: center;
     list-style: none;
     border-radius: 10px;
-  }
-  #menu li a{
+}
+#menu li a{
     display: block;
     padding: 13px 0;
     color: #fff;
@@ -72,10 +75,9 @@
     line-height: 1;
     text-decoration: none;
     border-radius: 10px;
+}
 
-  }
-
-  #menu li ul li{
+#menu li ul li{
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
@@ -86,25 +88,33 @@
     -o-transition: .2s;
     -ms-transition: .2s;
     transition: .2s;
-  }
-  #menu li ul li a{
+}
+#menu li ul li a{
     padding: 13px 15px;
     background: #1a5293;
     font-size: 12px;
     font-weight: normal;
-  }
-  #menu li:hover > a{
+}
+#menu li:hover > a{
     background: #1a5293;
     color: #e0dc62;
-  }
-  #menu li:hover ul li{
+}
+#menu li:hover ul li{
     overflow: visible;
     height: 38px;
     border-bottom: 1px solid #fff;
-  }
+}
 
-  .breadcrumb-item{
+
+.breadcrumb{
+    margin-left: 10px;
+    }
+.breadcrumb-item{
     display: inline-block;
     color: grey;
+    margin-left: 10px;
     margin-bottom: 20px;
+}
+.breadcrumb-item a{
+    text-decoration: none;
 }

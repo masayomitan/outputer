@@ -10,13 +10,12 @@
         <div class="book-show-header">
             <div class="book-title-show">{{$book->title }}</div>
         </div>
+
             <div class="book-show-above">
                 <div class="book-image-show">
                     <img class="book-image-show-box" src="{{ $book->book_image }}">
                 </div>
-
                     <div class="book-info">
-
                         <div class="book-author-box">
                             <a class="book-author-show"> {{ $book->author }} </a>
                             <div class="book-tags">
@@ -30,7 +29,6 @@
                             </div>
                         </div>
                             {{-- <a href="{{ route('tags.create',$book->id)}}">タグ追加</a> --}}
-
                         <div class="book-share"></div>
                         <div class="twitter-image"></div>
                     </div>
@@ -42,31 +40,42 @@
             <div class="book-show-below">
                 <div class="sentence-box">
 
-                    <form method="PUT">
-                        @csrf
-                        <select  class="sentence-select" id="select" name="data_id" onchange="this.form.submit()">
-                            @foreach ( $data_list as $id => $text)
-                                <option @if($request->data_id == $id) selected @endif value="{{ $id }}" >{{ $text }}</option>
-                            @endforeach
-                        </select>
-                    </form>
+                    <div class="sentence-show-select">
+                        <form method="PUT">
+                            @csrf
+                            <select  class="sentence-select" id="select" name="data_id" onchange="this.form.submit()">
+                                @foreach ( $data_list as $id => $text)
+                                    <option @if($request->data_id == $id) selected @endif value="{{ $id }}" >{{ $text }}</option>
+                                @endforeach
+                            </select>
+                        </form>
+                    </div>
 
                     @if ($sentences->count())
                         @foreach($sentences as $sentence)
                             @if ($sentence->status == 0)
+
                                 @if(isset($user))
                                     @if (!in_array(Auth::user()->id, array_column($sentence->favorites->toArray(), 'user_id'), TRUE))
-                                        <form action="{{ route('favorites', $sentence) }}" method="POST" class="favorite-like">
+
+                                        <form action="{{ route('favorites', $sentence) }}" method="POST" class="book-show-favorites">
                                             @csrf
                                             <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                            <input type="submit" value="&#xf164;" class="fas btn btn-like">
+                                            <button type="submit" class="btn"><i class="far fa-heart"></i></button>
                                         </form>
-                                        @else
-                                        <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="favorite-unlike">
+                                        <div class="book-show-favorites-count">
+                                            {{$sentence->favorites->count()}}
+                                        </div>
+                                    @else
+                                        <form action="{{ route('unfavorites', $sentence) }}" method="POST" class="book-show-favorites">
                                             @csrf
                                             <input type="hidden" name="sentence_id" value="{{ $sentence->id }}">
-                                            <input type="submit" value="&#xf164;取り消す" class="fas btn btn-unlike">
+                                            <button type="submit" class="btn"><i class="fas fa-heart"></i></button>
                                         </form>
+                                        <div class="book-show-favorites-count">
+                                            {{$sentence->favorites->count()}}
+                                        </div>
+
                                     @endif
                                 @endif
 
@@ -83,7 +92,7 @@
                                     </div>
                                     <div class="sentence-box-user">
                                         <img class="profile_image" src="{{ $sentence->user->profile_image }}">
-                                        <p class="timeline-date">{{ $sentence->created_at->format('Y-m-d') }}</p>
+                                        <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
                                     </div>
                                 </div>
                             @endif

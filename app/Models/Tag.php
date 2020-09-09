@@ -41,13 +41,8 @@ class Tag extends Model
         return $tag_ids;
     }
 
-    public function getPopularTags(){      //人気タグ取得
-        $popular_tags = $this::withCount([ 'books' => function($query) {        //withCountでレコード数をとる, 0で公開しているbooksのデータを呼び出し
-            $query;
-        }])
-        ->orderBy('books_count', 'desc')
-        ->take(5)
-        ->get();
-        return $popular_tags;
+    public function getPopularTags() //人気タグ取得
+    {
+        return $this->withCount('books')->orderBy('books_count', 'desc')->take(5)->get();
     }
 }

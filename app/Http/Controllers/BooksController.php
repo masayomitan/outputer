@@ -27,13 +27,48 @@ class BooksController extends Controller
     public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
-        $books = Book::all();
+
+        $books["all"] = $book->getBooks($book);
+        $books["new"] = $book->getBooksWithNewSentences($book);
+        $books["pop"] = $book->getBooksWithPopularSentences($book);
 
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $keyword = $request->input("keyword");
         return view('books.index',compact('books'), [
             'keyword' => $keyword,
+            'request' => $request,
+            'popular_tags' => $popular_tags,
+            'popular_users' => $popular_users,
+        ]);
+    }
+
+    public function put_new_sentence(Request $request, Book $book, Tag $tags, User $user)
+    {
+
+        $books= $book->getAllBooksWithNewSentences($book);
+
+        $popular_tags = $tags->getPopularTags();
+        $popular_users = $user->getPopularUsers();
+        $keyword = $request->input("keyword");
+        return view('books.put_new_sentence',compact('books'), [
+            'keyword' => $keyword,
+            'request' => $request,
+            'popular_tags' => $popular_tags,
+            'popular_users' => $popular_users,
+        ]);
+    }
+
+    public function put_popular_sentence(Request $request, Book $book, Tag $tags, User $user)
+    {
+        $books = $book->getAllBooksWithPopularSentences($book);
+
+        $popular_tags = $tags->getPopularTags();
+        $popular_users = $user->getPopularUsers();
+        $keyword = $request->input("keyword");
+        return view('books.put_popular_sentence',compact('books'), [
+            'keyword' => $keyword,
+            'request' => $request,
             'popular_tags' => $popular_tags,
             'popular_users' => $popular_users,
         ]);
@@ -83,9 +118,9 @@ class BooksController extends Controller
         ];
 
         $messages = [
-            'title.max'        => 'タイトルは:max文字以内で入力してください。',
-            'author.max'       => '著者名は:max文字以内で入力してください。',
-            'tags.*.max'       => 'タグは10文字以内で入力してください',
+            'title.max'     => 'タイトルは:max文字以内で入力してください。',
+            'author.max'    => '著者名は:max文字以内で入力してください。',
+            'tags.*.max'    => 'タグは10文字以内で入力してください',
         ];
 
         $validator = Validator::make($data, $rules, $messages);
@@ -105,8 +140,6 @@ class BooksController extends Controller
         return redirect('/books')->with(['validated'=>$validated]);
     }
 
-
-
     /**
      * Display the specified resource.
      *
@@ -123,7 +156,7 @@ class BooksController extends Controller
             1 => "最新順",
             2 => "評価順"
         ];
-        switch($request->data_id) {
+        switch($request->data_id){
             case 1:
                 $sentences = $sentence->getSentence($book->id);
             break;

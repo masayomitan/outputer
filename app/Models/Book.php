@@ -10,7 +10,7 @@ class Book extends Model
 {
     protected $fillable = [
         'title',
-        'over_view'
+        'author'
     ];
 
     public function getUrlAttribute()
@@ -34,6 +34,47 @@ class Book extends Model
     }
 
 
+    public function getBook(Int $book_id) //一冊取得
+    {
+        //本id取得
+        return $this->with('user')->with('tags')
+        ->where('id', $book_id)->first();
+    }
+
+    public function getBooks($book)      //複数冊取得
+    {
+        return $this->where('id','<>', $book)->orderBy('created_at', 'DESC')->paginate(8);
+    }
+
+    public function getBooksWithNewSentences($book)
+    {
+        return $this->where('books.id', '<>', $book)
+                    ->join('sentences', 'book_id', '=','books.id')
+                    ->select('books.*', 'sentences.updated_at')
+                    ->orderBy('sentences.updated_at', 'DESC')->paginate(8);
+    }
+    public function getAllBooksWithNewSentences($book)
+    {
+        return $this->where('books.id','<>',  $book)
+                    ->join('sentences', 'book_id', '=','books.id')
+                    ->select('books.*', 'sentences.updated_at')
+                    ->orderBy('sentences.updated_at', 'DESC')->get();
+    }
+
+    public function getBooksWithPopularSentences($book)
+    {
+        return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    ->having('sentences_count' , '>=', 1)
+                    ->orderBy('sentences_count', 'desc')->paginate(8);
+    }
+    public function getAllBooksWithPopularSentences($book)
+    {
+        return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    ->having('sentences_count' , '>=', 1)
+                    ->orderBy('sentences_count', 'desc')->get();
+    }
+
+
 
     public function getFollowedTimeLines(Int $user_id, Array $follow_ids)
     {
@@ -41,13 +82,6 @@ class Book extends Model
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 
-
-    public function getBook(Int $book_id)
-    {
-        //本id取得
-        return $this->with('user')->with('tags')
-        ->where('id', $book_id)->first();
-    }
 
     public function bookStore(Array $data)
     {

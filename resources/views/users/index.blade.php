@@ -31,5 +31,4 @@
                                     </form>
                                 @endif
                 @endforeach
-            {{ $all_users->links() }}
-@endsection
+
