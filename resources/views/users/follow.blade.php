@@ -10,7 +10,7 @@
 
 
     <div class="follow-users">
-
+    @if ($all_users->count())
         @foreach ($all_users as $user)
         <div class="follow-users-box">
             <div class="follow-user-icon">
@@ -63,6 +63,9 @@
             </div>
         </div>
         @endforeach
+        @else
+                <div class="timeline-null">繋がっているユーザーはいません。</div>
+            @endif
     </div>
 
 
