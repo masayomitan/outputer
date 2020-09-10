@@ -116,7 +116,7 @@ class Sentence extends Model
 
     public function getSentenceCount(Int $user_id)  //User.phpファイルのgetTabInfoListメソッドで使用 数字のカウントするだけで並べ替えはしない
     {
-        return $this->where('user_id', $user_id)->count();
+        return $this->where('user_id', $user_id)->where('status', 0)->count();
     }
 
     public function sentenceWithCount(Int $book_id) //まとめのいいねが多い順、withcountで取得 並べ替えで使用
