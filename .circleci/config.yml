@@ -50,7 +50,7 @@ jobs:
       - run:
           name: SSH 経由のデプロイ
           command: |
-            ssh $SSH_USER@$SSH_HOST "<cd /var/www/outputer/ && git pull origin master>"
+            ssh $SSH_USER@$SSH_HOST "<remote deploy command>"
 
       - run:
           name: install aws cli
