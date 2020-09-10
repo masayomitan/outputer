@@ -21,7 +21,7 @@
                 </div>
                 <div class="user-password">
                     <label for="password">パスワード</label>
-                    <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="４文字以上で入力してください">
                     <p><label for="password-confirm">パスワード確認</label>
                     <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password"></p>
                 </div>

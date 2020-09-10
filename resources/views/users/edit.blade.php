@@ -30,7 +30,14 @@
                     </div>
                     <textarea name="self_introduction" class="self_introduction">{{ $user->self_introduction }}</textarea>
                 </div>
-                <button type="submit" class="edit-button"><p>更新する</p></button>
+                @if (isset(auth()->user()->id))
+                @if (auth()->user()->id == 1)
+                    <p>ゲストユーザーは編集できません</p>
+                @else
+                    <button type="submit" class="edit-button"><p>更新する</p></button>
+                @endif
+                @endif
+
             </form>
         </div>
     </div>
