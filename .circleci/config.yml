@@ -41,7 +41,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/php:7.4.7-fpm
-      - image: docker:19.03
     steps:
       - add_ssh_keys:
           fingerprints:
