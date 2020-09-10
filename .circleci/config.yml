@@ -40,7 +40,6 @@ jobs:
                   - node_modules
 
 
-      - run: echo "base64:SU82ZDKun6reSlCNQkJUoKNM5YO64v052lrIPnq6qC4=" > .env.testing
       - run: php artisan key:generate
       - run: php artisan migrate  --env=testing --database=circle_test --force
       - run: ./vendor/bin/phpunit
