@@ -38,7 +38,7 @@ jobs:
       - run: php artisan migrate  --env=testing --database=circle_test --force
       - run: ./vendor/bin/phpunit
 
-      
+
 
   deploy:
     docker:
@@ -48,8 +48,8 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a0:6b:cd:41:ce:8e:b1:d5:85:00:48:51:29:89:c3:4f"
-      - run: ssh -o 'StrictHostKeyChecking no'
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
+      - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+      - run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
       - run:
           name: install aws cli
           command: |
