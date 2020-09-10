@@ -46,7 +46,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a0:6b:cd:41:ce:8e:b1:d5:85:00:48:51:29:89:c3:4f"
-      - run: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: ssh -o 'StrictHostKeyChecking no'
       - checkout
       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
       - run:
