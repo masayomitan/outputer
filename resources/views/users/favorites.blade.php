@@ -42,7 +42,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick='return confirm("本当に削除する？");'>
-                                        文の削除</button>
+                                        3行削除</button>
                                 </form>
                         @endif
                         @endif
@@ -51,7 +51,7 @@
             </div>
             @endforeach
             @else
-                <div class="timeline-null">対象の記事がありません。</div>
+                <div class="timeline-null">まだ投稿がありません</div>
             @endif
             {{ $timelines->links() }}
         </div>

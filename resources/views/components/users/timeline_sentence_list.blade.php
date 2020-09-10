@@ -65,7 +65,7 @@
     </div>
     @endforeach
     @else
-        <div class="timeline-null">対象の記事がありません。</div>
+        <div class="timeline-null">まだ投稿がありません。</div>
     @endif
     {{ $timelines->links() }}
 </div>
