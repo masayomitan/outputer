@@ -38,7 +38,7 @@ jobs:
       - run: php artisan migrate  --env=testing --database=circle_test --force
       - run: ./vendor/bin/phpunit
 
-      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      
 
   deploy:
     docker:
