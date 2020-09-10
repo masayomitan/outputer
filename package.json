@@ -27,7 +27,10 @@
         "sass-loader": "^8.0.0",
         "ts-loader": "^8.0.3",
         "typescript": "^3.9.7",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12",
+        "webpack-dev-server": "^3.11.0"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0"

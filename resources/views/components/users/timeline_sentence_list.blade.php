@@ -67,7 +67,7 @@
     </div>
     @endforeach
     @else
-        <div class="timeline-null">
+        <div class="user-show-select-box">
             まだ投稿がありません。
         </div>
     @endif
