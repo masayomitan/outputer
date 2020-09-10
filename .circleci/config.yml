@@ -3,17 +3,16 @@ version: 2
 jobs:
   build:
     docker:
-            - image: circleci/php:7.4.7-fpm
-            - image: circleci/mysql:5.7
+      - image: circleci/php:7.4.7-fpm
+      - image: circleci/mysql:5.7
 
     environment:
-        - APP_DEBUG: true
-        - APP_ENV: testing
-        - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
-        - DB_CONNECTION: circle_test
-        - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
-    working_directory: ~/repo
 
     steps:
       - checkout
