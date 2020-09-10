@@ -42,6 +42,7 @@ jobs:
 
       - run: php artisan key:generate
       - run: php artisan migrate  --env=testing --database=circle_test --force
+
       - run: ./vendor/bin/phpunit
 
     deploy:
