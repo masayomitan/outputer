@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/php:7.4.7-fpm
+    - image: circleci/mysql:5.7
+      environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:TC8LcgAd0jESLPN/HYT1s0/FCLxVrJuoMlfNSb2b2oI=
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: Install PHP Extensions
+        command: sudo docker-php-ext-install pdo_mysql
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "composer.json" }}
+        - v1-dependencies-
+    - run: composer install -n --prefer-dist
+    - save_cache:
+        paths:
+        - ./vendor
+        key: v1-dependencies-{{ checksum "composer.json" }}
+    - restore_cache:
+        keys:
+        - node-v1-{{ checksum "package-lock.json" }}
+        - node-v1-
+    - save_cache:
+        key: node-v1-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run: php artisan key:generate
+    - run: php artisan migrate  --env=testing --database=circle_test --force
+    - run: ./vendor/bin/phpunit
+    environment:
+    - CIRCLE_COMPARE_URL: https://github.com/masayomitan/outputer/compare/9f35ea93962df913103f068592e9ef68b2b9b988...9f35ea93962df913103f068592e9ef68b2b9b988
+  deploy:
+    docker:
+    - image: circleci/php:7.4.7-fpm
+    - image: docker:19.03
+    steps:
+    - add_ssh_keys:
+        fingerprints:
+        - d0:43:dc:d7:11:44:37:a6:30:af:7c:3a:80:c5:8b:71
+    - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
+    environment:
+    - CIRCLE_COMPARE_URL: https://github.com/masayomitan/outputer/compare/9f35ea93962df913103f068592e9ef68b2b9b988...9f35ea93962df913103f068592e9ef68b2b9b988
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+    - build
+    - deploy:
+        requires:
+        - build
+        filters:
+          branches:
+            only: master
