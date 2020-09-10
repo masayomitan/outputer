@@ -38,6 +38,8 @@ jobs:
       - run: php artisan migrate  --env=testing --database=circle_test --force
       - run: ./vendor/bin/phpunit
 
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
   deploy:
     docker:
       - image: circleci/php:7.4.7-fpm
@@ -47,7 +49,6 @@ jobs:
           fingerprints:
             - "a0:6b:cd:41:ce:8e:b1:d5:85:00:48:51:29:89:c3:4f"
       - run: ssh -o 'StrictHostKeyChecking no'
-      - checkout
       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
       - run:
           name: install aws cli
