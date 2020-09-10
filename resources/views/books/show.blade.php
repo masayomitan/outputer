@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <a  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">まとめの投稿</a>
+            <a  class="sentence-box-create" href="{{ route('sentences.create', ['id' => $book->id]) }}">3行投稿</a>
 
             <div class="book-show-below">
                 <div class="sentence-box">
@@ -98,7 +98,7 @@
                             @endif
                         @endforeach
                     @else
-                    <div class="timeline-null">まだまとめがありません。</div>
+                    <div class="timeline-null">まだ投稿がありません。</div>
                     @endif
                 </div>
             </div>
