@@ -1,22 +1,53 @@
 
 
 
-<div class="select-box">
-    @if (isset(auth()->user()->id))
-        @if ((auth()->user()->id) == $user->id)
-            <select class="select" name="select" onChange="location.href=value;">
-                @foreach ($sentence_status_list as $status_id => $status_text)
-                    <option @if($request_status_id == $status_id) selected @endif value="{{ url()->current() }}?status={{ $status_id }}">
-                        {{ $status_text }}
-                    </option>
-                @endforeach
-            </select>
-        @endif
-    @endif
+<div class="tab-wrap">
+    <div class="favorite">
+        {{ $total_favorited_count }}
+    </div>
+    <div class="iine">
+        いいね獲得数
+    </div>
+    <div class="tab-content">
+        @foreach($tab_info_list as $tab_text => $tab_info)
+        <div class="tab-num">
+                <a href="{{ $tab_info['link'] }}">{{$tab_text}}</a>
+        </div>
+        @endforeach
+    </div>
+    <div class="tab-name">
+        <div class="tab-code">
+            投稿数
+        </div>
+        <div class="tab-code">
+            いいね数
+        </div>
+        <div class="tab-code">
+            フォロー
+        </div>
+        <div class="tab-code">
+            フォロワー
+        </div>
+    </div>
 </div>
 
 
-<div class="timeline">
+    <div class="user-show-select-box">
+        @if (isset(auth()->user()->id))
+            @if ((auth()->user()->id) == $user->id)
+                <select class="select" name="select" onChange="location.href=value;">
+                    @foreach ($sentence_status_list as $status_id => $status_text)
+                        <option @if($request_status_id == $status_id) selected @endif value="{{ url()->current() }}?status={{ $status_id }}">
+                            {{ $status_text }}
+                        </option>
+                    @endforeach
+                </select>
+            @endif
+        @endif
+    </div>
+
+<div class="timelines">
+
 
     @if ($timelines->count())
     @foreach ($timelines as $timeline)
@@ -41,7 +72,6 @@
                 <a href="{{ url('sentences/' .$timeline->id .'/edit') }}" class="user-confirm-edit-button">編集して公開する</a>
                 @endif
             </div>
-
         </div>
 
         <div class="timeline-user-box">
@@ -50,22 +80,24 @@
             <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                 @if (isset(auth()->user()->id))
                 @if (auth()->user()->id == $user->id)
-                <div class="timeline-delete">
+                    <div class="timeline-delete">
                         <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick='return confirm("本当に削除しますか？");'>
                                 3行削除</button>
                         </form>
+                    </div>
                 @endif
                 @endif
-                </div>
-        </div>
 
+        </div>
     </div>
     @endforeach
     @else
-        <div class="timeline-null">まだ投稿がありません。</div>
+        <div class="timeline-null">
+            まだ投稿がありません。
+        </div>
     @endif
     {{ $timelines->links() }}
 </div>

@@ -1,12 +1,16 @@
 
 /* users.show include timeline sentence and favorite  */
 
+
 .timeline-box{
     display: flex;
     border-top: 2px solid #e03997;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15);
     border-radius: .28571429rem;
+    margin: auto;
     margin-bottom: 30px;
+    width: 100%; max-width: 1100px;
+
 }
 
 
