@@ -62,7 +62,6 @@ jobs:
                 unzip awscli-bundle.zip
                 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-
 workflows:
   version: 2
   build_and_deploy:
