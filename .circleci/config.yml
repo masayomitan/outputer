@@ -48,7 +48,7 @@ jobs:
             - "a0:6b:cd:41:ce:8e:b1:d5:85:00:48:51:29:89:c3:4f"
       - run:
           name: Avoid hosts unknown for github
-          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/outputer/ && git pull origin master'
 
 
