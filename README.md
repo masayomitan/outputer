@@ -30,47 +30,48 @@ https://outputapp.net/home
 
 <h2>機能一覧</h2>
 
-<ul>本作成は一般ユーザーは作成のみ、管理者が編集、削除</ul>
+###本作成は一般ユーザーは作成のみ、管理者が編集、削除
 
-<ul>タグ付け機能</ul>
+###タグ付け機能
 
-<ul>3行投稿</ul>
-    <li>作成、削除</li>
-    <li>編集は下書きに一旦保存し作成後は編集不可</li>
+###3行投稿
+    #作成、削除
+    #編集は下書きに一旦保存し作成後は編集不可
 
-<ul>検索機能</ul>
-    <li>題名、著者名、タグで同時検索</li>
+###検索機能
+    #題名、著者名、タグで同時検索
 
-<ul>マッチング（フォロー）機能</ul>
-    <li>フォロー、フォロワー一覧表示</li>
+###マッチング（フォロー）機能
+    #フォロー、フォロワー一覧表示
 
-<ul>いいね機能</ul>
-    <li>いいねした記事表示</li>
-    <li>ユーザーのトータルいいね数表示</li>
+###いいね機能
+    #いいねした記事表示
+    #ユーザーのトータルいいね数表示
 
-<ul>リストソート機能</ul>
-    <li>新規3行投稿順</li>
-    <li>3行投稿数順</li>
-    <li>3行投稿</li>
+###リストソート機能
+    #新規3行投稿順
+    #3行投稿数順
+    #3行投稿
 
-<ul>環境・使用技術</ul>
+###環境・使用技術
 
-<ul>バックエンド</ul>
-    <li>laravel 7.19.1</li>
-    <li>PHP 7.4.7</li>
+###バックエンド
+    #laravel 7.19.1
+    #PHP 7.4.7
 
-<ul>開発環境</ul>
-    <li>Docker/Docker-compose</li>
-    <li>MySQL5.7</li>
+###開発環境
+    #Docker/Docker-compose
+    #MySQL5.7
 
-<ul>本番環境</ul>
-    <li>AWS (VPC EC2 RDS S3 IAM SSL Route53 ALB)</li>
-    <li>ElastiCacheも使用していたが月学1万行ってしまった為削削除、、<li>
-    <li>MySQL5.7</li>
-    <li>Nginx</li>
-    <li>CircleCI</li>
+###本番環境
+    #AWS (VPC EC2 RDS S3 IAM SSL Route53 ALB ElasticCache)
+    #MySQL5.7
+    #Nginx
+    #CircleCI
 
 
-<ul>インフラ構成図</ul>
+###インフラ構成図
 
-<img width="823" alt="インフラ構成" src="https://user-images.githubusercontent.com/59156545/92551529-30bf8f80-f299-11ea-8803-481226a86b0a.png">
+<img width="772" alt="diagram" src="https://user-images.githubusercontent.com/59156545/91533966-b95e3780-e94b-11ea-9324-021ae26bb037.png">
+
+
