@@ -91,7 +91,7 @@
   !*** ./resources/js/app.js ***!
   \*****************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -106,6 +106,7 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 // require('./components/Example');
+window.message = __webpack_require__(/*! ../ts/app */ "./resources/ts/app.ts").message;
 
 /***/ }),
 
@@ -120,14 +121,34 @@
 
 /***/ }),
 
+/***/ "./resources/ts/app.ts":
+/*!*****************************!*\
+  !*** ./resources/ts/app.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.message = void 0;
+function message(name) {
+    return `${name} さん、こんにちは。`;
+}
+exports.message = message;
+
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/ts/app.ts ./resources/sass/app.scss ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/kawasakimasato/outputer/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/kawasakimasato/outputer/resources/ts/app.ts */"./resources/ts/app.ts");
 module.exports = __webpack_require__(/*! /Users/kawasakimasato/outputer/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

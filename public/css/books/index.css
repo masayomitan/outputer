@@ -2,7 +2,7 @@
 .home-body{
     display: flex;
     margin: auto;
-    width: 100%; max-width: 1300px;
+    width: 100%; max-width: 1330px;
 }
 
 .home-book-box{
@@ -33,6 +33,16 @@
     margin: 10px;
 }
 
+.book_image-new{
+    position: relative;
+    border-radius: 50px;
+    height: 33px;
+    width: 33px;
+    left: 25px;
+    top: -210px;
+
+
+}
 .book_image-index{
     width: 180px;
     height: 230px;

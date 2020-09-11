@@ -98,7 +98,9 @@
                             @endif
                         @endforeach
                     @else
-                    <div class="timeline-null">まだ投稿がありません。</div>
+                    <div class="timeline-null">
+                        まだ投稿がありません。
+                    </div>
                     @endif
                 </div>
             </div>
