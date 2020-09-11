@@ -25,6 +25,7 @@ class Follower extends Model
     {
       //user_idをfollowing_idでカウント
         return $this->where('following_id', $user_id)->count();
+
     }
 
     // //to getTabInfoList
@@ -38,5 +39,13 @@ class Follower extends Model
     {
       //user_idをfollowing_idとし、紐づいたfollowed_idを取得
         return $this->where('following_id', $user_id)->get('followed_id');
+    }
+
+    public function followerDestroy(Int $user_id)
+    {
+        return $this::where(function($query) use ($user_id){
+            $query->orWhere('followed_id', $user_id)
+                    ->orWhere('following_id', $user_id)->delete();
+        });
     }
 }

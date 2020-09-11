@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Follower;
 use App\Models\Sentence;
 use App\Models\User;
 
@@ -136,9 +137,13 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-    public function destroy($id)
+    public function destroy(User $user, Request $request, Follower $follower)
     {
-    //
+        $user = auth()->user();
+        $follower->followerDestroy($user->id);    //フォロー,フォロワーも削除
+        $user->userDestroy($user->id);
+
+        return redirect('/books');
     }
 
 

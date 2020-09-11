@@ -39,5 +39,13 @@
                 @endif
 
             </form>
+            <form method="POST" action="{{route('users.destroy' ,$user->id) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit"  class="delete-button" onclick='return confirm("本当に削除しますか？泣");'>
+                ユーザー削除</button>
+            </form>
         </div>
     </div>
+
+

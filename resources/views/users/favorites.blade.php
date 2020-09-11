@@ -32,21 +32,32 @@
                 </div>
 
                 <div class="timeline-user-box">
-                    <img class="timeline-user-image" src="{{ $timeline->user->profile_image }}">
-                    <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
-                    <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
-                        @if (isset(auth()->user()->id))
-                        @if (auth()->user()->id == $timeline->user->id)
-                        <div class="timeline-delete">
-                                <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick='return confirm("本当に削除する？");'>
-                                        3行削除</button>
-                                </form>
-                        @endif
-                        @endif
-                        </div>
+
+                    @if (isset($timeline->user->id))
+                    <a href="{{ route('users.show', $timeline->user->id)}}">
+                        <img class="timeline-user-image" src="{{ $timeline->user->profile_image }}">
+                        <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
+                    </a>
+                        <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                    @else
+                        <img class="timeline-user-image" src="{{ asset('image/noname.jpg') }}">
+                        <p class="timeline-user-name">退会済みユーザーです</p>
+                        <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                    @endif
+
+                    @if (isset(auth()->user()->id))
+                    @if (auth()->user()->id == (isset($timeline->user->id)))
+                    <div class="timeline-delete">
+                        <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick='return confirm("本当に削除する？");'>
+                                3行削除</button>
+                        </form>
+                    </div>
+                    @endif
+                    @endif
+
                 </div>
             </div>
             @endforeach

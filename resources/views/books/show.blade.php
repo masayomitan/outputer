@@ -79,20 +79,40 @@
                                     @endif
                                 @endif
 
+
                                 <div class="sentence-box-each">
-                                    <a href="{{ route('users.show', $sentence->user->id)}}"></a>
+
                                     <div class="sentence-box-name">
-                                        <div class="sentence-box-name-each"> {{ $sentence->user->name}}さんのまとめ</div>
-                                            <div class="line"></div>
+                                        
+                                        @if (isset($sentence->user->id))
+                                            <a href="{{ route('users.show', $sentence->user->id)}}"></a>
+                                            <div class="sentence-box-name-each">
+                                                {{ $sentence->user->name}}さんのまとめ
+                                            </div>
+                                        @else
+                                            <div class="sentence-box-name-each">
+                                                退会済みユーザーです
+                                            </div>
+                                        @endif
+
+                                        <div class="line"></div>
                                         <div class="sentence-box-text-each">
                                             <p>{{ $sentence->text_1 }}</p>
                                             <p>{{ $sentence->text_2 }}</p>
                                             <p>{{ $sentence->text_3 }}</p>
                                         </div>
+
                                     </div>
                                     <div class="sentence-box-user">
-                                        <img class="profile_image" src="{{ $sentence->user->profile_image }}">
-                                        <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
+
+                                        @if (isset($sentence->user->id))
+                                            <img class="profile_image" src="{{ $sentence->user->profile_image }}">
+                                            <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
+                                        @else
+                                            <img class="profile_image" src="{{ asset('image/noname.jpg')}}">
+                                            <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
+                                        @endif
+
                                     </div>
                                 </div>
                             @endif

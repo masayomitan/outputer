@@ -88,6 +88,12 @@ class User extends Authenticatable
     return;
     }
 
+    public function userDestroy(Int $user_id)
+    {
+        return $this->where('id',$user_id)->delete();
+    }
+
+
     // フォローする
     public function follow(Int $user_id)
     {
@@ -135,6 +141,7 @@ class User extends Authenticatable
         if(empty($user_id_list)) {    //空ならそのまま
             $popular_users = [];
         } else {
+            $user_id_list = array_filter($user_id_list);
             $rank_list = array_count_values($user_id_list);   //array_count_valuesでid集計
             $rank_keys = array_keys($rank_list);              //array_keysでindex番号振り分け
             $rank_keys = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し
