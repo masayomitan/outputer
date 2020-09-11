@@ -83,7 +83,7 @@
                                 <div class="sentence-box-each">
 
                                     <div class="sentence-box-name">
-                                        
+
                                         @if (isset($sentence->user->id))
                                             <a href="{{ route('users.show', $sentence->user->id)}}"></a>
                                             <div class="sentence-box-name-each">
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="sentence-box-user">
 
-                                        @if (isset($sentence->user->id))
+                                        @if (isset($sentence->user->profile_image))
                                             <img class="profile_image" src="{{ $sentence->user->profile_image }}">
                                             <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
                                         @else

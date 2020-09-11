@@ -16,10 +16,14 @@
             <div class="follow-user-icon">
                 <div class="follow-user-pics">
                     <a href="{{ url('users/' .$user->id) }}">
-                        <img class="follow-user-image" src="{{ $user->profile_image }}">
+                        @if (isset($user->profile_image))
+                            <img class="follow-user-image" src="{{ $user->profile_image }}">
+                        @else
+                            <img class="follow-user-image" src="{{ asset('image/noname.jpg')}}"></a>
+                        @endif
                     </a>
                 </div>
-
+                
                 <div class="follow-user-confirm">
                     <div class="follow-user-confirm-edit">
                         @if (isset(auth()->user()->id))

@@ -45,9 +45,12 @@
                 @endif
             </div>
         </div>
-
         <div class="timeline-user-box">
-            <img class="timeline-user-image" src="{{ $timeline->user->profile_image}}">
+            @if (isset($timeline->user->profile_image))
+                <img class="timeline-user-image" src="{{ $timeline->user->profile_image}}">
+            @else
+                <img class="timeline-user-image" src="{{ asset('image/noname.jpg')}}"></a>
+            @endif
             <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
             <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                 @if (isset(auth()->user()->id))
@@ -62,7 +65,6 @@
                     </div>
                 @endif
                 @endif
-
         </div>
     </div>
     @endforeach

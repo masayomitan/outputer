@@ -31,13 +31,22 @@
                     </div>
                 </div>
 
-                <div class="timeline-user-box">
 
+                {{-- @if (isset($timeline->user->profile_image))
+                        <img class="timeline-user-image" src="{{ $timeline->user->profile_image}}">
+                    @else
+                        <img class="timeline-user-image" src="{{ asset('image/noname.jpg')}}"></a>
+                    @endif --}}
+                <div class="timeline-user-box">
                     @if (isset($timeline->user->id))
-                    <a href="{{ route('users.show', $timeline->user->id)}}">
-                        <img class="timeline-user-image" src="{{ $timeline->user->profile_image }}">
-                        <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
-                    </a>
+                        <a href="{{ route('users.show', $timeline->user->id)}}">
+                            @if (isset($timeline->user->profile_image))
+                                <img class="timeline-user-image" src="{{ $timeline->user->profile_image}}">
+                            @else
+                                <img class="timeline-user-image" src="{{ asset('image/noname.jpg')}}"></a>
+                            @endif
+                            <p class="timeline-user-name">{!! nl2br(e(Str::limit($timeline->user->name, 16))) !!}</p>
+                        </a>
                         <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                     @else
                         <img class="timeline-user-image" src="{{ asset('image/noname.jpg') }}">

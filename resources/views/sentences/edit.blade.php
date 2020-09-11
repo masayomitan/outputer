@@ -42,6 +42,5 @@
                     </button></p>
             </div>
         </form>
-        <button type="button" onclick="history.back()">戻る</button>
     </div>
 </div>
