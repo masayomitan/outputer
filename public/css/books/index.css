@@ -36,13 +36,12 @@
 .book_image-new{
     position: relative;
     border-radius: 50px;
-    height: 33px;
-    width: 33px;
-    left: 25px;
-    top: -210px;
-
+    height: 35px;
+    width: 35px;
+    right: 80px;
 
 }
+
 .book_image-index{
     width: 180px;
     height: 230px;
