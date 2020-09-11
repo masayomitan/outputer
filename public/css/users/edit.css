@@ -52,13 +52,23 @@ textarea.self_introduction{
 }
 
 .edit-button{
-    margin-left: 15px;
+    margin-left: 200px;
     font-size: 16px;
     background-color:  #007bff;
     color: #fff;
     border-radius: 5px;
     padding: 5px 5px 5px 5px;
+
 }
 .edit-button p{
     color: #fff;
+}
+
+.delete-button{
+    margin: 1000px 0 0 650px;
+    font-size: 16px;
+    background-color:  red;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
 }

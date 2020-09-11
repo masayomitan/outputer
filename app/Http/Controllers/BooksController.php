@@ -27,7 +27,6 @@ class BooksController extends Controller
     public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
-
         $books["all"] = $book->getBooks($book);
         $books["new"] = $book->getBooksWithNewSentences($book);
         $books["pop"] = $book->getBooksWithPopularSentences($book);
