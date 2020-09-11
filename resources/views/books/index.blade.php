@@ -23,9 +23,10 @@
         <div class="home-book-list">
             @foreach ($books["all"] as $book)
                 <div class="book_box-list-each">
-                    <a href="{{ route('books.show',$book->id)}}">
-                        <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
-                    </a>
+                    <img class="book_image-new" src="{{ asset('image/new.png')}}">
+                        <a href="{{ route('books.show',$book->id)}}">
+                            <img  class="book_image-index" src="{{ $book->book_image }}" alt="">
+                        </a>
                     <div class="book-title">
                         <a href="{{ route('books.show',$book->id)}}">
                             {{$book->title}}
