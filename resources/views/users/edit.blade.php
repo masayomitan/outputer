@@ -35,16 +35,18 @@
                     <p>ゲストユーザーは編集できません</p>
                 @else
                     <button type="submit" class="edit-button"><p>更新する</p></button>
+                </form>
+                    <form method="POST" action="{{route('users.destroy' ,$user->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"  class="delete-button" onclick='return confirm("本当に削除しますか？泣");'>
+                        ユーザー削除</button>
+                    </form>
                 @endif
                 @endif
 
-            </form>
-            <form method="POST" action="{{route('users.destroy' ,$user->id) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit"  class="delete-button" onclick='return confirm("本当に削除しますか？泣");'>
-                ユーザー削除</button>
-            </form>
+
+
         </div>
     </div>
 
