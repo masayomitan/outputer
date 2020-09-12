@@ -31,12 +31,6 @@
                     </div>
                 </div>
 
-
-                {{-- @if (isset($timeline->user->profile_image))
-                        <img class="timeline-user-image" src="{{ $timeline->user->profile_image}}">
-                    @else
-                        <img class="timeline-user-image" src="{{ asset('image/noname.jpg')}}"></a>
-                    @endif --}}
                 <div class="timeline-user-box">
                     @if (isset($timeline->user->id))
                         <a href="{{ route('users.show', $timeline->user->id)}}">
