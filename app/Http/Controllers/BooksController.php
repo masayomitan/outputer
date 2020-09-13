@@ -27,7 +27,7 @@ class BooksController extends Controller
     public function index(Request $request, Book $book, Tag $tags, User $user)
     {
 
-        $books["all"] = $book->getBooks($book);
+        $books["all"] = Book::orderBy('updated_at', "desc")->take(8)->get();
         $books["new"] = $book->getBooksWithNewSentences($book);
         $books["pop"] = $book->getBooksWithPopularSentences($book);
 
