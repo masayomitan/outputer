@@ -41,11 +41,6 @@ class Book extends Model
         ->where('id', $book_id)->first();
     }
 
-    public function getBooks($book)      //複数冊取得
-    {
-        return $this->where('id','<>', $book)->orderBy('created_at', 'DESC')->paginate(8);
-    }
-
     public function getBooksWithNewSentences($book)
     {
         return $this->where('books.id', '<>', $book)
