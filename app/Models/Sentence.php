@@ -130,7 +130,7 @@ class Sentence extends Model
         ->select('sentences.*', 'books.title', 'books.author', 'books.book_image')
         ->whereHas('favorites', function($query) use ($user_id) {
             $query->where('user_id', $user_id);
-        })->where('status', 0)->paginate(30);
+        })->where('status', 0)->orderBy('sentences.updated_at', 'DESC')->paginate(30);
         return $favorite_sentences;
     }
 
