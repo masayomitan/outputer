@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class Book extends Model
@@ -48,7 +49,7 @@ class Book extends Model
                     ->join('sentences', 'book_id', '=','books.id')
                     ->select('books.*')
                     ->groupBy('book_id')
-                    ->orderBy('sentences.updated_at', 'DESC')->paginate(8);
+                    ->orderBy(DB::raw('MAX(sentences.updated_at)'), 'DESC')->paginate(8);
     }
 
     public function getAllBooksWithNewSentences($book)
@@ -58,7 +59,7 @@ class Book extends Model
                     ->join('sentences', 'book_id', '=','books.id')
                     ->select('books.*')
                     ->groupBy('book_id')
-                    ->orderBy('sentences.updated_at', 'DESC')->get();
+                    ->orderBy(DB::raw('MAX(sentences.updated_at)'), 'DESC')->get();
     }
 
     public function getBooksWithPopularSentences($book)
