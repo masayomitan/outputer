@@ -43,11 +43,17 @@ class Book extends Model
 
     public function getBooksWithNewSentences($book)
     {
-        return $this->where('books.id', '<>', $book)
+        return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    // ->having('sentences_count' , '>=', 1)
                     ->join('sentences', 'book_id', '=','books.id')
                     ->select('books.*', 'sentences.updated_at')
+
                     ->orderBy('sentences.updated_at', 'DESC')->paginate(8);
     }
+
+    // ->whereHas('favorites', function($query) use ($user_id) {
+    //     $query->where('user_id', $user_id);
+    // })->where('status', 0)->paginate(30);
     public function getAllBooksWithNewSentences($book)
     {
         return $this->where('books.id','<>',  $book)
