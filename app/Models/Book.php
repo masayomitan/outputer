@@ -56,7 +56,8 @@ class Book extends Model
         return $this->where('books.id','<>',  $book)
                     ->where('status', 0)
                     ->join('sentences', 'book_id', '=','books.id')
-                    ->select('books.*', 'sentences.updated_at')
+                    ->select('books.*')
+                    ->groupBy('book_id')
                     ->orderBy('sentences.updated_at', 'DESC')->get();
     }
 
