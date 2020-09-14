@@ -44,6 +44,7 @@ class Book extends Model
     public function getBooksWithNewSentences($book)
     {
         return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    ->where('status', 0)
                     // ->having('sentences_count' , '>=', 1)
                     ->join('sentences', 'book_id', '=','books.id')
                     ->select('books.*', 'sentences.updated_at')
@@ -57,6 +58,7 @@ class Book extends Model
     public function getAllBooksWithNewSentences($book)
     {
         return $this->where('books.id','<>',  $book)
+                    ->where('status', 0)
                     ->join('sentences', 'book_id', '=','books.id')
                     ->select('books.*', 'sentences.updated_at')
                     ->orderBy('sentences.updated_at', 'DESC')->get();
@@ -65,6 +67,7 @@ class Book extends Model
     public function getBooksWithPopularSentences($book)
     {
         return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    ->where('status', 0)
                     ->having('sentences_count' , '>=', 1)
                     ->orderBy('sentences_count', 'desc')
                     ->orderBY('updated_at', 'DESC' )->paginate(8);
@@ -72,6 +75,7 @@ class Book extends Model
     public function getAllBooksWithPopularSentences($book)
     {
         return $this->withCount('sentences')->where('books.id', '<>', $book)
+                    ->where('status', 0)
                     ->having('sentences_count' , '>=', 1)
                     ->orderBy('sentences_count', 'desc')
                     ->orderBY('updated_at', 'DESC' )->get();

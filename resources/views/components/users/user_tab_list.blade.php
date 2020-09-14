@@ -19,7 +19,7 @@
             投稿数
         </div>
         <div class="tab-code">
-            いいね数
+            いいねした投稿
         </div>
         <div class="tab-code">
             フォロー
