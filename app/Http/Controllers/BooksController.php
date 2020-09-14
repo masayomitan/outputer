@@ -30,7 +30,7 @@ class BooksController extends Controller
         $books["all"] = Book::orderBy('updated_at', "desc")->take(8)->get();
         $books["new"] = $book->getBooksWithNewSentences($book);
         $books["pop"] = $book->getBooksWithPopularSentences($book);
-        var_dump($books["new"]);
+        
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $keyword = $request->input("keyword");
