@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class UserTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
 
     public function testCreateUser()
     {
@@ -95,7 +95,7 @@ class UserTest extends TestCase
         $response = $this->get('users/'.$public_sentence->user_id);
         $response->assertSee($public_sentence->text_1);
 
-         # 下書き記事が見れないようになっているか
+        # 下書き記事が見れないようになっているか
         $dont_see_sentence = factory(App\Models\Sentence::class)->create([
             "user_id" => $creater_user->id,
             'text_1' => "text_1",
