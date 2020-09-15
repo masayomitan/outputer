@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\Sentence;
 use App\Models\Favorite;
 use App\Models\Tag;
@@ -15,6 +16,33 @@ use Tests\TestCase;
 class BookTest extends TestCase
 {
     use DatabaseMigrations;
+
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+    public function testIndexBook()
+    {
+
+        $factory_user = factory(App\Models\User::class)->create();
+        $factory_book = factory(App\Models\Book::class)->create();
+        $factory_tag  = factory(App\Models\Tag::class)->create();
+
+        $factory_user->save();
+        $factory_book->save();
+        $factory_tag->save();
+
+        $this->get('/books')
+        ->assertSee($factory_user->image)
+        ->assertSee($factory_book->title)
+        ->assertSee($factory_book->author)
+        ->assertSee($factory_tag->name);
+
+    }
+
+
     /**
      * A basic feature test example.
      *
@@ -28,6 +56,9 @@ class BookTest extends TestCase
         $factory_book = factory(App\Models\Book::class)->create();
         $factory_tag  = factory(App\Models\Tag::class)->create();
 
+        $factory_user->save();
+        $factory_book->save();
+        $factory_tag->save();
 
         $response = $this->actingAs($factory_user);
 
