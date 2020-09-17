@@ -146,16 +146,16 @@ class User extends Authenticatable
             $rank_keys = array_keys($rank_list);              //array_keysでindex番号振り分け
             $rank_keys = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し
 
-            $popular_users = $this->whereIn('id',$rank_keys)
+            $popular_users = $this->where('id',$rank_keys)
             ->orderBy('id', 'desc')
-            ->take(5)
+            ->take(10)
             ->get();
         }
         return $popular_users;
     }
 
 
-    //to getUserInfoList
+    //getUserInfoListメソッドで使う、ユーザー画面の色々な取得数表示メソッド
     public function getTabInfoList(){
         $sentence = new Sentence();
         $follower = new Follower();
@@ -182,29 +182,13 @@ class User extends Authenticatable
     return $tab_info_list;
     }
 
-    //to getUserInfoList
-    public function getFollowStatuses($login_user) {
-        if(isset($login_user)) {
-        $follow_statuses["is_following"] = $login_user->isFollowing($this->id);
-        $follow_statuses["is_followed"] = $login_user->isFollowed($this->id);
-        } else {
-        $follow_statuses["is_following"] = false;
-        $follow_statuses["is_followed"] = false;
-        }
-        return $follow_statuses;
-    }
 
     public function getUserInfoList(){
         $favorite = new Favorite;
 
-        $login_user = auth()->user();
-        $follow_statuses = $this->getFollowStatuses($login_user);
         $total_favorited_count = $favorite->getTotalFavoritedCount($this->id);
-
         $user_info_list["user"] = $this;
         $user_info_list["total_favorited_count"] = $total_favorited_count;
-        $user_info_list["is_following"] = $follow_statuses["is_following"];
-        $user_info_list["is_followed"] = $follow_statuses["is_followed"];
         $user_info_list["tab_info_list"] = $this->getTabInfoList();
     return $user_info_list;
     }
