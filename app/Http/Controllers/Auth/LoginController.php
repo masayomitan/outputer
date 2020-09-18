@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -44,6 +45,18 @@ class LoginController extends Controller
     public function redirectPath()
     {
         return '/books';
+    }
+
+    public function authenticate()   //ゲストログイン
+    {
+        $email = 'test@com';
+        $password = '1234';
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+
+            return redirect(route('books.index'));
+        }
+        return back();
     }
 
     protected function loggedOut(Request $request)

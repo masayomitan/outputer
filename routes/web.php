@@ -12,6 +12,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('login/test', 'Auth\LoginController@authenticate')->name('login.test');  //ゲストログイン実装,HTMLにベタ打ちだった為
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/term_of_service', 'HomeController@term_of_service')->name('home/term_of_service');
 Route::get('/home/guideline', 'HomeController@guideline')->name('home/guideline');

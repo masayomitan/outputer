@@ -23,11 +23,10 @@
                 </div>
                 <button type="submit" class="login-button"><p>ログインする</p></button>
             </form>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login.test') }}">
                 @csrf
+                @method('GET')
                 <div class="form-group">
-                    <input type="hidden" name="email" value="test@com">
-                    <input type="hidden" name="password" value="1234">
                     <button type="submit" class="easy-login-button">簡単ログイン</button>
                 </div>
             </form>
