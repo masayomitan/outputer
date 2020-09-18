@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -141,15 +142,16 @@ class User extends Authenticatable
         if(empty($user_id_list)) {    //空ならそのまま
             $popular_users = [];
         } else {
-            $user_id_list = array_filter($user_id_list);
+            $user_id_list = array_filter($user_id_list);      //退会ユーザーのidが読み込めないエラー回避
             $rank_list = array_count_values($user_id_list);   //array_count_valuesでid集計
             $rank_keys = array_keys($rank_list);              //array_keysでindex番号振り分け
-            $rank_keys = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し
+            $rank_slice = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し、10番まで
+            $ids_order = implode(',', $rank_slice);            //配列に文字列を連結
+            
+            $popular_users = $this->whereIn('id',$rank_slice)->orderByRaw(DB::raw("FIELD(id, $ids_order)"))
+            ->get();  //数字が複数あるのでwhereInで表示  https://sampling2x.com/2019/03/17/sql-in/
 
-            $popular_users = $this->whereIn('id',$rank_keys)  //数字が複数あるのでwhereInで表示  https://sampling2x.com/2019/03/17/sql-in/
-            ->orderBy('id', 'desc')
-            ->take(10)
-            ->get();
+            var_dump($rank_keys);
         }
         return $popular_users;
     }
