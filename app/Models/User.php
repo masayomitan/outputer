@@ -147,11 +147,9 @@ class User extends Authenticatable
             $rank_keys = array_keys($rank_list);              //array_keysでindex番号振り分け
             $rank_slice = array_slice($rank_keys, 0, 10);      //array_sliceで振り分けた番号を取り出し、10番まで
             $ids_order = implode(',', $rank_slice);            //配列に文字列を連結
-            
+
             $popular_users = $this->whereIn('id',$rank_slice)->orderByRaw(DB::raw("FIELD(id, $ids_order)"))
             ->get();  //数字が複数あるのでwhereInで表示  https://sampling2x.com/2019/03/17/sql-in/
-
-            var_dump($rank_keys);
         }
         return $popular_users;
     }
