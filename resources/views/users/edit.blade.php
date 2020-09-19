@@ -22,7 +22,7 @@
                 </div>
                 <div class="user-email">
                     <label for="email">メールアドレス</label>
-                    <input id="email" type="email" name="email" value="{{ $user->email }}" required autocomplete="email">
+                    <input id="email" type="email" name="email" value="{{ $user->email }}">
                 </div>
                 <div class="user-self_introduction">
                     <div class="intro">
