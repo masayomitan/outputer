@@ -86,12 +86,12 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
 
-        $user = $this->first_or_create_social_user('twitter', $user->id, $user->name, $user->avatar );
-
-        // Laravel 標準の Auth でログイン
-        Auth::login($user);
-
-        return redirect('/books');
+        // 全プロバイダ
+        $user->getId();
+        $user->getNickname();
+        $user->getName();
+        $user->getEmail();
+        $user->getAvatar();
     }
 
 }
