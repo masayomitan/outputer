@@ -83,12 +83,13 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('twitter')->user();
-
+        try {
+            $user = Socialite::driver('twitter')->user();
+            } catch(\Exception $e) {
+                return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
+        }
         $authUser = $this->findOrCreateUser($user);
-
         Auth::login($authUser, true);
-
         return redirect()->route('books.index');
     }
 
