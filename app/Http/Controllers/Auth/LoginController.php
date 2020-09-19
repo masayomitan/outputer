@@ -89,7 +89,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('books');
+        return redirect()->route('books.index');
     }
 
     private function findOrCreateUser($twitterUser)
@@ -103,7 +103,7 @@ class LoginController extends Controller
         return User::create([
             'name' => $twitterUser->name,
             'id' => $twitterUser->id,
-            'avatar' => $twitterUser->avatar_original
+
         ]);
     }
 
