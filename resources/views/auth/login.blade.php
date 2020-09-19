@@ -37,3 +37,4 @@
     </div>
 
     <a href="/login/twitter">ログイン</a>
+    <a href="login/twitter/callback">コールバック</a>
