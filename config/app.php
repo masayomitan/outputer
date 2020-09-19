@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -232,6 +234,7 @@ return [
 
         'Image' => Intervention\Image\ImageManagerStatic::class,
 
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

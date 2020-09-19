@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -62,6 +63,28 @@ class LoginController extends Controller
     protected function loggedOut(Request $request)
     {
         return redirect(route('books.index'));
+    }
+
+    /**
+     * twitterの認証ページヘユーザーをリダイレクト
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    /**
+     * twitterからユーザー情報を取得
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('twitter')->user();
+
+        // $user->token;
     }
 
 }

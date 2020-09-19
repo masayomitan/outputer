@@ -8,7 +8,6 @@
     ],
     "license": "MIT",
     "require": {
-        "predis/predis": "^1.1",
         "php": "^7.2",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.2",
@@ -17,9 +16,11 @@
         "intervention/image": "^2.5",
         "kyslik/column-sortable": "^6.3",
         "laravel/framework": "v7.19.1",
+        "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.1",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
