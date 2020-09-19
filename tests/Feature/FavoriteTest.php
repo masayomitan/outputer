@@ -47,4 +47,40 @@ class FavoriteTest extends TestCase
         ]);
     }
 
+    public function testDisplayFavoriteSentenceInUsers()
+    {
+        $user_id = 1;
+        $favorites = factory(App\Models\Favorite::class,5)->create([
+            'user_id' => $user_id,
+        ]);
+
+        $favoriting_user = User::find($user_id);
+
+        $response = $this->actingAs($favoriting_user);
+        $response = $response->get('/users/'.$user_id.'/favorite');
+
+        foreach($favorites as $favorite) {
+            $favorite_sentence = Sentence::find($favorite->sentence_id);
+            $response->assertSeeText($favorite_sentence->id);
+        }
+    }
+
+    public function testNotDisplayFavoriteArticleInUsers()
+    {
+        $user_id = 1;
+        $favorites = factory(App\Models\Favorite::class,5)->create([
+            'user_id' => 2,
+        ]);
+
+        $favoriting_user = User::find($user_id);
+
+        $response = $this->actingAs($favoriting_user);
+        $response = $response->get('/users/'.$user_id.'/favorite');
+
+        foreach($favorites as $favorite) {
+            $favorite_sentence = Sentence::find($favorite->sentence_id);
+            $response->assertDontSeeText($favorite_sentence->text_1);
+        }
+    }
+
 }
