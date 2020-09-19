@@ -103,7 +103,7 @@ class LoginController extends Controller
         return User::create([
             'name' => $twitterUser->name,
             'id' => $twitterUser->id,
-
+            'profile_image' => $twitterUser->avatar_original
         ]);
     }
 
