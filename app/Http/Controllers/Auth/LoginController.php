@@ -76,7 +76,6 @@ class LoginController extends Controller
         return Socialite::driver('twitter')->redirect();
     }
 
-
     /**
      * twitterからユーザー情報を取得
      *
@@ -86,12 +85,26 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
 
-        // 全プロバイダ
-        $user->getId();
-        $user->getNickname();
-        $user->getName();
-        $user->getEmail();
-        $user->getAvatar();
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect()->route('books');
+    }
+
+    private function findOrCreateUser($twitterUser)
+    {
+        $authUser = User::where('id', $twitterUser->id)->first();
+
+        if ($authUser){
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $twitterUser->name,
+            'id' => $twitterUser->id,
+            'avatar' => $twitterUser->avatar_original
+        ]);
     }
 
 }
