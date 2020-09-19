@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -75,6 +76,7 @@ class LoginController extends Controller
         return Socialite::driver('twitter')->redirect();
     }
 
+
     /**
      * twitterからユーザー情報を取得
      *
@@ -84,7 +86,12 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
 
-        // $user->token;
+        $user = $this->first_or_create_social_user('twitter', $user->id, $user->name, $user->avatar );
+
+        // Laravel 標準の Auth でログイン
+        Auth::login($user);
+
+        return redirect('/books');
     }
 
 }
