@@ -97,13 +97,8 @@ class LoginController extends Controller
 
     private function findOrCreateUser($twitterUser)
     {
-        $authUser = User::where('id', $twitterUser->id)->first();
+        $twitterUser = User::where('twitter_id', $twitterUser->id)->first();
 
-        if ($authUser){
-            if($authUser->twitter_id  !== $authUser->getNickname()){
-                $authUser->twitter_id = $authUser->getNickname();
-                $authUser->save();
-            }
 
             $img = file_get_contents($twitterUser->avatar_original);
             if ($img !== false) {
@@ -117,7 +112,7 @@ class LoginController extends Controller
             'id' => $twitterUser->id,
             'profile_image' => $twitterUser->avatar_original
         ]);
-        
+
         }
     }
-}
+
