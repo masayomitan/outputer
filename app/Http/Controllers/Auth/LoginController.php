@@ -111,7 +111,7 @@ class LoginController extends Controller
             // 画像の取得
             $img = file_get_contents($user->avatar_original);
             if ($img !== false) {
-                $file_name = $user->id . '_' . uniqid() . '.jpg';
+                $file_name = $user->getAvatar()->file('profile_image');
                 $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
                 $newuser->avatar = Storage::disk('s3')->url($profile_image);
             }
