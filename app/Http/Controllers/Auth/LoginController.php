@@ -91,7 +91,7 @@ class LoginController extends Controller
         }
         $user = User::where(['email' => $user->getEmail()])->first();
 
-        if($user){
+        if(isset($user)){
             //email登録がある場合の処理
             //twitter idが変更されている場合、DBアップデード
             if($user->twitter_id  !== $user->getNickname()){
