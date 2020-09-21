@@ -48,19 +48,6 @@
                         <p class="timeline-date">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                     @endif
 
-                    @if (isset(auth()->user()->id))
-                    @if (auth()->user()->id == (isset($timeline->user->id)))
-                    <div class="timeline-delete">
-                        <form method="post" action="{{ url('sentences/' .$timeline->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick='return confirm("本当に削除する？");'>
-                                3行削除</button>
-                        </form>
-                    </div>
-                    @endif
-                    @endif
-
                 </div>
             </div>
             @endforeach
