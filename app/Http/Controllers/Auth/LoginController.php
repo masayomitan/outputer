@@ -94,24 +94,24 @@ class LoginController extends Controller
         if($user){
             //email登録がある場合の処理
             //twitter idが変更されている場合、DBアップデード
-            // if($user->twitter_id  !== $user->getNickname()){
-            //     $user->twitter_id = $user->getNickname();
-            //     $user->save();
-            // }
+            if($user->twitter_id  !== $user->getNickname()){
+                $user->twitter_id = $user->getNickname();
+                $user->save();
+            }
 
             Auth::login($user);
-            return redirect('/');
+            return redirect('/books');
         }else{
             //メールアドレスがなければユーザ登録
             $newuser = new User;
             $newuser->name = $user->getName();
             $newuser->email = $user->getEmail();
-            // $newuser->twitter_id = $user->getNickname();
+            $newuser->twitter_id = $user->getNickname();
 
             // 画像の取得
             $img = file_get_contents($user->avatar_original);
             if ($img !== false) {
-                $file_name = $user->id . '_' . uniqid() . '.jpg';
+                $file_name = $user->getAvatar()->file('profile_image');
                 $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
                 $newuser->avatar = Storage::disk('s3')->url($profile_image);
             }
@@ -119,7 +119,7 @@ class LoginController extends Controller
             $newuser->save();
             //ログインしてトップページにリダイレクト
             Auth::login($newuser);
-            return redirect('/');
+            return redirect('/books');
         }
     }
 }
