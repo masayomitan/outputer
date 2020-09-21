@@ -85,36 +85,31 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $twitterUser = Socialite::driver('twitter')->user();
+            $user = Socialite::driver('twitter')->user();
             } catch(\Exception $e) {
                 return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
         }
-        $authUser = $this->findOrCreateUser($twitterUser);
+        $authUser = $this->findOrCreateUser($user);
         Auth::login($authUser, true);
         return redirect()->route('books.index');
     }
 
-
     private function findOrCreateUser($twitterUser)
     {
-        $twitterUser = User::where('twitter_id', $twitterUser->id)->first();
+        $authUser = User::where('id', $twitterUser->id)->first();
 
+        if ($authUser){
+            return $authUser;
+        }
 
-            $img = file_get_contents($twitterUser->avatar_original);
-            if ($img !== false) {
-                $file_name = $twitterUser->getAvatar()->file('profile_image');
-                $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
-                $twitterUser->avatar_original = Storage::disk('s3')->url($profile_image);
-            }
+            $file_name = $twitterUser->avatar_original->file('profile_image');
+            $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
+            $twitterUser->avatar_original = Storage::disk('s3')->url($profile_image);
 
         return User::create([
             'name' => $twitterUser->name,
             'id' => $twitterUser->id,
             'profile_image' => $twitterUser->avatar_original
         ]);
-
-        $twitterUser->save();
-
-        }
     }
-
+}
