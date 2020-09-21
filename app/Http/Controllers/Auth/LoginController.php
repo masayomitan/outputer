@@ -86,15 +86,6 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
 
-        // OAuth Twoプロバイダ
-        $token = $user->token;
-        $refreshToken = $user->refreshToken; // not always provided
-        $expiresIn = $user->expiresIn;
-
-        // OAuth Oneプロバイダ
-        $token = $user->token;
-        $tokenSecret = $user->tokenSecret;
-
         // 全プロバイダ
         $user->getId();
         $user->getNickname();
