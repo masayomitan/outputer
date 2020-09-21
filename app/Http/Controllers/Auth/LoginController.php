@@ -85,41 +85,39 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $user = Socialite::driver('twitter')->user();
+            $twitterUser = Socialite::driver('twitter')->user();
             } catch(\Exception $e) {
                 return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
         }
-        $user = User::where(['email' => $user->getEmail()])->first();
+        $authUser = $this->findOrCreateUser($twitterUser);
+        Auth::login($authUser, true);
+        return redirect()->route('books.index');
+    }
 
-        if($user){
-            //email登録がある場合の処理
-            //twitter idが変更されている場合、DBアップデード
-            if($user->twitter_id  !== $user->getNickname()){
-                $user->twitter_id = $user->getNickname();
-                $user->save();
+
+    private function findOrCreateUser($twitterUser)
+    {
+        $authUser = User::where('id', $twitterUser->id)->first();
+
+        if ($authUser){
+            if($authUser->twitter_id  !== $authUser->getNickname()){
+                $authUser->twitter_id = $authUser->getNickname();
+                $authUser->save();
             }
 
-            Auth::login($user);
-            return redirect('/books');
-        }else{
-            //メールアドレスがなければユーザ登録
-            $newuser = new User;
-            $newuser->name = $user->getName();
-            $newuser->email = $user->getEmail();
-            $newuser->twitter_id = $user->getNickname();
-
-            // 画像の取得
-            $img = file_get_contents($user->avatar_original);
+            $img = file_get_contents($twitterUser->avatar_original);
             if ($img !== false) {
-                $file_name = $user->getAvatar()->file('profile_image');
+                $file_name = $twitterUser->getAvatar()->file('profile_image');
                 $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
-                $newuser->avatar = Storage::disk('s3')->url($profile_image);
+                $twitterUser->avatar_original = Storage::disk('s3')->url($profile_image);
             }
-            //ユーザ作成
-            $newuser->save();
-            //ログインしてトップページにリダイレクト
-            Auth::login($newuser);
-            return redirect('/books');
+
+        return User::create([
+            'name' => $twitterUser->name,
+            'id' => $twitterUser->id,
+            'profile_image' => $twitterUser->avatar_original
+        ]);
+        
         }
     }
 }
