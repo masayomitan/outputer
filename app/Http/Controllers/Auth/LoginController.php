@@ -113,6 +113,8 @@ class LoginController extends Controller
             'profile_image' => $twitterUser->avatar_original
         ]);
 
+        $twitterUser->save();
+
         }
     }
 
