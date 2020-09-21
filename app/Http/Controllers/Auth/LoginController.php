@@ -91,7 +91,7 @@ class LoginController extends Controller
             return redirect('/login')->with('oauth_error', 'ログインに失敗しました');
         }
 
-        $file_name = $user->getAvatar('profile_image');
+            $file_name = $user->getAvatar()->file('profile_image');
             $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
             $image = Storage::disk('s3')->url($profile_image);
 
