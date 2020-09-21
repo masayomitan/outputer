@@ -91,16 +91,12 @@ class LoginController extends Controller
             return redirect('/login')->with('oauth_error', 'ログインに失敗しました');
         }
 
-            $file_name = $user->avatar_original->file('profile_image');
-            $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
-            $image = Storage::disk('s3')->url($profile_image);
-
         $myinfo = User::firstOrCreate(['twitter_id' => $user->token ],
             [   'name' => $user->name,
                 'email' => $user->getEmail(),
-                'profile_image' => $image
+                'profile_image' => $user->getAvatar()
             ]);
             Auth::login($myinfo);
-            return redirect()->to('/books');
+            return redirect('/books');
     }
 }
