@@ -84,15 +84,20 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('twitter')->user();
+        try {
+            $user = Socialite::with("twitter")->user();
+        }
+        catch (\Exception $e) {
+            return redirect('/login')->with('oauth_error', 'ログインに失敗しました');
+        }
 
-        // 全プロバイダ
-        $user->getId();
-        $user->getNickname();
-        $user->getName();
-        $user->getEmail();
-        $user->getAvatar();
+        $myinfo = User::firstOrCreate(['twitter_id' => $user->token ],
+            ['name' => $user->name,
+             'email' => $user->getEmail(),
+             'profile_image' => $user->getAvatar()
+            ]);
+            Auth::login($myinfo);
+            return redirect()->to('/books'); // homeへ転送
 
-        return redirect('/books');
-    }
+     }
 }
