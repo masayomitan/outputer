@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -88,24 +89,37 @@ class LoginController extends Controller
             } catch(\Exception $e) {
                 return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
         }
-        $authUser = $this->findOrCreateUser($user);
-        Auth::login($authUser, true);
-        return redirect()->route('books.index');
-    }
+        $user = User::where(['email' => $user->getEmail()])->first();
 
-    private function findOrCreateUser($twitterUser)
-    {
-        $authUser = User::where('id', $twitterUser->id)->first();
+        if($user){
+            //email登録がある場合の処理
+            //twitter idが変更されている場合、DBアップデード
+            if($user->twitter_id  !== $user->getNickname()){
+                $user->twitter_id = $user->getNickname();
+                $user->save();
+            }
 
-        if ($authUser){
-            return $authUser;
+            Auth::login($user);
+            return redirect('/');
+        }else{
+            //メールアドレスがなければユーザ登録
+            $newuser = new User;
+            $newuser->name = $user->getName();
+            $newuser->email = $user->getEmail();
+            $newuser->twitter_id = $user->getNickname();
+
+            // 画像の取得
+            $img = file_get_contents($user->avatar_original);
+            if ($img !== false) {
+                $file_name = $user->id . '_' . uniqid() . '.jpg';
+                $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
+                $newuser->avatar = Storage::disk('s3')->url($profile_image);
+            }
+            //ユーザ作成
+            $newuser->save();
+            //ログインしてトップページにリダイレクト
+            Auth::login($newuser);
+            return redirect('/');
         }
-
-        return User::create([
-            'name' => $twitterUser->name,
-            'id' => $twitterUser->id,
-            'profile_image' => $twitterUser->avatar_original
-        ]);
     }
-
-}
+ }
