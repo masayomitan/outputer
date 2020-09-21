@@ -85,11 +85,11 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $user = Socialite::driver('twitter')->user();
+            $twitterUser = Socialite::driver('twitter')->user();
             } catch(\Exception $e) {
                 return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
         }
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $this->findOrCreateUser($twitterUser);
         Auth::login($authUser, true);
         return redirect()->route('books.index');
     }
@@ -117,11 +117,7 @@ class LoginController extends Controller
             'id' => $twitterUser->id,
             'profile_image' => $twitterUser->avatar_original
         ]);
-
-        $twitterUser->save();
-            //ログインしてトップページにリダイレクト
-            Auth::login($twitterUser);
-            return redirect('/books');
+        
         }
     }
 }
