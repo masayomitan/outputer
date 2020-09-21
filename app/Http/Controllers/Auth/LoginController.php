@@ -84,32 +84,24 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        try {
-            $user = Socialite::driver('twitter')->user();
-            } catch(\Exception $e) {
-                return redirect('/login')->with('oauth_error', '予期せぬエラーが発生しました');
-        }
-        $authUser = $this->findOrCreateUser($user);
-        Auth::login($authUser, true);
-        return redirect()->route('books.index');
-    }
+        $user = Socialite::driver('twitter')->user();
 
-    private function findOrCreateUser($twitterUser)
-    {
-        $authUser = User::where('id', $twitterUser->id)->first();
+        // OAuth Twoプロバイダ
+        $token = $user->token;
+        $refreshToken = $user->refreshToken; // not always provided
+        $expiresIn = $user->expiresIn;
 
-        if ($authUser){
-            return $authUser;
-        }
+        // OAuth Oneプロバイダ
+        $token = $user->token;
+        $tokenSecret = $user->tokenSecret;
 
-            $file_name = $twitterUser->avatar_original->file('profile_image');
-            $profile_image = Storage::disk('s3')->putFile('profile_image', $file_name, 'public');
-            $twitterUser->avatar_original = Storage::disk('s3')->url($profile_image);
+        // 全プロバイダ
+        $user->getId();
+        $user->getNickname();
+        $user->getName();
+        $user->getEmail();
+        $user->getAvatar();
 
-        return User::create([
-            'name' => $twitterUser->name,
-            'id' => $twitterUser->id,
-            'profile_image' => $twitterUser->avatar_original
-        ]);
+        return redirect('/books');
     }
 }
