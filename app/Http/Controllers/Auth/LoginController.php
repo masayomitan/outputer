@@ -94,10 +94,10 @@ class LoginController extends Controller
         if($user){
             //email登録がある場合の処理
             //twitter idが変更されている場合、DBアップデード
-            if($user->twitter_id  !== $user->getNickname()){
-                $user->twitter_id = $user->getNickname();
-                $user->save();
-            }
+            // if($user->twitter_id  !== $user->getNickname()){
+            //     $user->twitter_id = $user->getNickname();
+            //     $user->save();
+            // }
 
             Auth::login($user);
             return redirect('/');
@@ -106,7 +106,7 @@ class LoginController extends Controller
             $newuser = new User;
             $newuser->name = $user->getName();
             $newuser->email = $user->getEmail();
-            $newuser->twitter_id = $user->getNickname();
+            // $newuser->twitter_id = $user->getNickname();
 
             // 画像の取得
             $img = file_get_contents($user->avatar_original);
@@ -122,4 +122,4 @@ class LoginController extends Controller
             return redirect('/');
         }
     }
- }
+}
