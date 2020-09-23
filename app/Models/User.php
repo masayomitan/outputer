@@ -150,7 +150,7 @@ class User extends Authenticatable
             $ids_order = implode(',', $rank_slice);            //配列に文字列を連結
 
             $popular_users = $this->whereIn('id',$rank_slice)->orderByRaw(DB::raw("FIELD(id, $ids_order)"))
-            ->get();  //数字が複数あるのでwhereInで表示  https://sampling2x.com/2019/03/17/sql-in/
+            ->get();
         }
         return $popular_users;
     }
