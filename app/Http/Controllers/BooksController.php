@@ -30,7 +30,7 @@ class BooksController extends Controller
         $books["all"] = Book::orderBy('updated_at', "desc")->take(8)->get();
         $books["new"] = $book->getBooksWithNewSentences($book);
         $books["pop"] = $book->getBooksWithPopularSentences($book);
-        
+
         $popular_tags = $tags->getPopularTags();
         $popular_users = $user->getPopularUsers();
         $keyword = $request->input("keyword");
@@ -99,7 +99,6 @@ class BooksController extends Controller
      */
     public function store(Request $request, Book $book, Tag $tag)
     {
-        $user = auth()->user();
         $data = $request->all();
         $data["tags"] = array_filter($data["tags"]);    //array_filterで連想配列の空チェック,空削除でエラー防ぐ
 
