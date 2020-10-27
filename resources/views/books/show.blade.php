@@ -75,10 +75,8 @@
                                         <div class="book-show-favorites-count">
                                             {{$sentence->favorites->count()}}
                                         </div>
-
                                     @endif
                                 @endif
-
 
                                 <div class="sentence-box-each">
 
@@ -104,7 +102,6 @@
 
                                     </div>
                                     <div class="sentence-box-user">
-
                                         @if (isset($sentence->user->profile_image))
                                             <img class="profile_image" src="{{ $sentence->user->profile_image }}">
                                             <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
@@ -112,7 +109,6 @@
                                             <img class="profile_image" src="{{ asset('image/noname.jpg')}}">
                                             <p class="timeline-date">{{ $sentence->updated_at->format('Y-m-d') }}</p>
                                         @endif
-
                                     </div>
                                 </div>
                             @endif
