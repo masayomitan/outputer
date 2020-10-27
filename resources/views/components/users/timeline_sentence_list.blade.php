@@ -1,9 +1,4 @@
 
-
-
-
-
-
     <div class="user-show-select-box">
         @if (isset(auth()->user()->id))
             @if ((auth()->user()->id) == $user->id)
