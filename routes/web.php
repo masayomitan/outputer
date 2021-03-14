@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('login/test', 'Auth\LoginController@authenticate')->name('login.test');  //ゲストログイン実装,HTMLにベタ打ちだった為
+Route::get('login/test', 'Auth\LoginController@authenticate')->name('login.test');
 
 Route::get('login/twitter', 'Auth\LoginController@redirectToProvider');   //twitterLogin
 Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
