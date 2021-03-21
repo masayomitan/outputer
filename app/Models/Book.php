@@ -88,16 +88,15 @@ class Book extends Model
 
     public function bookStore(Array $data)
     {
-        $this->book_image =  $data["book_image"];
-        $this->title = $data['title'];
-        $this->author = $data['author'];
+        $this->book_image = $data["book_image"];
+        $this->title      = $data['title'];
+        $this->author     = $data['author'];
         $this->save();
         return;
     }
 
 
     public function bookTagSync(Array $tag_ids){
-        //syncメソッドは中間テーブルに設置しておくIDの配列を渡す。https://yshrfmru.hatenablog.com/entry/2019/03/24/131219
         //配列で見てるのでsync
         $this->tags()->sync($tag_ids);
     }
