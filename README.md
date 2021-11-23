@@ -1,4 +1,5 @@
-
+未経験時代のPFです。
+すでにクローズ
 
 <img width="925" alt="title" src="https://user-images.githubusercontent.com/59156545/92984565-f991ee00-f4e5-11ea-990c-63be6c83ac77.png">
 
