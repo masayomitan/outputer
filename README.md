@@ -94,13 +94,5 @@ https://outputapp.net/home
 
 <img width="772" alt="diagram" src="https://user-images.githubusercontent.com/59156545/91533966-b95e3780-e94b-11ea-9324-021ae26bb037.png">
 
-
-- これからもずっと使い続けたいので常にブラッシュアップをしていきます。 
-
-- その為の課題 9/10時点
-    - テストがまだ足りていない
-    - レスポンシブがまだ未対応
-    - フロントエンドの技術の導入が浅い
-
 以上になります。
 閲覧ありがとうございます。
