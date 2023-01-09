@@ -9,10 +9,6 @@
 読んだ本を(((3行)))で伝える
 短く簡潔に伝える練習をサポートするサービスです。
 
-
-<h2>URL</h2>
-https://outputapp.net/home
-
 【かんたんログイン】ボタンからテストユーザーとしてログインできます。
 
 
@@ -93,6 +89,3 @@ https://outputapp.net/home
 - インフラ構成図
 
 <img width="772" alt="diagram" src="https://user-images.githubusercontent.com/59156545/91533966-b95e3780-e94b-11ea-9324-021ae26bb037.png">
-
-以上になります。
-閲覧ありがとうございます。
